@@ -16,7 +16,7 @@ app.post("/post", (req, res) => {
     res.redirect("/");
 });
 app.post("/api", (req, res) => {
-    res.json({ resp: "Test" });
+    res.json({ resp: "Retrieved this from endpoint" });
 });
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => log.debug(`Server started on port ${PORT}`));

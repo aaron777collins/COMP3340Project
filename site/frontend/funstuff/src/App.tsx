@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+  Link,
+} from "react-router-dom";
+import Home from "./Home/Home";
 
 function App() {
-
   type responseType = {
     resp: string;
   };
@@ -19,36 +25,19 @@ function App() {
     };
     fetch(process.env.REACT_APP_API_ADDRESS as string, requestOptions)
       .then((resp) => resp.json())
-      .then((data: responseType) => setResponse({ resp: data.resp + " " +  (response.resp ? response.resp : "")}));
+      .then((data: responseType) =>
+        setResponse({
+          resp: data.resp + " " + (response.resp ? response.resp : ""),
+        })
+      );
   }
-  
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-
-        <p>A simple React app.....</p>
-
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <form action="../../post" method="post" className="form">
-          <button type="submit">Connected?</button>
-        </form>
-        <button type="submit" onClick={getData}>
-          Test Api
-        </button>
-        <div>
-        {response.resp}
-        </div>
-      </header>
-    </div>
+    <BrowserRouter>
+    <Routes>
+      <Route path="/" element={<Home />} />
+    </Routes>
+  </BrowserRouter>
   );
 }
 
