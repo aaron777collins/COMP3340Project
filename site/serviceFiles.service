@@ -1,0 +1,87 @@
+#####################################################Backend:
+[Unit]
+Description=A web server
+After=network.target
+StartLimitIntervalSec=0
+[Service]
+Type=simple
+Restart=always
+RestartSec=1
+User=centos
+ExecStart=/home/funstuff123/.nvm/versions/node/v16.15.1/bin/node /home/funstuff123/project/COMP3340Project/site/backend/app.js
+
+[Install]
+WantedBy=multi-user.target
+
+##################################################################v2:
+[Unit]
+Description=My super nodejs app
+
+[Service]
+# set the working directory to have consistent relative paths
+WorkingDirectory=/home/funstuff123/project/COMP3340Project/site/backend
+
+# start the server file (file is relative to WorkingDirectory here)
+ExecStart=/home/funstuff123/.nvm/versions/node/v16.15.1/bin/node dist/app.js
+
+# if process crashes, always try to restart
+Restart=always
+
+# let 500ms between the crash and the restart
+RestartSec=500ms
+
+# send log tot syslog here (it doesn't compete with other log config in the app itself)
+StandardOutput=syslog
+StandardError=syslog
+
+# BackendWebServer process name in syslog
+SyslogIdentifier=BackendWebServer
+
+# user and group starting the app
+User=www-data
+Group=www-data
+
+# set the environement (dev, prod…)
+Environment=NODE_ENV=production
+
+
+[Install]
+# start node at multi user system level (= sysVinit runlevel 3) 
+WantedBy=multi-user.target
+
+############## Front end ################################
+
+[Unit]
+Description=Frontend Web Server
+
+[Service]
+# set the working directory to have consistent relative paths
+WorkingDirectory=/home/funstuff123/project/COMP3340Project/site/frontend/funstuff
+
+# start the server file (file is relative to WorkingDirectory here)
+ExecStart=/home/funstuff123/.nvm/versions/node/v16.15.1/bin/serve -s build
+
+# if process crashes, always try to restart
+Restart=always
+
+# let 500ms between the crash and the restart
+RestartSec=500ms
+
+# send log tot syslog here (it doesn't compete with other log config in the app itself)
+StandardOutput=syslog
+StandardError=syslog
+
+# BackendWebServer process name in syslog
+SyslogIdentifier=FrontendWebServer
+
+# user and group starting the app
+User=www-data
+Group=www-data
+
+# set the environement (dev, prod…)
+Environment=NODE_ENV=production
+
+
+[Install]
+# start node at multi user system level (= sysVinit runlevel 3) 
+WantedBy=multi-user.target

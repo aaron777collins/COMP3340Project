@@ -1,0 +1,30 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+site/frontend/funstuff/node_modules
+site/frontend/funstuff/.pnp
+site/frontend/funstuff/.pnp.js
+
+# testing
+site/frontend/funstuff/coverage
+
+# production
+site/frontend/funstuff/build
+
+# misc
+site/frontend/funstuff/.DS_Store
+site/frontend/funstuff/.env.local
+site/frontend/funstuff/.env.development.local
+site/frontend/funstuff/.env.test.local
+site/frontend/funstuff/.env.production.local
+
+site/frontend/funstuff/npm-debug.log*
+site/frontend/funstuff/yarn-debug.log*
+site/frontend/funstuff/yarn-error.log*
+
+# backend
+site/backend/node_modules
+
+# package locks
+site/frontend/funstuff/package-lock.json
+site/backend/package-lock.json

@@ -1,0 +1,7 @@
+npm WARN config global `--global`, `--local` are deprecated. Use `--location=global` instead.
+
+> funstuffserver@1.0.0 start
+> node app.js
+
+Server started on port 8080
+/c/Program Files/nodejs/npm: line 44:  1136 Terminated              "$NODE_EXE" "$NPM_CLI_JS" "$@"
