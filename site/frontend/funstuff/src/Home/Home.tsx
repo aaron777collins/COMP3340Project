@@ -1,4 +1,6 @@
+import { getByDisplayValue } from "@testing-library/react";
 import React, { useEffect, useState } from "react";
+import { getConfigFileParsingDiagnostics } from "typescript";
 import logo from "../logo.svg";
 import "./Home.css";
 
@@ -31,7 +33,7 @@ function Home() {
         <img src={logo} className="App-logo" alt="logo" />
 
         <p>A simple React app.....</p>
-
+        {getCards()}
         <a
           className="App-link"
           href="https://reactjs.org"
@@ -53,3 +55,12 @@ function Home() {
 }
 
 export default Home;
+function getCards(): React.ReactNode {
+  const getDivs = () => {
+    let arr = ["hello", "hi"];
+    return arr.map((elem, ind) => {
+      return <p key={ind}>{elem}</p>;
+    });
+  };
+  return <>{getDivs()}</>;
+}
