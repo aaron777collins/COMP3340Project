@@ -22,7 +22,6 @@ Go to the `site/frontend/funstuff` directory and then run
 
 ### Viewing Front-end:
 Go to [http://localhost:3000](http://localhost:3000)
-If you are running on the server, use port 80 instead (or remove the port specification)
 
 ### **Run Entire System:**
 Go to the `/site` directory and run `./run.sh` with git bash
