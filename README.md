@@ -1,4 +1,4 @@
-# COMP3057project
+# COMP3340project
 
 This project has 2 npm projects:
 - site/backend
