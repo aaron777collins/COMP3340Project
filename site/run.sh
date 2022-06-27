@@ -34,8 +34,8 @@ printYellow $PWD
 echo ""
 
 printGreen "Running back-end: "
-printYellow "npm start\n"
-npm start &
+printYellow "npm run dev\n"
+npm run dev &
 backendPID=$!
 
 echo "moving to /site"
