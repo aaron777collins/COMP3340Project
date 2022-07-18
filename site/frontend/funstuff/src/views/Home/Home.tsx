@@ -1,8 +1,8 @@
 import { getByDisplayValue } from "@testing-library/react";
 import React, { useEffect, useState } from "react";
 import { getConfigFileParsingDiagnostics } from "typescript";
-import { getLogger } from "../LogConfig";
-import logo from "../logo.svg";
+import { getLogger } from "../../LogConfig";
+import logo from "../../logo.svg";
 import "./Home.css";
 
 const log = getLogger("view.home");
@@ -40,11 +40,9 @@ function Home() {
         {getCards()}
         <a
           className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="about"
         >
-          Learn React
+          About
         </a>
         <form action="../../post" method="post" className="form">
           <button type="submit">Connected?</button>
