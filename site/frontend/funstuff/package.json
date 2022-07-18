@@ -13,6 +13,8 @@
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "serve": "^13.0.2",
+    "typescript-logging": "^2.0.1",
+    "typescript-logging-log4ts-style": "^2.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

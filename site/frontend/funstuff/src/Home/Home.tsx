@@ -1,8 +1,11 @@
 import { getByDisplayValue } from "@testing-library/react";
 import React, { useEffect, useState } from "react";
 import { getConfigFileParsingDiagnostics } from "typescript";
+import { getLogger } from "../LogConfig";
 import logo from "../logo.svg";
 import "./Home.css";
+
+const log = getLogger("view.home");
 
 function Home() {
   type responseType = {
@@ -12,6 +15,7 @@ function Home() {
   const [response, setResponse] = useState({} as responseType);
 
   function getData(event: React.MouseEvent<HTMLButtonElement>) {
+    log.debug("This is a test");
     event.stopPropagation();
     const requestOptions = {
       method: "POST",

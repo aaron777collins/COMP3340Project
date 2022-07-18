@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const cors_1 = __importDefault(require("cors"));
 const express_1 = __importDefault(require("express"));
 const LogConfig_1 = require("./LogConfig");
-const log = (0, LogConfig_1.getLogger)("model.app");
+const log = (0, LogConfig_1.getLogger)("service.app");
 /* Create child categories based on a parent category, effectively allowing you to create a tree of loggers when needed */
 // const logApp = logModel.getChildCategory("app");
 const app = (0, express_1.default)();

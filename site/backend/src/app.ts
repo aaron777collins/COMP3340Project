@@ -2,7 +2,7 @@ import cors from "cors";
 import express from "express";
 import {getLogger} from "./LogConfig";
 
-const log = getLogger("model.app");
+const log = getLogger("service.app");
 
 /* Create child categories based on a parent category, effectively allowing you to create a tree of loggers when needed */
 // const logApp = logModel.getChildCategory("app");
