@@ -5,6 +5,8 @@ This project has 2 npm projects:
 - site/frontend/funstuff
 
 ## Install
+*NOTE: Requires Node v16 to install and run!*
+
 You can setup the repo very easily.
 
 Use git bash to run `./setup.sh` within the `/site` directory
