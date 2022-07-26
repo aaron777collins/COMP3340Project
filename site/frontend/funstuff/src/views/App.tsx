@@ -5,6 +5,8 @@ import About from "./About/About";
 import Navbar from "./Navbar/Navbar";
 import Products from "./Products/Products";
 import Faq from "./FAQ/Faq";
+import Login from "./Login/login";
+import SignUp from "./SignUp/signup";
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/products" element={<Products />} />
           <Route path="/faq" element={<Faq />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
         </Routes>
       </BrowserRouter>
     </>
