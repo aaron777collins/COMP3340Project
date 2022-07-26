@@ -1,6 +1,7 @@
 import cors from "cors";
 import express from "express";
 import {getLogger} from "./LogConfig";
+import { MongoConnection } from "./MongoConnection";
 
 const log = getLogger("service.app");
 
@@ -17,6 +18,23 @@ app.post("/post", (req: any, res: any) => {
 
 app.post("/api", (req: any, res: any) => {
     res.json({resp: "Retrieved this from endpoint"});
+});
+
+app.post("/dbapi", (req: any, res: any) => {
+    let mongoConnection = new MongoConnection();
+
+    let response = "No Results!";
+
+    mongoConnection.getData("funstuff", (db) => {
+        const testData = db.collection('testData');
+        testData.insetOne({ name: "test data"}, (err: any, result: any) => {});
+        testData.find().toArray((err: any, results:any) => {
+            log.debug(results);
+            response = results;
+        });
+    })
+
+    res.json({resp: response});
 });
 
 const PORT = process.env.PORT || 8080;
