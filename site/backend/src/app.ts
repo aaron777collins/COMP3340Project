@@ -1,6 +1,6 @@
 import cors from "cors";
 import express from "express";
-import {getLogger} from "./LogConfig";
+import { getLogger } from "./LogConfig";
 import { MongoConnection } from "./MongoConnection";
 
 const log = getLogger("service.app");
@@ -9,32 +9,37 @@ const log = getLogger("service.app");
 // const logApp = logModel.getChildCategory("app");
 
 const app = express();
-app.use(cors())
+app.use(cors());
 
 app.post("/post", (req: any, res: any) => {
-    log.debug("Connection made. Redirecting to React");
-    res.redirect("/");
+  log.debug("Connection made. Redirecting to React");
+  res.redirect("/");
 });
 
 app.post("/api", (req: any, res: any) => {
-    res.json({resp: "Retrieved this from endpoint"});
+  res.json({ resp: "Retrieved this from endpoint" });
 });
 
 app.post("/dbapi", (req: any, res: any) => {
-    const mongoConnection = new MongoConnection();
+  const mongoConnection = new MongoConnection();
 
-    let response = "No Results!";
+  const response = "No Results!";
 
-    mongoConnection.getData("funstuff", (db) => {
-        const testData = db.collection('testData');
-        testData.insetOne({ name: "test data"}, (err: any, result: any) => {log.debug("Added row")});
-        testData.find().toArray((err: any, results:any) => {
-            log.debug(results);
-            response = results;
-        });
+  mongoConnection
+    .getData("funstuff", (db) => {
+      const testData = db.collection("testData");
+      testData.insetOne({ name: "test data" }, (err: any, result: any) => {
+        log.debug("Added row");
+      });
+      testData.find().toArray((err: any, results: any) => {
+        log.debug(results);
+        return results;
+      });
     })
-
-    res.json({resp: response});
+    .then((resp: any) => {
+      res.json({ resp });
+    })
+    .catch((err) => res.json({ resp: err }));
 });
 
 const PORT = process.env.PORT || 8080;

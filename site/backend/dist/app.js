@@ -21,16 +21,22 @@ app.post("/api", (req, res) => {
 });
 app.post("/dbapi", (req, res) => {
     const mongoConnection = new MongoConnection_1.MongoConnection();
-    let response = "No Results!";
-    mongoConnection.getData("funstuff", (db) => {
-        const testData = db.collection('testData');
-        testData.insetOne({ name: "test data" }, (err, result) => { log.debug("Added row"); });
+    const response = "No Results!";
+    mongoConnection
+        .getData("funstuff", (db) => {
+        const testData = db.collection("testData");
+        testData.insetOne({ name: "test data" }, (err, result) => {
+            log.debug("Added row");
+        });
         testData.find().toArray((err, results) => {
             log.debug(results);
-            response = results;
+            return results;
         });
-    });
-    res.json({ resp: response });
+    })
+        .then((resp) => {
+        res.json({ resp });
+    })
+        .catch((err) => res.json({ resp: err }));
 });
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => log.debug(`Server started on port ${PORT}`));
