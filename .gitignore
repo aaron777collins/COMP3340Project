@@ -25,6 +25,8 @@ site/frontend/funstuff/yarn-error.log*
 # backend
 site/backend/node_modules
 site/backend/dist
+site/backend/dist/*
+
 
 # package locks
 site/frontend/funstuff/package-lock.json
