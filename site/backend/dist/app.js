@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -19,25 +28,41 @@ app.post("/post", (req, res) => {
 app.post("/api", (req, res) => {
     res.json({ resp: "Retrieved this from endpoint" });
 });
-app.post("/dbapi", (req, res) => {
+app.post("/dbapi", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const mongoConnection = new MongoConnection_1.MongoConnection();
     const response = "No Results!";
-    mongoConnection
-        .getData("funstuff", (db) => {
-        const testData = db.collection("testData");
-        testData.insetOne({ name: "test data" }, (err, result) => {
-            log.debug("Added row");
+    try {
+        yield mongoConnection.getData("funstuff", (db, errorInside) => {
+            if (errorInside) {
+                // res.json({error: errorInside})
+                return res.status(500).send({
+                    message: errorInside,
+                });
+            }
+            try {
+                const testData = db.collection("testData");
+                testData.insertOne({ name: "test data" }, (err, result) => {
+                    log.debug("Added row");
+                });
+                testData.find().toArray((err, results) => {
+                    log.debug(String(results));
+                    return res.json({ resp: results });
+                });
+            }
+            catch (error2) {
+                return res.status(500).send({
+                    message: error2,
+                });
+            }
         });
-        testData.find().toArray((err, results) => {
-            log.debug(results);
-            return results;
+    }
+    catch (error) {
+        log.debug(error);
+        return res.status(500).send({
+            message: error,
         });
-    })
-        .then((resp) => {
-        res.json({ resp });
-    })
-        .catch((err) => res.json({ resp: err }));
-});
+    }
+}));
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => log.debug(`Server started on port ${PORT}`));
 //# sourceMappingURL=app.js.map

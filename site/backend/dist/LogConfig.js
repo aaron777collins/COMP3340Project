@@ -11,6 +11,7 @@ const provider = typescript_logging_log4ts_style_1.Log4TSProvider.createProvider
             level: typescript_logging_1.LogLevel.Debug, /* This group will log on debug instead */
         }, {
             expression: new RegExp("service.+"),
+            level: typescript_logging_1.LogLevel.Debug, /* This group will log on debug instead */
         }],
 });
 function getLogger(name) {
