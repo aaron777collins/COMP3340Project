@@ -21,7 +21,7 @@ app.post("/api", (req: any, res: any) => {
 });
 
 app.post("/dbapi", (req: any, res: any) => {
-    const mongoConnection = new MongoConnection();
+    let mongoConnection = new MongoConnection();
 
     let response = "No Results!";
 
