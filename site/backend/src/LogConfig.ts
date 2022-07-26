@@ -9,6 +9,7 @@ const provider = Log4TSProvider.createProvider("ExampleProvider", {
     level: LogLevel.Debug, /* This group will log on debug instead */
   }, {
     expression: new RegExp("service.+"),
+    level: LogLevel.Debug, /* This group will log on debug instead */
   }],
 });
 

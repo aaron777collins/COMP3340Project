@@ -20,26 +20,41 @@ app.post("/api", (req: any, res: any) => {
   res.json({ resp: "Retrieved this from endpoint" });
 });
 
-app.post("/dbapi", (req: any, res: any) => {
+app.post("/dbapi", async (req: any, res: any) => {
   const mongoConnection = new MongoConnection();
 
   const response = "No Results!";
 
-  mongoConnection
-    .getData("funstuff", (db) => {
-      const testData = db.collection("testData");
-      testData.insetOne({ name: "test data" }, (err: any, result: any) => {
-        log.debug("Added row");
-      });
-      testData.find().toArray((err: any, results: any) => {
-        log.debug(results);
-        return results;
-      });
-    })
-    .then((resp: any) => {
-      res.json({ resp });
-    })
-    .catch((err) => res.json({ resp: err }));
+  try {
+    await mongoConnection.getData("funstuff", (db, errorInside) => {
+      if (errorInside) {
+        // res.json({error: errorInside})
+        return res.status(500).send({
+          message: errorInside,
+        });
+      }
+
+      try {
+        const testData = db.collection("testData");
+        testData.insertOne({ name: "test data" }, (err: any, result: any) => {
+          log.debug("Added row");
+        });
+        testData.find().toArray((err: any, results: any) => {
+          log.debug(String(results));
+          return res.json({ resp: results });
+        });
+      } catch (error2) {
+        return res.status(500).send({
+          message: error2,
+        });
+      }
+    });
+  } catch (error) {
+    log.debug(error);
+    return res.status(500).send({
+      message: error,
+    });
+  }
 });
 
 const PORT = process.env.PORT || 8080;
