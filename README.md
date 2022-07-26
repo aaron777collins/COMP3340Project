@@ -6,6 +6,7 @@ This project has 2 npm projects:
 
 ## Install
 *NOTE: Requires Node v16 to install and run!*
+*It also requires MongoDB to run! [Click this link for the mongodb install website.](https://www.mongodb.com/docs/manual/administration/install-community/)*
 
 You can setup the repo very easily.
 
