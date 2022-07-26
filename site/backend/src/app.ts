@@ -20,13 +20,8 @@ app.post("/api", (req: any, res: any) => {
   res.json({ resp: "Retrieved this from endpoint" });
 });
 
-<<<<<<< HEAD
-app.post("/dbapi", (req: any, res: any) => {
-    const mongoConnection = new MongoConnection();
-=======
 app.post("/dbapi", async (req: any, res: any) => {
   const mongoConnection = new MongoConnection();
->>>>>>> aleksa
 
   const response = "No Results!";
 
