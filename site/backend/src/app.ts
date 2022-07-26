@@ -21,13 +21,13 @@ app.post("/api", (req: any, res: any) => {
 });
 
 app.post("/dbapi", (req: any, res: any) => {
-    let mongoConnection = new MongoConnection();
+    const mongoConnection = new MongoConnection();
 
     let response = "No Results!";
 
     mongoConnection.getData("funstuff", (db) => {
         const testData = db.collection('testData');
-        testData.insetOne({ name: "test data"}, (err: any, result: any) => {});
+        testData.insetOne({ name: "test data"}, (err: any, result: any) => {log.debug("Added row")});
         testData.find().toArray((err: any, results:any) => {
             log.debug(results);
             response = results;
