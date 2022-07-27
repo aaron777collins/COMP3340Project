@@ -2,9 +2,11 @@ import cors from "cors";
 import express from "express";
 import { getLogger } from "./LogConfig";
 import { ADMIN_USER, AuthData, AUTH_LEVEL } from "./Models/Auths";
+import { ItemModel } from "./Models/Item";
 import { UserLoginInfo, UserModel } from "./Models/User";
 import { MongoConnection } from "./MongoConnection";
 import { callFunctionWithExpressReturns } from "./MongoHelper";
+import * as Data from "./Data/Data.json";
 
 const log = getLogger("service.app");
 
@@ -22,6 +24,43 @@ app.post("/post", (req: any, res: any) => {
 
 app.post("/api", (req: any, res: any) => {
   res.json({ resp: "Retrieved this from endpoint" });
+});
+
+app.post("/db/updateItems", async (req: any, res: any) => {
+  const mongoConnection = new MongoConnection();
+
+  const itemList = Data.Items as ItemModel[];
+
+  callFunctionWithExpressReturns(res, (db, errInside) => {
+    const itemData = db.collection("Items");
+    itemData.deleteMany();
+    itemData.insertMany(itemList);
+    return res.json({ resp: itemList });
+  });
+});
+
+// DO NOT use to avoid duplicate items
+app.post("/db/addAllItems", async (req: any, res: any) => {
+  const mongoConnection = new MongoConnection();
+
+  const itemList = Data.Items as ItemModel[];
+
+  callFunctionWithExpressReturns(res, (db, errInside) => {
+    const itemData = db.collection("Items");
+    itemData.insertMany(itemList);
+    return res.json({ resp: itemList });
+  });
+});
+
+app.get("/db/getAllItems", async (req: any, res: any) => {
+  const mongoConnection = new MongoConnection();
+
+  callFunctionWithExpressReturns(res, (db, errInside) => {
+    const itemData = db.collection("Items");
+    itemData.find().toArray((err: any, results: any) => {
+      return res.json({ resp: results });
+    });
+  });
 });
 
 app.post("/db/getUserAuth", async (req: any, res: any) => {
@@ -51,6 +90,25 @@ app.post("/db/getUserAuth", async (req: any, res: any) => {
           return res.json({ auth: AUTH_LEVEL.rejected } as AuthData);
         }
       });
+  });
+});
+
+app.post("/db/resetUsers", async (req: any, res: any) => {
+  const mongoConnection = new MongoConnection();
+
+  callFunctionWithExpressReturns(res, (db, errInside) => {
+    // parses post input
+
+    const userData = db.collection("Users");
+    const insertedData = {
+      username: "admin",
+      password: "FunStuffPass",
+      email: "colli11s@uwindsor.ca",
+    } as UserModel;
+    userData.deleteMany();
+    userData.insertOne(insertedData, (err: any, result: any) => {
+      return res.json({ resp: insertedData });
+    });
   });
 });
 
@@ -92,7 +150,7 @@ app.post("/db/insertUser", async (req: any, res: any) => {
       email: inputData.email,
     } as UserModel;
     userData.insertOne(insertedData, (err: any, result: any) => {
-      return res.json(insertedData);
+      return res.json({ resp: insertedData });
     });
   });
 });
