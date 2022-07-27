@@ -36,7 +36,7 @@ function Home() {
     <div className="App">
       <header className="App-header">
         <h1 className="animate-character">Fun Stuff</h1>
-        <ImageList sx={{ width: 1000, height: 900 }} cols={3} rowHeight={300}>
+        <ImageList sx={{ width: 1000, height: 900 }} cols={3} rowHeight={328}>
           {itemData.map((item) => (
             <ImageListItem key={item.img}>
               <img
@@ -95,6 +95,18 @@ const itemData = [
   {
     img: 'https://images.unsplash.com/photo-1570569962804-5377da5be035',
     title: 'Coffee',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1601814933824-fd0b574dd592',
+    title: 'Yoda',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1621478374422-35206faeddfb',
+    title: 'Anime',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1606167668584-78701c57f13d',
+    title: 'Board',
   },
 ];
 
