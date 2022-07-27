@@ -70,7 +70,7 @@ function Home() {
             <p>At Fun Stuff our game is creativity and our goal is to give you the products you need to<br></br>
                keep your life full of joy! Whether you're impressing your friends, or rocking on your own,<br></br> 
                it's time to start living life to the fullest! Share your photos and<br></br> 
-               vidoes with us and don't forget to Have Fun!</p>
+               vidoes with us and don't forget to Have Fun!!</p>
         </div>
       </header>
     </div>
