@@ -36,16 +36,6 @@ function Home() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-
-        <p>A simple React app.....</p>
-        {getCards()}
-        <a
-          className="App-link"
-          href="about"
-        >
-          About
-        </a>
         <form action="../../post" method="post" className="form">
           <button type="submit">Connected?</button>
         </form>

@@ -1,11 +1,22 @@
 import * as React from "react";
+import { useEffect, useState } from "react";
 import { getLogger } from "../../LogConfig";
 import logo from "../../logo.svg";
+import Product from "../Product/Product";
+import "./Products.css";
 
 // Used for adding parameters to the products tag
 export interface IProductsProps {}
 
 const log = getLogger("view.products");
+
+interface testProject{
+    test: string
+}
+
+export interface IProductsProps {
+  products: testProject
+}
 
 export default function Products(props: IProductsProps) {
   type responseType = {
@@ -13,7 +24,7 @@ export default function Products(props: IProductsProps) {
   };
 
   const [response, setResponse] = React.useState({} as responseType);
-
+  
   function getData(event: React.MouseEvent<HTMLButtonElement>) {
     log.debug("This is a test from products");
     event.stopPropagation();
@@ -23,28 +34,30 @@ export default function Products(props: IProductsProps) {
       body: JSON.stringify({ title: "React POST Request Example" }),
     };
     fetch(process.env.REACT_APP_API_ADDRESS as string, requestOptions)
-      .then((resp) => resp.json())
-      .then((data: responseType) =>
-        setResponse({
-          resp: data.resp + " " + (response.resp ? response.resp : ""),
-        })
-      );
+    .then((resp) => resp.json())
+    .then((data: responseType) =>
+    setResponse({
+      resp: data.resp + " " + (response.resp ? response.resp : ""),
+    })
+    );
   }
-
+  
   return (
-    <div className="App">
-      <header className="App-header">
-      <body className="poroductsClass">
-        <h1>Featured Products</h1>
-          <div className="product-details">
-          <p>Gallery</p>
-            <p>product info</p>
-
-          </div>
-        
-      </body>
-      </header>
-
+    <div className="products">
+      <h1>Products</h1>
+      <p>{props.products.test}</p>
+      <div className="productsList">
+        <Product></Product>
+        <Product></Product>
+        <Product></Product>
+        <Product></Product>
+        <Product></Product>
+        <Product></Product>
+        <Product></Product>
+        <Product></Product>
+        <Product></Product>
+        <Product></Product>
+      </div>
     </div>
   );
 }

@@ -1,15 +1,6 @@
-.App {
-    text-align: center;
-  }
-  
-  .App-logo {
-    height: 40vmin;
-    pointer-events: none;
-  }
-
-  .App-header {
+.products {
     background-color: #282c34;
-    min-height: 50vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,14 +8,12 @@
     font-size: calc(10px + 2vmin);
     color: white;
   }
-  
-  .App-link {
-    color: #61dafb;
+
+.productsList {
+    flex-direction: row;
+    flex-wrap: wrap;
+    display: flex;
+    margin: 10px 10px;
+    max-width: 80%;
   }
 
-  .product-details {
-    padding: 0 32px;
-    display: flex;
-    gap: 50%;
-  }
-  
