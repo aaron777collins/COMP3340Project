@@ -36,6 +36,7 @@ function Home() {
     <div className="App">
       <header className="App-header">
         <h1 className="animate-character">Fun Stuff</h1>
+        <h2>A small hint of what we offer:</h2>
         <ImageList sx={{ width: 1000, height: 900 }} cols={3} rowHeight={328}>
           {itemData.map((item) => (
             <ImageListItem key={item.img}>
@@ -89,8 +90,8 @@ const itemData = [
     title: 'Basketball',
   },
   {
-    img: 'https://images.unsplash.com/photo-1608571423902-eed4a5ad8108',
-    title: 'Oil',
+    img: 'https://images.unsplash.com/photo-1564186763535-ebb21ef5277f',
+    title: 'Guitar',
   },
   {
     img: 'https://images.unsplash.com/photo-1570569962804-5377da5be035',
@@ -107,6 +108,18 @@ const itemData = [
   {
     img: 'https://images.unsplash.com/photo-1606167668584-78701c57f13d',
     title: 'Board',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1546435770-a3e426bf472b',
+    title: 'Headphones',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1552318965-6e6be7484ada',
+    title: 'Soccer',
+  },
+  {
+    img: 'https://images.unsplash.com/photo-1506359585186-16ff29581308',
+    title: 'Pool',
   },
 ];
 
