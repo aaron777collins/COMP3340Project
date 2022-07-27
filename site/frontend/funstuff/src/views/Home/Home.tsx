@@ -53,7 +53,7 @@ function Home() {
           Test Api
         </button>
         <div>{response.resp}</div>
-        <ImageList sx={{ width: 1000, height: 450 }} cols={3} rowHeight={324}>
+        <ImageList sx={{ width: 1000, height: 900 }} cols={3} rowHeight={324}>
           {itemData.map((item) => (
             <ImageListItem key={item.img}>
               <img
