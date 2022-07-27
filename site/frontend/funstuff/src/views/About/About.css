@@ -28,15 +28,12 @@ p {
   text-align: left;
   background-color: #282c34;
   min-height: 100vh;
-  align-items: left;
-  justify-content: left;
   font-size: calc(10px + 2vmin);
   color: white;
   margin-left: 50px;
   margin-right: 50px;
   padding-bottom: 50px;
   height: 100%;
-  width: 100%;
 }
 
 .GroupMemberTable {
@@ -50,9 +47,10 @@ p {
 #map {
   height: 500px;
   width: 100%;
+  display: flex;
 }
 
 #mapiframe {
   height: 500px;
-  width: 80%;
+  width: 100%;
 }
