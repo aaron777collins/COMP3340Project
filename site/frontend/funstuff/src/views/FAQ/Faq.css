@@ -31,3 +31,7 @@
 .App-link {
   color: #61dafb;
 }
+
+body, html {
+  background-color: #282c34;
+}
