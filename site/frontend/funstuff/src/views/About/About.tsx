@@ -31,20 +31,28 @@ export default function About(props: IAboutComponentProps) {
       </div>
       <div className="App-body">
         <h2>What We Do</h2>
-        <p>Fun Stuff is an e-commerce website specializing in the funky stuff you <i>wish</i> you could find at a gift shop! Whether 
-          it's a Foot Stroker or a Bosnian Booze Bunker, we have it all!!!</p>
+        <p>Fun Stuff is an e-commerce website specializing in the funky stuff you <i>wish</i> you could find at a gift shop. Whether 
+          it's an Aleksa bobble head or a Bosnian Booze Bunker, we have it all!</p>
+        <p>Find our fantastic products on our products page, add them to your cart, share it with your friends, and then checkout in no time.</p>
+
+        <h2>Our Mission</h2>
+        <p>In today's e-commerce market of trying to squeeze every last penny out of the customer, funstuff.com tries not to <i>convince</i>
+          you our products are quality, but to <i>show</i> you quality products at a reasonable price, letting your intrigue guide you
+          to where your heart desires.</p>
+
         <h2>The Fun Stuff Crew</h2>
         {BasicTable()}
-        <h2>Location</h2>
-        <p>1234 Chungarius Ave. South</p>
-        <p>Windsor, ON N1A 2B3</p>
-
+        <h2>Headquarters</h2>
+        <p>738 Chungus Ave. West</p>
+        <p>Windsor, ON N9A 1B2</p>
         <div id="map">
-        <iframe id="mapiframe" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCzptUX6vEfYLfAb6eNkvCUS_dZgaUEJxw&q=42.303998784,-83.059499762"></iframe>
+          <iframe id="mapiframe" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCzptUX6vEfYLfAb6eNkvCUS_dZgaUEJxw&q=42.303998784,-83.059499762"></iframe>
+          <img src="/companyHQ.jpg" alt="Our Company Headquarters"></img>
         </div>
-
         <h2>Contact Us</h2>
-        <p>&#40;519&#41; 123-4567</p>
+        <p>If you have any problems, inquiries, or feedback, please reach out to us at the following outlets:</p>
+        <p>Phone: &#40;519&#41; 123-4567</p>
+        <p>E-mail: info@funstuff.com</p>
 
       </div>
     </div>
@@ -54,17 +62,16 @@ export default function About(props: IAboutComponentProps) {
 function createData(
   name: string,
   description: string,
-  email: string,
 ) {
-  return { name, description, email };
+  return { name, description };
 }
 
 const rows = [
-  createData('Aaron Collins', 'temp@peameal.bacon', 'Loves working on our backend ;)'),
-  createData('Alec Mladenovic', 's', 's'),
-  createData('Aleksa Vinjevic', 's', 's'),
-  createData('Kevin Liu', 's', 's'),
-  createData('Riley OKeefe', 's', 's'),
+  createData('Aaron Collins', 'Loves working on our backend ;)'),
+  createData('Alec Mladenovic', 'Loves watching anime x3'),
+  createData('Aleksa Vinjevic', 'Strep throat baddie'),
+  createData('Kevin Liu', 'Playing Valorant'),
+  createData('Riley OKeefe', '80% bathroom breaks'),
 ];
 
 export function BasicTable() {
@@ -74,8 +81,7 @@ export function BasicTable() {
         <TableHead>
           <TableRow>
             <TableCell>Group Member</TableCell>
-            <TableCell align="right">E-Mail</TableCell>
-            <TableCell align="right">Description</TableCell>
+            <TableCell align="left">Description</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -87,9 +93,7 @@ export function BasicTable() {
               <TableCell component="th" scope="row">
                 {row.name}
               </TableCell>
-              <TableCell align="right">{row.description}</TableCell>
-              <TableCell align="right">{row.email}</TableCell>
-
+              <TableCell align="left">{row.description}</TableCell>
             </TableRow>
           ))}
         </TableBody>
