@@ -12,9 +12,12 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^13.5.0",
+<<<<<<< HEAD
     "google-map-react": "^2.2.0",
+=======
     "axios": "^0.27.2",
     "jquery": "^3.6.0",
+>>>>>>> AdminPage
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-router": "^6.3.0",
@@ -53,7 +56,10 @@
     ]
   },
   "devDependencies": {
-    "@types/googlemaps": "^3.43.3",
+<<<<<<< HEAD
+    "@types/googlemaps": "^3.43.3"
+=======
     "@types/jquery": "^3.5.14"
+>>>>>>> AdminPage
   }
 }

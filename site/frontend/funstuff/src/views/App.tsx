@@ -8,6 +8,7 @@ import Faq from "./FAQ/Faq";
 import Checkout from "./Checkout/Checkout";
 import Login from "./Login/login";
 import SignUp from "./SignUp/signup";
+import Admin from "./Admin/Admin";
 
 function App() {
   return (
@@ -22,6 +23,8 @@ function App() {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/admin" element={<Admin />} />
+
         </Routes>
       </BrowserRouter>
     </>
