@@ -7,6 +7,7 @@ import Products from "./Products/Products";
 import Faq from "./FAQ/Faq";
 import Login from "./Login/login";
 import SignUp from "./SignUp/signup";
+import Admin from "./Admin/Admin";
 
 function App() {
   return (
@@ -20,6 +21,8 @@ function App() {
           <Route path="/faq" element={<Faq />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/admin" element={<Admin />} />
+
         </Routes>
       </BrowserRouter>
     </>
