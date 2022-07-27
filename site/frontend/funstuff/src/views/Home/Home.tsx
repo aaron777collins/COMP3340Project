@@ -2,7 +2,6 @@ import { getByDisplayValue } from "@testing-library/react";
 import React, { useEffect, useState } from "react";
 import { getConfigFileParsingDiagnostics } from "typescript";
 import { getLogger } from "../../LogConfig";
-import logo from "../../logo.svg";
 import "./Home.css";
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
@@ -36,23 +35,7 @@ function Home() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-
-        <p>A simple React app.....</p>
-        {getCards()}
-        <a
-          className="App-link"
-          href="about"
-        >
-          About
-        </a>
-        <form action="../../post" method="post" className="form">
-          <button type="submit">Connected?</button>
-        </form>
-        <button type="submit" onClick={getData}>
-          Test Api
-        </button>
-        <div>{response.resp}</div>
+        
         <ImageList sx={{ width: 1000, height: 900 }} cols={3} rowHeight={324}>
           {itemData.map((item) => (
             <ImageListItem key={item.img}>
@@ -128,12 +111,3 @@ const itemData = [
 ];
 
 export default Home;
-function getCards(): React.ReactNode {
-  const getDivs = () => {
-    let arr = ["hello", "hi"];
-    return arr.map((elem, ind) => {
-      return <p key={ind}>{elem}</p>;
-    });
-  };
-  return <>{getDivs()}</>;
-}
