@@ -13,6 +13,9 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import CelebrationIcon from "@mui/icons-material/Celebration";
 import { Link } from "@mui/material";
+import { useState } from "react";
+import Shoppingcart from "../Shoppingcart/Shoppingcart";
+import ShoppingCartManager from "../ShoppingCartManager/ShoppingCartManager";
 
 const pages = ["Products", "About Us", "FAQ"];
 const settings = ["Profile", "Logout"];
@@ -169,7 +172,7 @@ const Navbar = () => {
               </Button>
             ))}
           </Box>
-
+          <ShoppingCartManager />
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
