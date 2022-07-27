@@ -51,10 +51,10 @@ function Home() {
         </ImageList>
         <h1>Just Keep Having Fun!</h1>
         <div>
-            <p>At Fun Stuff our game is creativity and our goal is to give you the products you need to<br></br>
-               keep your life full of joy! Whether you're impressing your friends, or rocking on your own,<br></br> 
-               it's time to start living life to the fullest! Share your photos and<br></br> 
-               vidoes with us and don't forget to Have Fun!!</p>
+            <p>At Fun Stuff our game is creativity and our goal is to give you the products you need to keep<br></br>
+               your life full of joy! Whether you're impressing your friends, or rocking on your own, it's time<br></br> 
+               to start living life to the fullest! Share your photos and vidoes with us and don't forget to Have Fun!!<br></br>
+            </p>
         </div>
       </header>
     </div>
