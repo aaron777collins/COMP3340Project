@@ -14,7 +14,7 @@ export class MongoConnection {
     this.client = new MongoClient(url);
   }
 
-  async getData(database: string, callbackFunc: (db: any, err?: string) => void) {
+  async callFunction(database: string, callbackFunc: (db: any, err?: string) => void) {
     await MongoClient.connect(
       url,
       (err: any, client: { db: (str: string) => any }) => {
