@@ -1,3 +1,4 @@
+import { Container, Grid } from "@mui/material";
 import * as React from "react";
 import { getLogger } from "../../LogConfig";
 import logo from "../../logo.svg";
@@ -33,18 +34,17 @@ export default function Products(props: IProductsProps) {
 
   return (
     <div className="App">
-      <header className="App-header">
-      <body className="poroductsClass">
-        <h1>Featured Products</h1>
-          <div className="product-details">
-          <p>Gallery</p>
-            <p>product info</p>
-
-          </div>
-        
-      </body>
-      </header>
-
+      <div>
+      <Container id="products">
+        <Grid container spacing={4}>
+          {/* {products.map((product) => (
+            <Grid key={product.id} item xs={12} sm={6} md={4}>
+              <Product product={product} addProduct={addProduct} />
+            </Grid>
+          ))} */}
+        </Grid>
+      </Container>
+    </div>
     </div>
   );
 }
