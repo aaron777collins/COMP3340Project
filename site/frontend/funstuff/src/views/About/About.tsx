@@ -73,7 +73,7 @@ export function BasicTable() {
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Group Member</TableCell>
+            <TableCell id="GroupMemberHeading">Group Member</TableCell>
             <TableCell align="right">E-Mail</TableCell>
             <TableCell align="right">Description</TableCell>
           </TableRow>

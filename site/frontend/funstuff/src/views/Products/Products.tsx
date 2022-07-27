@@ -1,9 +1,9 @@
-import { Container, Grid } from "@mui/material";
+import { Container, Grid, TextField } from "@mui/material";
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { getLogger } from "../../LogConfig";
 import logo from "../../logo.svg";
-import Product from "../Product/Product";
+import Product, { ProductObj } from "../Product/Product";
 import "./Products.css";
 
 // Used for adding parameters to the products tag
@@ -11,18 +11,18 @@ export interface IProductsProps {}
 
 const log = getLogger("view.products");
 
-interface testProject{
-    test: string
-}
-
 export interface IProductsProps {
-  products: testProject
+  productsData: ProductObj[]
 }
 
 export default function Products(props: IProductsProps) {
+  
   type responseType = {
     resp: string;
   };
+
+  const productsArray = props.productsData; //get the products from the prop
+  console.log ("Test" + props.productsData[1]);
 
   const [response, setResponse] = React.useState({} as responseType);
   
@@ -45,19 +45,16 @@ export default function Products(props: IProductsProps) {
   
   return (
     <div className="products">
-      <h1>Products</h1>
-      <p>{props.products.test}</p>
-      <div className="productsList">
-        <Product></Product>
-        <Product></Product>
-        <Product></Product>
-        <Product></Product>
-        <Product></Product>
-        <Product></Product>
-        <Product></Product>
-        <Product></Product>
-        <Product></Product>
-        <Product></Product>
+      <h1>Products🛍️</h1>
+      <div className="productsListBody">
+      <TextField id="outlined-basic" label="Search for a product🛒" variant="outlined" fullWidth/>
+        <div className="productsList">
+          {
+            productsArray?.map((singleProduct) => (
+              <Product key={singleProduct.Name} product={singleProduct}></Product>
+            ))
+          }
+        </div>
       </div>
     </div>
   );

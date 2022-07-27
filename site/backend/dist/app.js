@@ -1,4 +1,27 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -18,6 +41,7 @@ const LogConfig_1 = require("./LogConfig");
 const Auths_1 = require("./Models/Auths");
 const MongoConnection_1 = require("./MongoConnection");
 const MongoHelper_1 = require("./MongoHelper");
+const Data = __importStar(require("./Data/Data.json"));
 const log = (0, LogConfig_1.getLogger)("service.app");
 /* Create child categories based on a parent category, effectively allowing you to create a tree of loggers when needed */
 // const logApp = logModel.getChildCategory("app");
@@ -31,6 +55,35 @@ app.post("/post", (req, res) => {
 app.post("/api", (req, res) => {
     res.json({ resp: "Retrieved this from endpoint" });
 });
+app.post("/db/updateItems", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const mongoConnection = new MongoConnection_1.MongoConnection();
+    const itemList = Data.Items;
+    (0, MongoHelper_1.callFunctionWithExpressReturns)(res, (db, errInside) => {
+        const itemData = db.collection("Items");
+        itemData.deleteMany();
+        itemData.insertMany(itemList);
+        return res.json({ resp: itemList });
+    });
+}));
+// DO NOT use to avoid duplicate items
+app.post("/db/addAllItems", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const mongoConnection = new MongoConnection_1.MongoConnection();
+    const itemList = Data.Items;
+    (0, MongoHelper_1.callFunctionWithExpressReturns)(res, (db, errInside) => {
+        const itemData = db.collection("Items");
+        itemData.insertMany(itemList);
+        return res.json({ resp: itemList });
+    });
+}));
+app.get("/db/getAllItems", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const mongoConnection = new MongoConnection_1.MongoConnection();
+    (0, MongoHelper_1.callFunctionWithExpressReturns)(res, (db, errInside) => {
+        const itemData = db.collection("Items");
+        itemData.find().toArray((err, results) => {
+            return res.json({ resp: results });
+        });
+    });
+}));
 app.post("/db/getUserAuth", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const mongoConnection = new MongoConnection_1.MongoConnection();
     const userInfo = req.body;
@@ -55,6 +108,22 @@ app.post("/db/getUserAuth", (req, res) => __awaiter(void 0, void 0, void 0, func
             else {
                 return res.json({ auth: Auths_1.AUTH_LEVEL.rejected });
             }
+        });
+    });
+}));
+app.post("/db/resetUsers", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const mongoConnection = new MongoConnection_1.MongoConnection();
+    (0, MongoHelper_1.callFunctionWithExpressReturns)(res, (db, errInside) => {
+        // parses post input
+        const userData = db.collection("Users");
+        const insertedData = {
+            username: "admin",
+            password: "FunStuffPass",
+            email: "colli11s@uwindsor.ca",
+        };
+        userData.deleteMany();
+        userData.insertOne(insertedData, (err, result) => {
+            return res.json({ resp: insertedData });
         });
     });
 }));
@@ -90,7 +159,7 @@ app.post("/db/insertUser", (req, res) => __awaiter(void 0, void 0, void 0, funct
             email: inputData.email,
         };
         userData.insertOne(insertedData, (err, result) => {
-            return res.json(insertedData);
+            return res.json({ resp: insertedData });
         });
     });
 }));

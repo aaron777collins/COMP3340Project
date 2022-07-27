@@ -1,15 +1,30 @@
-import { Button, Card, CardActions, CardContent, CardMedia, Typography } from "@mui/material";
+import { Button, Card, CardActions, CardContent, CardMedia, Rating, Typography } from "@mui/material";
 
-export default function Product () {
+export interface ProductObj{
+  Name: string,
+  Rating: number,
+  Price: number,
+  Description: string
+}
+
+export interface IProductProps {
+  product: ProductObj
+}
+
+export default function Product (props: IProductProps) {
 
   const styles = {
    
     productCard: {
         margin: '10px 20px' ,
-        maxWidth: 245,
-        maxHeight: 345
+        maxWidth: 350,
+        maxHeight: 350,
+        minWidth: 220,
+        minHeight: 250
     },
-}
+  }
+
+  const product = props.product; 
 
   return (
     <div>
@@ -21,11 +36,12 @@ export default function Product () {
         alt="gatorade bottle"
       />
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Gatorade Bottle
+        <Typography gutterBottom variant="body1" component="div">
+          {product.Name}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          This is some sample test 1.99$
+        <Rating name="read-only" value={product.Rating} readOnly />
+        <Typography variant="body1" color="text.secondary">
+        {(product.Price+" $CAD")}
         </Typography>
       </CardContent>
       <CardActions>

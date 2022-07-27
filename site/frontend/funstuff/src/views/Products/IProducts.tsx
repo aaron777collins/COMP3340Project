@@ -1,7 +1,11 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
+import { ProductObj } from '../Product/Product';
 import Products from './Products';
 
+interface ProductsDataObj {
+    productsArray: ProductObj[]
+}
 
 export default function IProducts() {
 
@@ -28,12 +32,16 @@ export default function IProducts() {
     useEffect(()=>{
         fetchData()
       },[])
+
+    const initialProductsObject: ProductsDataObj = {
+        productsArray: []
+    }
     
-    const [productData, setProductData]=useState({test: ''});
+    const [productData, setProductData]=useState(initialProductsObject);
 
   return (
     <div>
-      <Products products={productData}></Products>
+      <Products productsData={productData.productsArray}></Products>
     </div>
   );
 }

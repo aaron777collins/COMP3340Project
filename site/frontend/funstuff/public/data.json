@@ -1,3 +1,65 @@
 {
-    "test": "hello"
+    "productsArray": [
+        {
+            "Name": "Gatorade",
+            "Rating": 4,
+            "Price": 1.99,
+            "Description": "This is s test description"
+        },
+        {
+            "Name": "Spikeball Net",
+            "Rating": 5,
+            "Price": 79.99,
+            "Description": "This is s test description"
+        },
+        {
+            "Name": "Airpods",
+            "Rating": 3,
+            "Price": 139.99,
+            "Description": "This is s test description"
+        },
+        {
+            "Name": "Raybands",
+            "Rating": 4,
+            "Price": 200.99,
+            "Description": "This is s test description"
+        },
+        {
+            "Name": "Xbox Series S Controller",
+            "Rating": 4,
+            "Price": 79.99,
+            "Description": "This is s test description"
+        },
+        {
+            "Name": "Chroma Case",
+            "Rating": 1,
+            "Price": 3.99,
+            "Description": "This is s test description"
+        },
+        {
+            "Name": "Flinstone Gummy",
+            "Rating": 5,
+            "Price": 0.99,
+            "Description": "This is s test description"
+        },
+        {
+            "Name": "Camomile Tea",
+            "Rating": 4,
+            "Price": 1.99,
+            "Description": "This is s test description"
+        },
+        {
+            "Name": "Pencil",
+            "Rating": 3,
+            "Price": 4.99,
+            "Description": "This is s test description"
+        },
+        {
+            "Name": "Water Bottle",
+            "Rating": 5,
+            "Price": 7.99,
+            "Description": "This is s test description"
+        }
+
+    ]
 }
