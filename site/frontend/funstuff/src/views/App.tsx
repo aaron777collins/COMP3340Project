@@ -5,6 +5,7 @@ import About from "./About/About";
 import Navbar from "./Navbar/Navbar";
 import Products from "./Products/Products";
 import Faq from "./FAQ/Faq";
+import Checkout from "./Checkout/Checkout";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/products" element={<Products />} />
           <Route path="/faq" element={<Faq />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </BrowserRouter>
     </>
