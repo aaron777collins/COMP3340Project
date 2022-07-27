@@ -5,6 +5,7 @@ import About from "./About/About";
 import Navbar from "./Navbar/Navbar";
 import Products from "./Products/Products";
 import Faq from "./FAQ/Faq";
+import Checkout from "./Checkout/Checkout";
 import Login from "./Login/login";
 import SignUp from "./SignUp/signup";
 
@@ -18,6 +19,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/products" element={<Products />} />
           <Route path="/faq" element={<Faq />} />
+          <Route path="/checkout" element={<Checkout />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
         </Routes>
