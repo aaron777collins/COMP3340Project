@@ -1,0 +1,14 @@
+{
+  "Items": [
+    {
+      "name": "Test item 1",
+      "price": 35.99,
+      "description": "This is a basic description!"
+    },
+    {
+        "name": "Test item 2",
+        "price": 35.99,
+        "description": "This is a basic description 2!"
+      }
+  ]
+}
