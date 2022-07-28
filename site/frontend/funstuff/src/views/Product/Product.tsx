@@ -1,4 +1,8 @@
-import { Button, Card, CardActions, CardContent, CardMedia, Rating, Typography } from "@mui/material";
+import { SettingsRemoteSharp } from "@mui/icons-material";
+import { Button, Card, CardActions, CardContent, CardMedia, ListItemSecondaryAction, Rating, Typography } from "@mui/material";
+import { getLogger } from "../../LogConfig";
+import { CartItemModel } from "../../Models/Item";
+import { addToQuantity } from "../../Helpers/CartHelper";
 
 export interface ProductObj{
   Name: string,
@@ -8,8 +12,12 @@ export interface ProductObj{
 }
 
 export interface IProductProps {
-  product: ProductObj
+  product: ProductObj,
+  items: CartItemModel[],
+  setItems: Function
 }
+
+const log = getLogger("view.product");
 
 export default function Product (props: IProductProps) {
 
@@ -26,13 +34,22 @@ export default function Product (props: IProductProps) {
 
   const product = props.product; 
 
+  function getCartItem(product: ProductObj) {
+    return {
+      name: product.Name,
+      description: product.Description,
+      price: product.Price,
+      quantity: 1
+    } as CartItemModel
+  }
+
   return (
     <div>
       <Card sx={styles.productCard} variant='outlined'>
       <CardMedia
         component="img"
         height="140"
-        image="gatorade.jpg"
+        image="images/gatorade.jpg"
         alt="gatorade bottle"
       />
       <CardContent>
@@ -45,7 +62,7 @@ export default function Product (props: IProductProps) {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button color='success' variant='contained' fullWidth>Buy</Button>
+        <Button color='success' variant='contained' fullWidth onClick={() => addToQuantity(props.items, props.setItems, getCartItem(product), 1)}>Buy</Button>
       </CardActions>
     </Card>
     </div>

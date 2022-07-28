@@ -1,14 +1,64 @@
 {
   "Items": [
     {
-      "name": "Test item 1",
-      "price": 35.99,
-      "description": "This is a basic description!"
-    },
-    {
-        "name": "Test item 2",
-        "price": 35.99,
-        "description": "This is a basic description 2!"
-      }
+      "name": "Gatorade",
+      "rating": 4,
+      "price": 1.99,
+      "description": "This is s test description"
+  },
+  {
+      "name": "Spikeball Net",
+      "rating": 5,
+      "price": 79.99,
+      "description": "This is s test description"
+  },
+  {
+      "name": "Airpods",
+      "rating": 3,
+      "price": 139.99,
+      "description": "This is s test description"
+  },
+  {
+      "name": "Raybands",
+      "rating": 4,
+      "price": 200.99,
+      "description": "This is s test description"
+  },
+  {
+      "name": "Xbox Series S Controller",
+      "rating": 4,
+      "price": 79.99,
+      "description": "This is s test description"
+  },
+  {
+      "name": "Chroma Case",
+      "rating": 1,
+      "price": 3.99,
+      "description": "This is s test description"
+  },
+  {
+      "name": "Flinstone Gummy",
+      "rating": 5,
+      "price": 0.99,
+      "description": "This is s test description"
+  },
+  {
+      "name": "Camomile Tea",
+      "rating": 4,
+      "price": 1.99,
+      "description": "This is s test description"
+  },
+  {
+      "name": "Pencil",
+      "rating": 3,
+      "price": 4.99,
+      "description": "This is s test description"
+  },
+  {
+      "name": "Water Bottle",
+      "rating": 5,
+      "price": 7.99,
+      "description": "This is s test description"
+  }
   ]
 }

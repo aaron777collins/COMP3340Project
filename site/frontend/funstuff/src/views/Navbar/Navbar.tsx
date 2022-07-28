@@ -16,6 +16,7 @@ import { Link } from "@mui/material";
 import { useState } from "react";
 import Shoppingcart from "../Shoppingcart/Shoppingcart";
 import ShoppingCartManager from "../ShoppingCartManager/ShoppingCartManager";
+import { CartItemModel } from "../../Models/Item";
 
 const pages = ["Products", "About Us", "FAQ"];
 const settings = ["Profile", "Logout"];
@@ -24,7 +25,12 @@ pages_dict["Products"] = "products";
 pages_dict["About Us"] = "about";
 pages_dict["FAQ"] = "faq";
 
-const Navbar = () => {
+export interface INavBar {
+  items: CartItemModel[],
+  setItems: Function
+}
+
+const Navbar = (props: INavBar) => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -172,7 +178,7 @@ const Navbar = () => {
               </Button>
             ))}
           </Box>
-          <ShoppingCartManager />
+          <ShoppingCartManager items={props.items} setItems={props.setItems} />
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

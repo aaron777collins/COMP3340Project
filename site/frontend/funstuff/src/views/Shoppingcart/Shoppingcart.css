@@ -1,0 +1,19 @@
+#emptyCart {
+    width: 300px;
+}
+
+.card {
+    width: 300px;
+    min-height: 80px;
+}
+
+.cardContent {
+    padding-bottom: 15px !important;
+}
+
+.bottomCheckoutContent {
+    width: 302px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
