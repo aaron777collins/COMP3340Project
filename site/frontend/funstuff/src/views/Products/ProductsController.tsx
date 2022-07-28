@@ -17,7 +17,7 @@ interface IProductsController {
 export default function ProductsController(props: IProductsController) {
 
     function getItems() {
-      axios.get('/db/getAllItems').then((resp) => {
+      axios.get(process.env.REACT_APP_DBAPI_ADDRESS_BEGINNING + 'getAllItems').then((resp) => {
         const {data} = resp;
         let items = data.resp as ItemModel[];
         let products = items.map((item) => {

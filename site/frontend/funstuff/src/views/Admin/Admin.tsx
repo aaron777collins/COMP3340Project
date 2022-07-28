@@ -38,25 +38,25 @@ export default function Admin() {
   const functionObjArr = [
     {
       name: "Update Items",
-      apiPath: "/db/updateItems",
+      apiPath: process.env.REACT_APP_DBAPI_ADDRESS_BEGINNING + "updateItems",
       parameters: {},
       type: FuncType.post,
     },
     {
       name: "Get All Items",
-      apiPath: "/db/getAllItems",
+      apiPath: process.env.REACT_APP_DBAPI_ADDRESS_BEGINNING + "getAllItems",
       parameters: {},
       type: FuncType.get,
     },
     {
       name: "Reset Users",
-      apiPath: "/db/resetUsers",
+      apiPath: process.env.REACT_APP_DBAPI_ADDRESS_BEGINNING + "resetUsers",
       parameters: {},
       type: FuncType.post,
     },
     {
       name: "Get All Users",
-      apiPath: "/db/getAllUsers",
+      apiPath: process.env.REACT_APP_DBAPI_ADDRESS_BEGINNING + "getAllUsers",
       parameters: {
         password: "FunStuffPass",
       },
@@ -64,7 +64,7 @@ export default function Admin() {
     },
     {
       name: "Add All Items (Do not use)",
-      apiPath: "/db/addAllItems",
+      apiPath: process.env.REACT_APP_DBAPI_ADDRESS_BEGINNING + "addAllItems",
       parameters: {},
       type: FuncType.post,
     },
