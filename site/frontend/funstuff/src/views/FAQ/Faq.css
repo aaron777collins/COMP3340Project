@@ -35,3 +35,7 @@
 body, html {
   background-color: #282c34;
 }
+
+h1 {
+  text-align: center;
+}

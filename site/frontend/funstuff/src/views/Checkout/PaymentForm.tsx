@@ -15,6 +15,17 @@ export default function PaymentForm() {
         <Grid item xs={12} md={6}>
           <TextField
             required
+            id="cardName"
+            label="Full Name"
+            fullWidth
+            helperText = "First Last"
+            autoComplete="cc-name"
+            variant="standard"
+          />
+        </Grid>
+        <Grid item xs={12} md={6}>
+          <TextField
+            required
             id="cardNumber"
             label="Card number"
             fullWidth
@@ -28,6 +39,7 @@ export default function PaymentForm() {
             id="expDate"
             label="Expiry date"
             fullWidth
+            helperText = "month/day"
             autoComplete="cc-exp"
             variant="standard"
           />
@@ -41,6 +53,8 @@ export default function PaymentForm() {
             autoComplete="cc-csc"
             variant="standard"
           />
+        </Grid>
+        <Grid item xs={12}>
         </Grid>
       </Grid>
     </React.Fragment>
