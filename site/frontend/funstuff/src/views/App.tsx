@@ -10,19 +10,27 @@ import Login from "./Login/login";
 import SignUp from "./SignUp/signup";
 import Admin from "./Admin/Admin";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import { ShoppingCartSessionStorageModel, SHOPPING_CART_KEY } from "../Models/Keys";
+import { CartItemModel } from "../Models/Item";
+import { getLogger } from "../LogConfig";
+
+const log = getLogger("view.app");
+
 
 function App() {
 
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState([] as CartItemModel[]);
 
 
-  // useEffect(() => {
-  //   axios.get('/db/getAllItems').then((resp) => {
-  //       const {data} = resp;
-  //       setItems(data.resp);
-  //   });
-  // }, []);
+  useEffect(() => {
+    // checks if there is some items in the session storage
+    let data = localStorage.getItem(SHOPPING_CART_KEY);
+    if (data) {
+      let shoppingCart = JSON.parse(data) as ShoppingCartSessionStorageModel;
+      // if so, it sets the items to the session storage's items
+      setItems(shoppingCart.items);
+    }
+  }, []);
 
   return (
     <>

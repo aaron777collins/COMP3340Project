@@ -6,6 +6,7 @@ import Shoppingcart from "../Shoppingcart/Shoppingcart";
 import axios from "axios";
 import { getLogger } from "../../LogConfig";
 import { CartItemModel } from "../../Models/Item";
+import { ShoppingCartSessionStorageModel, SHOPPING_CART_KEY } from "../../Models/Keys";
 
 export interface IShoppingCartManagerProps {
   items: CartItemModel[];
