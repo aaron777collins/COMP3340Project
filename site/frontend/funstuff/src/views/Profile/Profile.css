@@ -1,0 +1,30 @@
+.mainContainer {
+    padding: 20px;
+}
+
+.centerContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.centerContainer img {
+    width: 400px;
+    height: 400px;
+}
+
+.avatarContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.formContainer {
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.buttonContainer {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
