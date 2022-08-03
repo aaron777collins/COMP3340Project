@@ -12,9 +12,10 @@ import Admin from "./Admin/Admin";
 import { useEffect, useState } from "react";
 import { ShoppingCartSessionStorageModel, SHOPPING_CART_KEY } from "../Models/Keys";
 import { CartItemModel } from "../Models/Item";
-import { getLogger } from "../LogConfig";
+import Profile from "./Profile/Profile";
 
-const log = getLogger("view.app");
+// import { getLogger } from "../LogConfig";
+// const log = getLogger("view.app");
 
 
 function App() {
@@ -45,6 +46,8 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/profile" element={<Profile />} />
+          
 
         </Routes>
       </BrowserRouter>
