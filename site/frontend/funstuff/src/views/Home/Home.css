@@ -1,7 +1,3 @@
-body {
-  overflow: hidden;
-}
-
 .homePage {
   background-image: url('../../images/homepage.jpg');
   background-size: cover;
