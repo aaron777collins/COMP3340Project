@@ -64,3 +64,7 @@
     background-position: 200% center;
   }
 }
+.center{
+  vertical-align: middle;
+  text-align: center;
+}
