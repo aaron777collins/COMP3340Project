@@ -16,6 +16,8 @@ import { Link } from "@mui/material";
 import ShoppingCartManager from "../ShoppingCartManager/ShoppingCartManager";
 import { CartItemModel } from "../../Models/Item";
 import { stringAvatar } from "../../Helpers/ProfileHelper";
+import { AUTH_LEVEL, UserAuth } from "../../Models/Auths";
+import { USER_AUTH_KEY } from "../../Models/Keys";
 
 const pages = ["Products", "About Us", "FAQ"];
 const settings = ["Profile", "Logout"];
@@ -24,11 +26,12 @@ pages_dict["Products"] = "products";
 pages_dict["About Us"] = "about";
 pages_dict["FAQ"] = "faq";
 pages_dict["Profile"] = "profile";
-pages_dict["Logout"] = "/";
 
 export interface INavBar {
   items: CartItemModel[];
   setItems: Function;
+  userAuth: UserAuth;
+  setUserAuth: Function;
 }
 
 const Navbar = (props: INavBar) => {
@@ -53,6 +56,94 @@ const Navbar = (props: INavBar) => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  function logout() {
+    const authObj = {username: "", authLevel: AUTH_LEVEL.rejected} as UserAuth;
+    props.setUserAuth(authObj);
+    sessionStorage.setItem(USER_AUTH_KEY, JSON.stringify(authObj));
+    localStorage.setItem(USER_AUTH_KEY, JSON.stringify(authObj));
+  }
+
+  function getProfileOrLogin() {
+    if (props.userAuth && props.userAuth.authLevel !== AUTH_LEVEL.rejected) {
+      return (
+        <>
+          <Box sx={{ flexGrow: 0 }}>
+            <Tooltip title="Open settings">
+              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> */}
+                <Avatar
+                  alt="Aaron Collins"
+                  {...stringAvatar("Aaron Collins")}
+                />
+              </IconButton>
+            </Tooltip>
+            <Menu
+              sx={{ mt: "45px" }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {settings.map((setting) => {
+                if (setting !== "Logout") {
+                  return (
+                    <Link
+                      href={pages_dict[setting]}
+                      underline="none"
+                      sx={{ color: "text.primary" }}
+                      key={setting}
+                    >
+                      <MenuItem onClick={handleCloseUserMenu}>
+                        <Typography textAlign="center">{setting}</Typography>
+                      </MenuItem>
+                    </Link>
+                  );
+                } else {
+                  return (
+                    <Link
+                      underline="none"
+                      sx={{ color: "text.primary" }}
+                      key={setting}
+                      onClick={logout}
+                    >
+                      <MenuItem onClick={handleCloseUserMenu}>
+                        <Typography textAlign="center">{setting}</Typography>
+                      </MenuItem>
+                    </Link>
+                  );
+                }
+              })}
+            </Menu>
+          </Box>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <Link
+            href="login"
+            underline="none"
+            sx={{ color: "inherit" }}
+            key="login"
+          >
+            <MenuItem onClick={handleCloseUserMenu}>
+              <Typography textAlign="center">Login</Typography>
+            </MenuItem>
+          </Link>
+        </>
+      );
+    }
+  }
 
   return (
     <AppBar position="sticky">
@@ -156,46 +247,7 @@ const Navbar = (props: INavBar) => {
             ))}
           </Box>
           <ShoppingCartManager items={props.items} setItems={props.setItems} />
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> */}
-                <Avatar
-                  alt="Aaron Collins"
-                  {...stringAvatar("Aaron Collins")}
-                />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map((setting) => (
-                <Link
-                  href={pages_dict[setting]}
-                  underline="none"
-                  sx={{ color: "text.primary" }}
-                  key={setting}
-                >
-                  <MenuItem onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{setting}</Typography>
-                  </MenuItem>
-                </Link>
-              ))}
-            </Menu>
-          </Box>
+          {getProfileOrLogin()}
         </Toolbar>
       </Container>
     </AppBar>

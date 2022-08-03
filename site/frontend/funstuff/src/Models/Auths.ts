@@ -9,3 +9,8 @@ export enum AUTH_LEVEL {
     admin="admin",
     rejected="rejected"
 }
+
+export type UserAuth = {
+    username: string;
+    authLevel: AUTH_LEVEL;
+}

@@ -58,7 +58,7 @@ export default function Admin() {
       name: "Get All Users",
       apiPath: process.env.REACT_APP_DBAPI_ADDRESS_BEGINNING + "getAllUsers",
       parameters: {
-        password: "FunStuffPass",
+        password: "FunStuffPass123!",
       },
       type: FuncType.post,
     },

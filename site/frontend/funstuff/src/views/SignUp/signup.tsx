@@ -4,9 +4,18 @@ import PasswordIcon from '@mui/icons-material/Password';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import YupPassword from 'yup-password';
+import axios from 'axios';
+import { loginToUser } from '../Login/login';
+import { UserAuth } from '../../Models/Auths';
 YupPassword(Yup);
 
-export default function SignUp () {
+export interface ISignUp {
+    userAuth: UserAuth;
+    setUserAuth: Function;
+  }
+  
+
+export default function SignUp (props: ISignUp) {
 
 
     const validationSchema = Yup.object({
@@ -40,7 +49,27 @@ export default function SignUp () {
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
-          alert(JSON.stringify(values, null, 2));
+        //   alert(JSON.stringify(values, null, 2));
+            axios.post(process.env.REACT_APP_DBAPI_ADDRESS_BEGINNING+"findUser", {username: values.user, password: "FunStuffPass123!"})
+            .then((res) => {
+                const {data} = res;
+                if (data && data.resp.username !== values.user) {
+                    axios.post(process.env.REACT_APP_DBAPI_ADDRESS_BEGINNING+"insertUser", {username: values.user, password: values.password, email: values.email})
+                    .then((res2) => {
+                        const {data} = res2;
+                        if (data && data.resp.username === values.user && data.resp.password === values.password && data.resp.email === values.email) {
+                            // user added!
+                            loginToUser(values.user, values.password, false, props.setUserAuth);
+                        } else {
+                            // failed to add user
+                            alert("Failed to create your account!");
+                        }
+                    });
+                } else {
+                    alert(JSON.stringify(data));
+                    alert(`${values.user} is taken!`);
+                }
+            });
         },
     });
     
@@ -138,7 +167,7 @@ export default function SignUp () {
                             <Typography 
                                 sx={styles.margintyle}>
                                     Have an account? 
-                                <Link href="#" >
+                                <Link href="login" >
                                     Log in.
                                 </Link>
                             </Typography> 
