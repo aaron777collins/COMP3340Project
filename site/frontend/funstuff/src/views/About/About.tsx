@@ -47,7 +47,7 @@ export default function About(props: IAboutComponentProps) {
         <p>Windsor, ON N9A 1B2</p>
         <div id="map">
           <iframe id="mapiframe" src="https://www.google.com/maps/embed/v1/place?key=AIzaSyCzptUX6vEfYLfAb6eNkvCUS_dZgaUEJxw&q=42.303998784,-83.059499762"></iframe>
-          <img src="/companyHQ.jpg" alt="Our Company Headquarters"></img>
+          <img id="hqimg" src="/companyHQ.jpg" alt="Our Company Headquarters"></img>
         </div>
         <h2>Contact Us</h2>
         <p>If you have any problems, inquiries, or feedback, please reach out to us at the following outlets:</p>

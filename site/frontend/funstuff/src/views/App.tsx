@@ -10,45 +10,71 @@ import Login from "./Login/login";
 import SignUp from "./SignUp/signup";
 import Admin from "./Admin/Admin";
 import { useEffect, useState } from "react";
-import { ShoppingCartSessionStorageModel, SHOPPING_CART_KEY } from "../Models/Keys";
+import {
+  ShoppingCartSessionStorageModel,
+  SHOPPING_CART_KEY,
+  USER_AUTH_KEY,
+} from "../Models/Keys";
 import { CartItemModel } from "../Models/Item";
 import Profile from "./Profile/Profile";
+import { UserAuth, AUTH_LEVEL } from "../Models/Auths";
 
-// import { getLogger } from "../LogConfig";
-// const log = getLogger("view.app");
-
+import { getLogger } from "../LogConfig";
+const log = getLogger("view.app");
 
 function App() {
-
   const [items, setItems] = useState([] as CartItemModel[]);
-
+  const [userAuth, setUserAuth] = useState({
+    username: "",
+    authLevel: AUTH_LEVEL.rejected,
+  } as UserAuth);
 
   useEffect(() => {
-    // checks if there is some items in the session storage
+    // checks if there is some items in the local storage
     let data = localStorage.getItem(SHOPPING_CART_KEY);
     if (data) {
       let shoppingCart = JSON.parse(data) as ShoppingCartSessionStorageModel;
-      // if so, it sets the items to the session storage's items
+      // if so, it sets the items to the local storage's items
       setItems(shoppingCart.items);
     }
+
+    // checks if there is auth in the session storage
+    let userData = localStorage.getItem(USER_AUTH_KEY);
+    if (userData && JSON.parse(userData).authLevel !== AUTH_LEVEL.rejected) {
+      log.debug(userData);
+      let userDataObj = JSON.parse(userData) as UserAuth;
+      // if so, it sets auth
+      setUserAuth(userDataObj);
+    } else {
+      // checks if there is auth in the session storage
+      userData = sessionStorage.getItem(USER_AUTH_KEY);
+      if (userData && JSON.parse(userData).authLevel !== AUTH_LEVEL.rejected) {
+        let userDataObj = JSON.parse(userData) as UserAuth;
+        // if so, it sets auth
+        setUserAuth(userDataObj);
+      }
+    }
+
+
   }, []);
 
   return (
     <>
-      <Navbar items={items} setItems={setItems} />
+      <Navbar items={items} setItems={setItems} userAuth={userAuth} setUserAuth={setUserAuth} />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/products" element={<ProductsController items={items} setItems={setItems} />} />
+          <Route
+            path="/products"
+            element={<ProductsController items={items} setItems={setItems} />}
+          />
           <Route path="/faq" element={<Faq />} />
           <Route path="/checkout" element={<Checkout />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
+          <Route path="/login" element={<Login userAuth={userAuth} setUserAuth={setUserAuth}/>} />
+          <Route path="/signup" element={<SignUp userAuth={userAuth} setUserAuth={setUserAuth}/>} />
           <Route path="/admin" element={<Admin />} />
           <Route path="/profile" element={<Profile />} />
-          
-
         </Routes>
       </BrowserRouter>
     </>

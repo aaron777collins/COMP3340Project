@@ -4,7 +4,14 @@ import FaceIcon from '@mui/icons-material/Face';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import YupPassword from 'yup-password';
+import axios from 'axios';
+import { AUTH_LEVEL, UserAuth } from '../../Models/Auths';
+import { getLogger } from '../../LogConfig';
+import { USER_AUTH_KEY } from '../../Models/Keys';
 YupPassword(Yup);
+
+const log = getLogger("view.login");
+
 
 const validationSchema = Yup.object({
     email: Yup
@@ -22,7 +29,34 @@ const validationSchema = Yup.object({
   });
 
 
-export default function Login () {
+export interface ILogin {
+  userAuth: UserAuth;
+  setUserAuth: Function;
+}
+
+export function loginToUser(username: String, password: String, rememberMe: Boolean, setUserAuth: Function) {
+  // alert(JSON.stringify(values, null, 2));
+  axios.post(process.env.REACT_APP_DBAPI_ADDRESS_BEGINNING+"getUserAuth", {username: username, password: password})
+  .then((res) => {
+    const {data} = res;
+    if (data && data.auth && data.auth !== AUTH_LEVEL.rejected) {
+      // not rejected
+      let authObj = {username: username, authLevel: data.auth} as UserAuth;
+      setUserAuth(authObj);
+      if (rememberMe) {
+        localStorage.setItem(USER_AUTH_KEY, JSON.stringify(authObj));
+      } else {
+        sessionStorage.setItem(USER_AUTH_KEY, JSON.stringify(authObj));
+      }
+
+      window.location.href="/";
+    } else {
+      alert("Invalid username or password!");
+    }
+  });
+}
+
+export default function Login (props: ILogin) {
     
     const styles = {
         paperStyle: {
@@ -64,7 +98,7 @@ export default function Login () {
       },
       validationSchema: validationSchema,
       onSubmit: (values) => {
-        alert(JSON.stringify(values, null, 2));
+        loginToUser(values.user, values.password, values.rememberMe, props.setUserAuth);
       },
   });
 
@@ -118,8 +152,8 @@ export default function Login () {
                     >
                       Sign in
                     </Button>
-                    <Typography sx={styles.margintyle}><Link href="#" >Forgot Password?</Link></Typography>
-                    <Typography sx={styles.margintyle}>Don't have an account? <Link href="#" >Sign up.</Link></Typography>
+                    <Typography sx={styles.margintyle}><Link href="signup" >Forgot Password?</Link></Typography>
+                    <Typography sx={styles.margintyle}>Don't have an account? <Link href="signup" >Sign up.</Link></Typography>
                 </Grid>
               </form>
             </Paper>

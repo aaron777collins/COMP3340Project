@@ -48,9 +48,22 @@ p {
   height: 500px;
   width: 100%;
   display: flex;
+  flex-wrap: nowrap;
 }
 
 #mapiframe {
   height: 500px;
   width: 100%;
+}
+
+@media screen 
+  and (max-width: 1000px)
+  and (-webkit-device-pixel-ratio: 2) {
+  #map {
+    flex-wrap: wrap;
+    margin-bottom: 550px;
+  }
+  #map img {
+    width: 100%;
+  }
 }
