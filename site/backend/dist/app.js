@@ -118,7 +118,7 @@ app.post("/db/resetUsers", (req, res) => __awaiter(void 0, void 0, void 0, funct
         const userData = db.collection("Users");
         const insertedData = {
             username: "admin",
-            password: "FunStuffPass",
+            password: "FunStuffPass123!",
             email: "colli11s@uwindsor.ca",
         };
         userData.deleteMany();
@@ -129,7 +129,7 @@ app.post("/db/resetUsers", (req, res) => __awaiter(void 0, void 0, void 0, funct
 }));
 app.post("/db/getAllUsers", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const mongoConnection = new MongoConnection_1.MongoConnection();
-    if (req.body.password !== "FunStuffPass") {
+    if (req.body.password !== "FunStuffPass123!") {
         return res.status(403).send({
             message: "Incorrect password!",
         });
@@ -137,6 +137,25 @@ app.post("/db/getAllUsers", (req, res) => __awaiter(void 0, void 0, void 0, func
     (0, MongoHelper_1.callFunctionWithExpressReturns)(res, (db, errInside) => {
         const userData = db.collection("Users");
         userData.find().toArray((err, results) => {
+            return res.json({ resp: results });
+        });
+    });
+}));
+app.post("/db/findUser", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const mongoConnection = new MongoConnection_1.MongoConnection();
+    if (!req.body.username) {
+        return res.status(403).send({
+            message: "Missing username!",
+        });
+    }
+    if (req.body.password !== "FunStuffPass123!") {
+        return res.status(403).send({
+            message: "Incorrect password!",
+        });
+    }
+    (0, MongoHelper_1.callFunctionWithExpressReturns)(res, (db, errInside) => {
+        const userData = db.collection("Users");
+        userData.find({ username: req.body.username }).toArray((err, results) => {
             return res.json({ resp: results });
         });
     });
