@@ -1,15 +1,54 @@
 import React from 'react';
 import {Avatar, Box, Checkbox, Grid, Paper, TextField, FormControlLabel, Button, Typography, Link} from '@mui/material'
 import PasswordIcon from '@mui/icons-material/Password';
-
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import YupPassword from 'yup-password';
+YupPassword(Yup);
 
 export default function SignUp () {
+
+
+    const validationSchema = Yup.object({
+        user: Yup.string()
+         .min(2, 'Too Short!')
+         .max(30, 'Too Long!')
+         .required('Required'),
+        email: Yup
+          .string()
+          .email('Invalid email')
+          .required('Email is required'),
+        password: Yup
+          .string()
+          .required('Password is required')
+          .min(8,'password must contain 8 or more characters with at least one of each: uppercase, lowercase, number and special')
+          .minLowercase(1, 'password must contain at least 1 lower case letter')
+          .minUppercase(1, 'password must contain at least 1 upper case letter')
+          .minNumbers(1, 'password must contain at least 1 number')
+          .minSymbols(1, 'password must contain at least 1 special character'),
+        passwordConfirmation: Yup.string()
+         .oneOf([Yup.ref('password'), null], 'Passwords must match')
+      });
+
+    const formik: any = useFormik({
+        initialValues: {
+          user:'',
+          email: '',
+          password: '',
+          passwordConfirmation: '',
+          rememberMe: false
+        },
+        validationSchema: validationSchema,
+        onSubmit: (values) => {
+          alert(JSON.stringify(values, null, 2));
+        },
+    });
     
     const styles = {
         paperStyle: {
             padding: '30px 40px', 
             minHeight: '70vh', 
-            height: '70vh', 
+            height: '80vh', 
             width: '40vh', 
             minWidth: '40vh', 
             margin: '20px auto'
@@ -23,25 +62,90 @@ export default function SignUp () {
     }
 
     return (
-        <Grid>
-            <Paper elevation={10} sx={styles.paperStyle}>
-                <Grid container
-                    direction="column"
-                    justifyContent="center"
-                    alignItems="center"
-                    textAlign="center">
-                    <Avatar sx={styles.avatarStyle}><PasswordIcon></PasswordIcon></Avatar>
-                    <h2>Sign up</h2>
-                    <Typography>We need a few details before you can sign up.</Typography>
-                    <TextField id="outlined-basic" label="Username" variant="outlined" fullWidth sx={styles.margintyle}/>
-                    <TextField id="outlined-basic" label="Email" variant="outlined" fullWidth sx={styles.margintyle}/>
-                    <TextField id="outlined-basic" label="Password" variant="outlined" fullWidth sx={styles.margintyle}/>
-                    <TextField id="outlined-basic" label="Confirm Password" variant="outlined" fullWidth sx={styles.margintyle}/>
-                    <FormControlLabel control={<Checkbox name='rememberMe'/>} label="Remember me" />
-                    <Button type='submit' color='primary' variant='contained' fullWidth>Sign up</Button>
-                    <Typography sx={styles.margintyle}>Have an account? <Link href="#" >Log in.</Link></Typography>
-                </Grid>
-            </Paper>
-        </Grid>
+        <div>
+            <Grid>
+                <Paper elevation={10} sx={styles.paperStyle}>
+                    <form onSubmit={formik.handleSubmit}>
+                        <Grid container
+                            direction="column"
+                            justifyContent="center"
+                            alignItems="center"
+                            textAlign="center">
+                            <Avatar sx={styles.avatarStyle}><PasswordIcon></PasswordIcon></Avatar>
+                            <h2>Sign up</h2>
+                            <Typography>We need a few details before you can sign up.</Typography>
+                            <TextField 
+                                id="outlined-basic" 
+                                name="user" 
+                                label="Username" 
+                                variant="outlined" 
+                                fullWidth 
+                                sx={styles.margintyle}
+                                value={formik.values.user}
+                                onChange={formik.handleChange}
+                                error={formik.touched.user && Boolean(formik.errors.user)}
+                                helperText={formik.touched.user && formik.errors.user}
+                            />
+                            <TextField 
+                            id="outlined-basic" 
+                                name="email" 
+                                label="Email" 
+                                variant="outlined" 
+                                fullWidth sx={styles.margintyle}
+                                value={formik.values.email}
+                                onChange={formik.handleChange}
+                                error={formik.touched.email && Boolean(formik.errors.email)}
+                                helperText={formik.touched.email && formik.errors.email}
+                            />
+                            <TextField 
+                                id="outlined-basic" 
+                                name="password" 
+                                type="password" 
+                                label="Password" 
+                                variant="outlined" 
+                                fullWidth sx={styles.margintyle}
+                                value={formik.values.password}
+                                onChange={formik.handleChange}
+                                error={formik.touched.password && Boolean(formik.errors.password)}
+                                helperText={formik.touched.password && formik.errors.password}
+                            />
+                            <TextField 
+                                id="outlined-basic" 
+                                name="passwordConfirmation" 
+                                type="password" 
+                                label="Confirm Password" 
+                                variant="outlined" 
+                                fullWidth sx={styles.margintyle}
+                                value={formik.values.passwordConfirmation}
+                                onChange={formik.handleChange}
+                                error={formik.touched.passwordConfirmation && Boolean(formik.errors.passwordConfirmation)}
+                                helperText={formik.touched.passwordConfirmation && formik.errors.passwordConfirmation}
+                            />
+                            <FormControlLabel control={
+                                <Checkbox 
+                                    checked={formik.values.rememberMe}
+                                    name='rememberMe'
+                                    onChange={formik.handleChange}
+                                />
+                            } label="Remember me" />
+                            <Button 
+                                type='submit' 
+                                color='primary' 
+                                variant='contained' 
+                                fullWidth>
+                                Sign up
+                            </Button>
+                            <Typography 
+                                sx={styles.margintyle}>
+                                    Have an account? 
+                                <Link href="#" >
+                                    Log in.
+                                </Link>
+                            </Typography> 
+                        </Grid>
+                    </form>
+                </Paper>
+            </Grid>
+        </div>
   );
 }
