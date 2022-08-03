@@ -37,7 +37,7 @@ export default function Profile(props: IProfileProps) {
         <Avatar alt="Aaron Collins" {...stringAvatarBig("Aaron Collins")} />
       </div>
       <div className="formContainer">
-        <Paper sx={{ p: 5, pb: 2, mt: 5 }} elevation={3}>
+        <Paper sx={{ p: 5, pt: 3, pb: 2, mt: 5 }} elevation={3}>
           <Box
             component="form"
             sx={{
