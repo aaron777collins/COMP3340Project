@@ -8,36 +8,14 @@ export interface IFaqProps {}
 
 const log = getLogger("view.faq");
 
-export default function Faq(props: IFaqProps) {
-  type responseType = {
-    resp: string;
-  };
-
-  const [response, setResponse] = React.useState({} as responseType);
-
-  function getData(event: React.MouseEvent<HTMLButtonElement>) {
-    log.debug("This is a test from FAQ");
-    event.stopPropagation();
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ title: "React POST Request Example" }),
-    };
-    fetch(process.env.REACT_APP_API_ADDRESS as string, requestOptions)
-      .then((resp) => resp.json())
-      .then((data: responseType) =>
-        setResponse({
-          resp: data.resp + " " + (response.resp ? response.resp : ""),
-        })
-      );
-  }
+export default function Faq() {
+  
 
   return (
-    <div className="App">
-      <header className="App-header"></header>
-      <body className="App-body">
+    <div className="Faq">
+      <div className="Faq-body" >
         <h1>FAQ Page</h1>
-        <div className="App-questions">
+        <div className="Faq-questions">
           <h3>How can I contact Fun Stuff?</h3>
           <div>
             <li>You can email us at a info@funstuff.com where our customer service team will be happy to help you with whatever you may need.</li>
@@ -73,7 +51,7 @@ export default function Faq(props: IFaqProps) {
           </div>
 
         </div>
-      </body>
+      </div>
     </div>
   );
 }

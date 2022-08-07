@@ -20,7 +20,16 @@ import Profile from "./Profile/Profile";
 import { UserAuth, AUTH_LEVEL } from "../Models/Auths";
 
 import { getLogger } from "../LogConfig";
+import { createTheme, ThemeProvider } from "@mui/material";
 const log = getLogger("view.app");
+
+const fontTheme = createTheme({
+  typography: {
+    fontFamily: [
+      '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif'
+    ].join(",")
+  }
+});
 
 function App() {
   const [items, setItems] = useState([] as CartItemModel[]);
@@ -60,23 +69,25 @@ function App() {
 
   return (
     <>
-      <Navbar items={items} setItems={setItems} userAuth={userAuth} setUserAuth={setUserAuth} />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route
-            path="/products"
-            element={<ProductsController items={items} setItems={setItems} />}
-          />
-          <Route path="/faq" element={<Faq />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/login" element={<Login userAuth={userAuth} setUserAuth={setUserAuth}/>} />
-          <Route path="/signup" element={<SignUp userAuth={userAuth} setUserAuth={setUserAuth}/>} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/profile" element={<Profile />} />
-        </Routes>
-      </BrowserRouter>
+      <ThemeProvider theme={fontTheme}>
+        <Navbar items={items} setItems={setItems} userAuth={userAuth} setUserAuth={setUserAuth} />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route
+              path="/products"
+              element={<ProductsController items={items} setItems={setItems} />}
+              />
+            <Route path="/faq" element={<Faq />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/login" element={<Login userAuth={userAuth} setUserAuth={setUserAuth}/>} />
+            <Route path="/signup" element={<SignUp userAuth={userAuth} setUserAuth={setUserAuth}/>} />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/profile" element={<Profile />} />
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
     </>
   );
 }

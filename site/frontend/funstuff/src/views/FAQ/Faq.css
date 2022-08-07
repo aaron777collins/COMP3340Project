@@ -1,41 +1,18 @@
-.App {
+.Faq {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-
-.App-header {
-  /* background-color: #282c34; */
-  min-height: 0px;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-body {
+.Faq-body {
   /* background-color: #282c34; */
   min-height: 100vh;
   font-size: calc(10px + 2vmin);
   color: white;
+  background-color: #282c34;
+  padding: 30px 10px;
 }
 
-.App-questions {
+.Faq-questions {
   font-size: calc(7px + 1vmin);
   text-align: left;
   margin-left: 35px;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-body, html {
-  /* background-color: #282c34; */
-}
-
-h1 {
-  text-align: center;
 }
