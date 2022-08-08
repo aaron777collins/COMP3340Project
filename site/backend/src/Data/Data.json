@@ -1,64 +1,94 @@
 {
   "Items": [
     {
-      "name": "Gatorade",
-      "rating": 4,
-      "price": 1.99,
-      "description": "This is s test description"
+      "name": "Antique Gatorade (with Asbestos)",
+      "rating": 3,
+      "price": 5.99,
+      "description": "Not for human consumption."
   },
   {
       "name": "Spikeball Net",
       "rating": 5,
       "price": 79.99,
-      "description": "This is s test description"
+      "description": "A fun game to play with 4+ people!"
   },
   {
-      "name": "Airpods",
+      "name": "Used Airpods",
       "rating": 3,
       "price": 139.99,
-      "description": "This is s test description"
+      "description": "Lightly cleaned."
   },
   {
-      "name": "Raybands",
+      "name": "Ducky Keyboard",
       "rating": 4,
-      "price": 200.99,
-      "description": "This is s test description"
+      "price": 199.99,
+      "description": "The perfect amount of clickity-clack!"
   },
   {
       "name": "Xbox Series S Controller",
       "rating": 4,
       "price": 79.99,
-      "description": "This is s test description"
+      "description": "Quickscope approved."
   },
   {
       "name": "Chroma Case",
       "rating": 1,
       "price": 3.99,
-      "description": "This is s test description"
+      "description": "Oh yeah! Let's get that knife!"
   },
   {
-      "name": "Flinstone Gummy",
+      "name": "Flintstone Gummy",
       "rating": 5,
       "price": 0.99,
-      "description": "This is s test description"
+      "description": "A mild psychadelic, perfect for children."
   },
   {
-      "name": "Camomile Tea",
-      "rating": 4,
-      "price": 1.99,
-      "description": "This is s test description"
-  },
-  {
-      "name": "Pencil",
-      "rating": 3,
-      "price": 4.99,
-      "description": "This is s test description"
-  },
-  {
-      "name": "Water Bottle",
+      "name": "Flings Fried Chicken Coupon",
       "rating": 5,
-      "price": 7.99,
-      "description": "This is s test description"
+      "price": 24.99,
+      "description": "For the special chicken-lover in your life."
+  },
+  {
+      "name": "Batch 27 Pre-Workout",
+      "rating": 5,
+      "price": 59.99,
+      "description": "Special formula of caffeine, l-citrulline, beta alanine and creatine."
+  },
+  {
+      "name": "Inflatable Alien Costume",
+      "rating": 5,
+      "price": 79.99,
+      "description": "👽"
+  },
+  {
+      "name": "Kevin's Valorant Coaching",
+      "rating": 5,
+      "price": 99.99,
+      "description": "Comprehensive coaching and VOD review from a established Radiant player!"
+  },
+  {
+      "name": "Moonveil Katana",
+      "rating": 3,
+      "price": 239.99,
+      "description": "One of the most broken weapons from the hit game: Elden Ring!"
+  },
+  {
+      "name": "Bionic Boot",
+      "rating": 5,
+      "price": 555.99,
+      "description": "First step towards human perfection."
+  },
+  {
+      "name": "2019 MRE",
+      "rating": 4,
+      "price": 19.99,
+      "description": "Perfect for long drives and movie theatre dates."
+  },
+  {
+      "name": "Giant Stress Ball",
+      "rating": 5,
+      "price": 39.99,
+      "description": "For those segmentation faults."
   }
   ]
 }

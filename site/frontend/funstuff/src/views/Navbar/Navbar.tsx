@@ -19,13 +19,17 @@ import { stringAvatar } from "../../Helpers/ProfileHelper";
 import { AUTH_LEVEL, UserAuth } from "../../Models/Auths";
 import { USER_AUTH_KEY } from "../../Models/Keys";
 
-const pages = ["Products", "About Us", "FAQ"];
+const pages = ["Products", "About Us", "FAQ", "Legal", "Terms and Conditions", "Privacy", "Refund"];
 const settings = ["Profile", "Logout"];
 const pages_dict: { [name: string]: string } = {};
 pages_dict["Products"] = "products";
 pages_dict["About Us"] = "about";
 pages_dict["FAQ"] = "faq";
 pages_dict["Profile"] = "profile";
+pages_dict["Legal"] = "legal";
+pages_dict["Terms and Conditions"] = "terms";
+pages_dict["Privacy"] = "privacy";
+pages_dict["Refund"] = "refund";
 
 export interface INavBar {
   items: CartItemModel[];
