@@ -8,6 +8,7 @@ import ImageListItem from '@mui/material/ImageListItem';
 import { Button, Card, CardActionArea, CardActions, CardContent, CssBaseline, Grid, Typography } from "@mui/material";
 import { display } from "@mui/system";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 
 interface WeatherResponseObject {
@@ -98,13 +99,13 @@ export default function Home() {
               </CardActionArea>
               <div className="buttonsLanding">
                 <CardActions>
-                  <Button variant="contained" sx={{backgroundColor: '#001646'}} className="buttonsLandingButton">
+                  <Button component={Link} to="/products" variant="contained" sx={{backgroundColor: '#001646'}} className="buttonsLandingButton">
                     Products
                   </Button>
-                  <Button variant="contained" sx={{backgroundColor: '#001646'}} className="buttonsLandingButton">
+                  <Button component={Link} to="/about" variant="contained" sx={{backgroundColor: '#001646'}} className="buttonsLandingButton">
                     About Us
                   </Button>
-                  <Button variant="contained" sx={{backgroundColor: '#001646'}} className="buttonsLandingButton">
+                  <Button component={Link} to="/faq" variant="contained" sx={{backgroundColor: '#001646'}} className="buttonsLandingButton">
                     FAQ
                   </Button>
                 </CardActions>
