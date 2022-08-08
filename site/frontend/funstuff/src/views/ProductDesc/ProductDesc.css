@@ -1,0 +1,48 @@
+.productMainPaper {
+    padding: 30px 40px; 
+    min-height: 70vh;
+    height: 80vh;
+    width: 60vw;
+    min-width: 40vh; 
+    margin: 20px auto;
+}
+
+.productMainPaper{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+.firstRow{
+    display: flex;
+    flex-direction: row;
+}
+
+.descriptionInfo{
+    padding: calc(5vmin), calc(5vmin);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: 10vmin;
+    width: 100%;
+}
+
+.productTitle{
+    font-size: 5vmin !important;
+    font-weight: 500 !important;
+}
+
+.productDescription{
+    font-size: 3vmin !important;
+    font-weight: 300 !important;
+}
+
+.productCost{
+    font-size: 4vmin !important;
+    font-weight: 400 !important;
+}
+
+.productRating{
+    font-size: 3vmin !important;
+    font-weight: 300 !important;
+}

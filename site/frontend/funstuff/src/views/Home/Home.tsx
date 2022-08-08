@@ -80,7 +80,7 @@ export default function Home() {
           </Typography>
 
           <Card sx={{
-            backgroundColor: '#1976d2',
+            backgroundColor: '#58acff;',
             padding: '20px 20px'
           }} elevation={12} className="welcomeCard">
             <CardActionArea>

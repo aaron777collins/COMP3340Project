@@ -1,16 +1,15 @@
-import { Button, Card, CardActions, CardContent, CardMedia, Rating, Typography } from '@mui/material';
+import { Button, Card, CardActions, CardContent, CardMedia, Paper, Rating, Typography } from '@mui/material';
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { addToQuantity } from '../../Helpers/CartHelper';
 import { CurrentItemSelected, CURRENT_ITEM_KEY } from '../../Models/CurrentItem';
 import { CartItemModel } from '../../Models/Item';
+import "./ProductDesc.css";
 
 export interface IProductDesc {
   items: CartItemModel[];
   setItems: Function;
 }
-
-
 
 export default function ProductDesc (props: IProductDesc) {
 
@@ -45,30 +44,49 @@ export default function ProductDesc (props: IProductDesc) {
         console.log('refreshed products')
    }, [])
 
-   console.log(currentlySelectedItem);
+   console.log(currentlySelectedItem.currentItemForStorage.currentItem.rating);
 
    return (
-    <div>
-      <Card variant='outlined'>
-      <CardMedia
-        component="img"
-        height="140"
-        image="images/gatorade.jpg"
-        alt="gatorade bottle"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="body1" component="div">
-            {currentlySelectedItem.currentItemForStorage.currentItem.name}
-        </Typography>
-        <Typography variant="body1" color="text.secondary">
-            {currentlySelectedItem.currentItemForStorage.currentItem.description}
-            {(currentlySelectedItem.currentItemForStorage.currentItem.price+" $CAD")}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        {/* <Button color='success' variant='contained' fullWidth onClick={() => addToQuantity(props.items, props.setItems, getCartItem(product), 1)}>Buy</Button> */}
-      </CardActions>
-      </Card>
-    </div>
+    <>
+      <Paper elevation={10} className='productMainPaper'>
+        <div className='productMainCard'>
+            <div className='firstRow'>
+                <CardMedia
+                    component="img"
+                    sx = {{
+                        width: '30vmin',
+                        height: '30vmin'
+                    }}
+                    image="images/gatorade.jpg"
+                    alt="gatorade bottle"
+                />
+                <CardContent sx={{elevation:'10'}} className='descriptionInfo'>
+                    
+                    <Typography gutterBottom  component="div" className='productTitle'>
+                        {currentlySelectedItem.currentItemForStorage.currentItem.name}
+                    </Typography>
+                    
+                    <Typography gutterBottom className='productCost'>
+                        {(currentlySelectedItem.currentItemForStorage.currentItem.price+"$ CAD")}
+                    </Typography>
+
+                    <Typography gutterBottom className='productRating'>
+                        {"Rating: "}  
+                        <Rating name="read-only" value={currentlySelectedItem.currentItemForStorage.currentItem.rating} readOnly/>
+                    </Typography>
+                    
+                    <Typography gutterBottom className='productDescription'>
+                        {currentlySelectedItem.currentItemForStorage.currentItem.description}
+                    </Typography>
+                    
+                    
+                    <CardActions>
+                        <Button fullWidth onClick={() => addToQuantity(props.items, props.setItems, currentlySelectedItem.currentItemForStorage.currentItem, 1)} color='success' variant='contained'>Add to cart</Button>
+                    </CardActions>
+                </CardContent>
+            </div>
+        </div>
+      </Paper>
+    </>
   );
 }
