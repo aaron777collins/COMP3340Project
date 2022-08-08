@@ -12,7 +12,6 @@ YupPassword(Yup);
 
 const log = getLogger("view.login");
 
-
 const validationSchema = Yup.object({
     email: Yup
       .string()
