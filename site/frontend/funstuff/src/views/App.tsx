@@ -9,6 +9,10 @@ import Checkout from "./Checkout/Checkout";
 import Login from "./Login/login";
 import SignUp from "./SignUp/signup";
 import Admin from "./Admin/Admin";
+import Legal from "./Legal/Legal";
+import Terms from "./Terms/Terms";
+import Privacy from "./Privacy/Privacy";
+import Refund from "./Refund/Refund";
 import { useEffect, useState } from "react";
 import {
   ShoppingCartSessionStorageModel,
@@ -85,6 +89,10 @@ function App() {
             <Route path="/signup" element={<SignUp userAuth={userAuth} setUserAuth={setUserAuth}/>} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/legal" element={<Legal />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/refund" element={<Refund />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

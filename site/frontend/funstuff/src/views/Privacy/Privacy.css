@@ -1,0 +1,53 @@
+p {
+  font-size: calc(10px + 1vmin);
+}
+
+.Privacy {
+  height: 100%;
+  width: 100%;
+  text-align: left;
+  background-color: #282c34;
+}
+
+.Privacy-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.Privacy-header {
+  text-align: left;
+  background-color: #282c34;
+  min-height: 10vh;
+  align-items: left;
+  justify-content: left;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.Privacy-body {
+  text-align: left;
+  background-color: #282c34;
+  min-height: 100vh;
+  font-size: calc(10px + 2vmin);
+  color: white;
+  margin-left: 50px;
+  margin-right: 50px;
+  padding-bottom: 50px;
+  height: 100%;
+}
+
+.Privacy-link {
+  color: #61dafb;
+}
+
+@media screen 
+  and (max-width: 1000px)
+  and (-webkit-device-pixel-ratio: 2) {
+  #map {
+    flex-wrap: wrap;
+    margin-bottom: 550px;
+  }
+  #map img {
+    width: 100%;
+  }
+}
