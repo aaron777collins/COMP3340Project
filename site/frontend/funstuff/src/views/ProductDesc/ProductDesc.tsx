@@ -1,8 +1,8 @@
 import { Button, Card, CardActions, CardContent, CardMedia, Rating, Typography } from '@mui/material';
 import * as React from 'react';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { addToQuantity } from '../../Helpers/CartHelper';
-import { CurrentItem, CURRENT_ITEM_KEY } from '../../Models/CurrentItem';
+import { CurrentItemSelected, CURRENT_ITEM_KEY } from '../../Models/CurrentItem';
 import { CartItemModel } from '../../Models/Item';
 
 export interface IProductDesc {
@@ -14,30 +14,39 @@ export interface IProductDesc {
 
 export default function ProductDesc (props: IProductDesc) {
 
-   let data = localStorage.getItem(CURRENT_ITEM_KEY); 
+   const data = localStorage.getItem(CURRENT_ITEM_KEY); 
 
-   let currentItemSelected: CurrentItem = 
-    {
-        currentItem: {
-            name: 'noItemSelected',
-            description: 'This item is a placeholder',
-            price: 1,
-            quantity: 1,
+   const defaultCurrentItemSelected = {
+        currentItemForStorage: {
+            currentItem: {
+                name: 'noItemSelected',
+                description: 'This item is a placeholder',
+                price: 1,
+                quantity: 1,
+            }
         }
-    }
+   }
 
-   useEffect ( () => { 
+   const [currentlySelectedItem, setCurrentlySelectedItem] = useState(defaultCurrentItemSelected);
 
-        console.log(data);
+    /*
+   On page load get the item selected from the products page from local storage 
+   */
+   useEffect (() => {
 
         if(data){
-            currentItemSelected =  JSON.parse(data) as CurrentItem;
+            const currentItemData = JSON.parse(data)
+            if (currentItemData.currentItemForStorage.currentItem.name != currentlySelectedItem.currentItemForStorage.currentItem.name){
+                setCurrentlySelectedItem(currentItemData);  
+            }
         }
-        
+
+        console.log('refreshed products')
    }, [])
 
+   console.log(currentlySelectedItem);
 
-  return (
+   return (
     <div>
       <Card variant='outlined'>
       <CardMedia
@@ -48,11 +57,11 @@ export default function ProductDesc (props: IProductDesc) {
       />
       <CardContent>
         <Typography gutterBottom variant="body1" component="div">
-            {currentItemSelected.currentItem.name}
+            {currentlySelectedItem.currentItemForStorage.currentItem.name}
         </Typography>
         <Typography variant="body1" color="text.secondary">
-            {currentItemSelected.currentItem.description}
-            {(currentItemSelected.currentItem.price+" $CAD")}
+            {currentlySelectedItem.currentItemForStorage.currentItem.description}
+            {(currentlySelectedItem.currentItemForStorage.currentItem.price+" $CAD")}
         </Typography>
       </CardContent>
       <CardActions>

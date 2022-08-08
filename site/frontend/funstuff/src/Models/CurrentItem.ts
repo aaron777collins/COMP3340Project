@@ -2,6 +2,6 @@ import { CartItemModel } from "./Item"
 
 export const CURRENT_ITEM_KEY = "funstuff-currentItemKey"
 
-export type CurrentItem = {
+export type CurrentItemSelected = {
     currentItem: CartItemModel
 }

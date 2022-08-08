@@ -3,7 +3,7 @@ import { Button, Card, CardActionArea, CardActions, CardContent, CardMedia, List
 import { getLogger } from "../../LogConfig";
 import { CartItemModel } from "../../Models/Item";
 import { addToQuantity } from "../../Helpers/CartHelper";
-import { CurrentItem, CURRENT_ITEM_KEY } from "../../Models/CurrentItem";
+import { CurrentItemSelected, CURRENT_ITEM_KEY } from "../../Models/CurrentItem";
 import { useNavigate } from 'react-router-dom';
 
 export interface ProductObj{
@@ -54,7 +54,7 @@ export default function Product (props: IProductProps) {
   */
   function setCurrentlySelectedItemInStorage(selectedItem: CartItemModel) {
 
-    let currentItemForStorage: CurrentItem = {
+    let currentItemForStorage: CurrentItemSelected = {
       currentItem: selectedItem
     }
 
@@ -67,7 +67,7 @@ export default function Product (props: IProductProps) {
       <CardActionArea onClick={() => {
         console.log("card clicked");
         setCurrentlySelectedItemInStorage(getCartItem(product))
-        navigate('/productDescription');
+        navigate('/productDescription'); 
       }
       }>
         <CardMedia
