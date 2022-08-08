@@ -25,6 +25,7 @@ import { UserAuth, AUTH_LEVEL } from "../Models/Auths";
 
 import { getLogger } from "../LogConfig";
 import { createTheme, ThemeProvider } from "@mui/material";
+import ProductDesc from "./ProductDesc/ProductDesc";
 const log = getLogger("view.app");
 
 const fontTheme = createTheme({
@@ -83,6 +84,10 @@ function App() {
               path="/products"
               element={<ProductsController items={items} setItems={setItems} />}
               />
+            <Route
+              path="/productDescription"
+              element={<ProductDesc items={items} setItems={setItems} />}
+            />
             <Route path="/faq" element={<Faq />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/login" element={<Login userAuth={userAuth} setUserAuth={setUserAuth}/>} />

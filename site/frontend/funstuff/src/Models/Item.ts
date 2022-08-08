@@ -8,5 +8,7 @@ export type ItemModel = {
 export type CartItemModel = {
     name: string;
     price: number;
+    description: string;
+    rating: number;
     quantity: number;
 }
