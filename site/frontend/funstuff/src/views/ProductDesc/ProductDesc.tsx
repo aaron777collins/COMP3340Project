@@ -23,6 +23,7 @@ export default function ProductDesc (props: IProductDesc) {
                 description: 'This item is a placeholder',
                 price: 1,
                 quantity: 1,
+                rating: 1
             }
         }
    }

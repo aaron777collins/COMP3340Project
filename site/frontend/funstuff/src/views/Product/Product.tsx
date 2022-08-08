@@ -43,7 +43,8 @@ export default function Product (props: IProductProps) {
       name: product.Name,
       description: product.Description,
       price: product.Price,
-      quantity: 1
+      quantity: 1,
+      rating: product.Rating
     } as CartItemModel
   }
 
