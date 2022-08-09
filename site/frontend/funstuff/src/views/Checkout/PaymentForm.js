@@ -6,7 +6,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
 export default function PaymentForm() {
-  return (
+  return ( // javascript file to make input fields required
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
         Payment method

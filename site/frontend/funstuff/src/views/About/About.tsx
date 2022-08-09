@@ -23,7 +23,7 @@ export default function About(props: IAboutComponentProps) {
   };
 
   const [response, setResponse] = useState({} as responseType);
-
+  // return some information for the About Us page
   return (
     <div className="App">
       <div className="App-header">

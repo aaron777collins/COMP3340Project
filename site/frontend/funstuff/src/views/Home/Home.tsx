@@ -81,12 +81,12 @@ export default function Home(props: IHome) {
           <Typography sx={{marginTop: '20px', fontSize:'calc(20px + 2vmin)' }} gutterBottom className="content">
                       {}
           </Typography>
-
+          
           <Card sx={{
             backgroundColor: '#58acff;',
             padding: '20px 20px'
           }} elevation={12} className="welcomeCard">
-            <CardActionArea>
+            <CardActionArea> 
                   <CardContent sx={{alignContent: 'center'}}>
                         <Typography sx={{fontSize: 'calc(10px + 2vmin)'}} gutterBottom component="div">
                           At 🎉FunStuff. We (the creators) sell the stuff we think is fun. So you, our beloved customer, can 
@@ -99,9 +99,9 @@ export default function Home(props: IHome) {
                           <i>Some pages to checkout ➡️</i>
                         </Typography>
                 </CardContent>
-              </CardActionArea>
-              <div className="buttonsLanding">
-                <CardActions>
+              </CardActionArea> 
+              <div className="buttonsLanding"> 
+                <CardActions> 
                   <Button component={Link} to="/products" variant="contained" sx={{backgroundColor: '#001646'}} className="buttonsLandingButton">
                     Products
                   </Button>
