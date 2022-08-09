@@ -3,6 +3,8 @@ import { useState } from "react";
 import { getLogger } from "../../LogConfig";
 import logo from "../../logo.svg";
 import "./Legal.css";
+import { Button, Card, CardActionArea, CardActions, CardContent, CssBaseline, Grid, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 
 // Used for adding parameters to the Legal tag
 export interface ILegalProps {}
@@ -24,11 +26,20 @@ export default function Legal(props: ILegalProps) {
         <div className="Legal-questions">
           <div>
             You can find all of our legal information at the following pages:<br></br><br></br>
-            <ul>
-              <li><a href="./terms" target="_blank">Terms and Conditions<br></br><br></br></a></li>
-              <li><a href="./privacy" target="_blank">Privacy Policy<br></br><br></br></a></li>
-              <li><a href="./refund" target="_blank">Refund Policy</a></li>
-            </ul>
+
+            <div className="buttonsLanding">
+                <CardActions>
+                  <Button component={Link} to="/terms" variant="contained" sx={{backgroundColor: '#001646'}} className="buttonsLandingButton">
+                    Terms and Conditions
+                  </Button>
+                  <Button component={Link} to="/about" variant="contained" sx={{backgroundColor: '#001646'}} className="buttonsLandingButton">
+                    Privacy Policy
+                  </Button>
+                  <Button component={Link} to="/faq" variant="contained" sx={{backgroundColor: '#001646'}} className="buttonsLandingButton">
+                    Refund Policy
+                  </Button>
+                </CardActions>
+              </div>
           </div>
         </div>
       </body>

@@ -18,7 +18,7 @@ import PaymentForm from './PaymentForm';
 
 const steps = ['Shipping Info', 'Payment Info', 'Checkout'];
 
-function getStepContent(step: number) {
+function getStepContent(step: number) { // function with a switch statement used to generate the address form and payments forms
   switch (step) {
     case 0:
       return <AddressForm />;

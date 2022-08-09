@@ -11,11 +11,11 @@ const log = getLogger("view.faq");
 export default function Faq() {
   
 
-  return (
+  return ( // FAQ Page made with HTML tags to answer commonly asked questions about the website
     <div className="Faq">
       <div className="Faq-body" >
         <h1>FAQ Page</h1>
-        <div className="Faq-questions">
+        <div className="Faq-questions"> 
           <h3>How can I contact Fun Stuff?</h3>
           <div>
             <li>You can email us at a info@funstuff.com where our customer service team will be happy to help you with whatever you may need.</li>
