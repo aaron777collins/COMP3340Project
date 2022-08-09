@@ -1,16 +1,14 @@
-import { getByDisplayValue } from "@testing-library/react";
-import React, { useEffect, useState } from "react";
-import { getConfigFileParsingDiagnostics } from "typescript";
+import * as React from "react";
 import { getLogger } from "../../LogConfig";
+import logo from "../../logo.svg";
 import "./Legal.css";
+
+// Used for adding parameters to the Legal tag
+export interface ILegalProps {}
 
 const log = getLogger("view.legal");
 
-export interface ILegalComponentProps {
-
-}
-
-export default function Legal(props: ILegalComponentProps) {
+export default function Legal(props: ILegalProps) {
   type responseType = {
     resp: string;
   };
