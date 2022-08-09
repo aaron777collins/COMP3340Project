@@ -1,11 +1,5 @@
 {
   "Items": [
-    {
-      "name": "Gatorade",
-      "rating": 3,
-      "price": 5.99,
-      "description": "Not for human consumption."
-  },
   {
       "name": "Spikeball Net",
       "rating": 5,
@@ -89,6 +83,228 @@
       "rating": 5,
       "price": 39.99,
       "description": "For those segmentation faults."
+  },
+  {
+      "name": " Gatorade",
+      "rating": 5,
+      "price": 2.99,
+      "description": "TEMPDESCRIPTION"
+  },
+  {
+    "name": "Wide Gatorade",
+    "rating": 3,
+    "price": 5.99,
+    "description": "Gatorade but wide."
+  },
+  {
+      "name": "Angry Gatorade",
+      "rating": 5,
+      "price": 2.99,
+      "description": "TEMPDESCRIPTION"
+  },
+  {
+      "name": "Anime Gatorade",
+      "rating": 5,
+      "price": 2.99,
+      "description": "TEMPDESCRIPTION"
+  },
+  {
+      "name": "Anonymous Gatorade",
+      "rating": 5,
+      "price": 2.99,
+      "description": "TEMPDESCRIPTION"
+  },
+  {
+      "name": "Battle Gatorade",
+      "rating": 5,
+      "price": 2.99,
+      "description": "TEMPDESCRIPTION"
+  },
+  {
+      "name": "Black Gatorade",
+      "rating": 5,
+      "price": 2.99,
+      "description": "TEMPDESCRIPTION"
+  },
+  {
+      "name": "Blind Gatorade",
+      "rating": 5,
+      "price": 2.99,
+      "description": "TEMPDESCRIPTION"
+  },
+  {
+      "name": "Blue Gatorade",
+      "rating": 5,
+      "price": 2.99,
+      "description": "TEMPDESCRIPTION"
+  },
+  {
+      "name": "Blue Green Gatorade",
+      "rating": 5,
+      "price": 2.99,
+      "description": "TEMPDESCRIPTION"
+  },
+  {
+      "name": "Blushing Gatorade",
+      "rating": 5,
+      "price": 2.99,
+      "description": "TEMPDESCRIPTION"
+  },
+  {
+      "name": "Brown Gatorade",
+      "rating": 5,
+      "price": 2.99,
+      "description": "TEMPDESCRIPTION"
+  },
+  {
+      "name": "Cat Gatorade",
+      "rating": 5,
+      "price": 2.99,
+      "description": "TEMPDESCRIPTION"
+  },
+  {
+      "name": "Cold Gatorade",
+      "rating": 5,
+      "price": 2.99,
+      "description": "TEMPDESCRIPTION"
+  },
+  {
+      "name": "Crying Gatorade",
+      "rating": 5,
+      "price": 2.99,
+      "description": "TEMPDESCRIPTION"
+  },
+  {
+      "name": "Dark Blue Gatorade",
+      "rating": 5,
+      "price": 2.99,
+      "description": "TEMPDESCRIPTION"
+  },
+  {
+      "name": "Dog Gatorade",
+      "rating": 5,
+      "price": 2.99,
+      "description": "TEMPDESCRIPTION"
+  },
+  {
+      "name": "Electric Gatorade",
+      "rating": 5,
+      "price": 2.99,
+      "description": "TEMPDESCRIPTION"
+  },
+  {
+      "name": "Ghost Gatorade",
+      "rating": 5,
+      "price": 2.99,
+      "description": "TEMPDESCRIPTION"
+  },
+  {
+      "name": "Green Gatorade",
+      "rating": 5,
+      "price": 2.99,
+      "description": "TEMPDESCRIPTION"
+  },
+  {
+      "name": "Hot Gatorade",
+      "rating": 5,
+      "price": 2.99,
+      "description": "TEMPDESCRIPTION"
+  },
+  {
+      "name": "Lieutenant Gatorade",
+      "rating": 5,
+      "price": 2.99,
+      "description": "TEMPDESCRIPTION"
+  },
+  {
+      "name": "Love Gatorade",
+      "rating": 5,
+      "price": 2.99,
+      "description": "TEMPDESCRIPTION"
+  },
+  {
+      "name": "Magical Gatorade",
+      "rating": 5,
+      "price": 2.99,
+      "description": "TEMPDESCRIPTION"
+  },
+  {
+      "name": "Muscular Gatorade",
+      "rating": 5,
+      "price": 2.99,
+      "description": "TEMPDESCRIPTION"
+  },
+  {
+      "name": "Nerdy Gatorade",
+      "rating": 5,
+      "price": 2.99,
+      "description": "TEMPDESCRIPTION"
+  },
+  {
+      "name": "Nuclear Gatorade",
+      "rating": 5,
+      "price": 2.99,
+      "description": "TEMPDESCRIPTION"
+  },
+  {
+      "name": "Orange Gatorade",
+      "rating": 5,
+      "price": 2.99,
+      "description": "TEMPDESCRIPTION"
+  },
+  {
+      "name": "Pink Gatorade",
+      "rating": 5,
+      "price": 2.99,
+      "description": "TEMPDESCRIPTION"
+  },
+  {
+      "name": "Purple Gatorade",
+      "rating": 5,
+      "price": 2.99,
+      "description": "TEMPDESCRIPTION"
+  },
+  {
+      "name": "Red Gatorade",
+      "rating": 5,
+      "price": 2.99,
+      "description": "TEMPDESCRIPTION"
+  },
+  {
+      "name": "Room Temperature Gatorade",
+      "rating": 5,
+      "price": 2.99,
+      "description": "TEMPDESCRIPTION"
+  },
+  {
+      "name": "Royal Gatorade",
+      "rating": 5,
+      "price": 2.99,
+      "description": "TEMPDESCRIPTION"
+  },
+  {
+      "name": "Super Saiyan Gatorade",
+      "rating": 5,
+      "price": 2.99,
+      "description": "TEMPDESCRIPTION"
+  },
+  {
+      "name": "Terminator Gatorade",
+      "rating": 5,
+      "price": 2.99,
+      "description": "TEMPDESCRIPTION"
+  },
+  {
+      "name": "Troll Gatorade",
+      "rating": 5,
+      "price": 2.99,
+      "description": "TEMPDESCRIPTION"
+  },
+  {
+      "name": "Yellow Gatorade",
+      "rating": 5,
+      "price": 2.99,
+      "description": "TEMPDESCRIPTION"
   }
   ]
 }
