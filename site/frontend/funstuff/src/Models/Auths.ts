@@ -13,4 +13,5 @@ export enum AUTH_LEVEL {
 export type UserAuth = {
     username: string;
     authLevel: AUTH_LEVEL;
+    rememberMe: boolean;
 }

@@ -24,16 +24,21 @@ import Profile from "./Profile/Profile";
 import { UserAuth, AUTH_LEVEL } from "../Models/Auths";
 
 import { getLogger } from "../LogConfig";
-import { createTheme, ThemeProvider } from "@mui/material";
+import {
+  Backdrop,
+  CircularProgress,
+  createTheme,
+  ThemeProvider,
+} from "@mui/material";
 import ProductDesc from "./ProductDesc/ProductDesc";
 const log = getLogger("view.app");
 
 const fontTheme = createTheme({
   typography: {
     fontFamily: [
-      '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif'
-    ].join(",")
-  }
+      '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
+    ].join(","),
+  },
 });
 
 function App() {
@@ -43,7 +48,10 @@ function App() {
     authLevel: AUTH_LEVEL.rejected,
   } as UserAuth);
 
+  const [loading, setLoading] = useState(false);
+
   useEffect(() => {
+    setLoading(true);
     // checks if there is some items in the local storage
     let data = localStorage.getItem(SHOPPING_CART_KEY);
     if (data) {
@@ -52,7 +60,7 @@ function App() {
       setItems(shoppingCart.items);
     }
 
-    // checks if there is auth in the session storage
+    // checks if there is auth in the local storage
     let userData = localStorage.getItem(USER_AUTH_KEY);
     if (userData && JSON.parse(userData).authLevel !== AUTH_LEVEL.rejected) {
       log.debug(userData);
@@ -68,32 +76,58 @@ function App() {
         setUserAuth(userDataObj);
       }
     }
-
-
+    setLoading(false);
   }, []);
 
   return (
     <>
       <ThemeProvider theme={fontTheme}>
-        <Navbar items={items} setItems={setItems} userAuth={userAuth} setUserAuth={setUserAuth} />
+        <Backdrop
+          sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={loading}
+        >
+          <CircularProgress color="inherit" />
+        </Backdrop>
+        <Navbar
+          items={items}
+          setItems={setItems}
+          userAuth={userAuth}
+          setUserAuth={setUserAuth}
+          loading={loading}
+          setLoading={setLoading}
+        />
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route
+              path="/"
+              element={<Home loading={loading} setLoading={setLoading} />}
+            />
             <Route path="/about" element={<About />} />
             <Route
               path="/products"
-              element={<ProductsController items={items} setItems={setItems} />}
-              />
+              element={<ProductsController items={items} setItems={setItems} loading={loading} setLoading={setLoading}/>}
+            />
             <Route
               path="/productDescription"
               element={<ProductDesc items={items} setItems={setItems} />}
             />
             <Route path="/faq" element={<Faq />} />
             <Route path="/checkout" element={<Checkout />} />
-            <Route path="/login" element={<Login userAuth={userAuth} setUserAuth={setUserAuth}/>} />
-            <Route path="/signup" element={<SignUp userAuth={userAuth} setUserAuth={setUserAuth}/>} />
+            <Route
+              path="/login"
+              element={<Login userAuth={userAuth} setUserAuth={setUserAuth} />}
+            />
+            <Route
+              path="/signup"
+              element={<SignUp userAuth={userAuth} setUserAuth={setUserAuth} />}
+            />
             <Route path="/admin" element={<Admin />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route
+              path="/profile"
+              element={
+                <Profile userAuth={userAuth} setUserAuth={setUserAuth} />
+              }
+            />
             <Route path="/legal" element={<Legal />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/privacy" element={<Privacy />} />

@@ -3,7 +3,7 @@ export function stringAvatar(name: string) {
       sx: {
         bgcolor: stringToColor(name),
       },
-      children: `${name.split(" ")[0][0]}${name.split(" ")[1][0]}`,
+      children: getInitials(name),
     };
   }
 
@@ -16,10 +16,16 @@ export function stringAvatar(name: string) {
         height: 225,
         bottom: 0,
       },
-      children: `${name.split(" ")[0][0]}${name.split(" ")[1][0]}`,
+      children: getInitials(name),
     };
   }
 
+  function getInitials(name: String) {
+    if (name === undefined || name === null || name === "") {
+      return "U";
+    }
+    return ((name.split(" ").length > 1) ? `${name.split(" ")[0][0]}${name.split(" ")[1][0]}` : `${name.split(" ")[0][0]}`);
+  }
 
 
 export function stringToColor(string: string) {
