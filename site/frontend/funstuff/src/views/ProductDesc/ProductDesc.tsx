@@ -44,7 +44,11 @@ export default function ProductDesc (props: IProductDesc) {
         console.log('refreshed products')
    }, [])
 
-   console.log(currentlySelectedItem.currentItemForStorage.currentItem.rating);
+    const noSpaces = currentlySelectedItem.currentItemForStorage.currentItem.name.replace(/\s/g,'')
+    const lowerCaseName = noSpaces.toLocaleLowerCase();
+    const productImageName = "productImages/"+lowerCaseName+".jpg";
+
+    console.log(productImageName)
 
    return (
     <>
@@ -57,7 +61,7 @@ export default function ProductDesc (props: IProductDesc) {
                         width: '30vmin',
                         height: '30vmin'
                     }}
-                    image="images/gatorade.jpg"
+                    image={productImageName}
                     alt="gatorade bottle"
                 />
                 <CardContent sx={{elevation:'10'}} className='descriptionInfo'>

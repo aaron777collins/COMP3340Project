@@ -62,6 +62,14 @@ export default function Product (props: IProductProps) {
     localStorage.setItem(CURRENT_ITEM_KEY, JSON.stringify({currentItemForStorage})); 
   }
 
+  
+    const noSpaces = product.Name.replace(/\s/g,'')
+    const lowerCaseName = noSpaces.toLocaleLowerCase();
+    const productImageName = "productImages/"+lowerCaseName+".jpg";
+
+    console.log(productImageName)
+  
+
   return (
     <div>
       <Card sx={styles.productCard} variant='outlined'>
@@ -74,8 +82,8 @@ export default function Product (props: IProductProps) {
         <CardMedia
           component="img"
           height="140"
-          image="images/gatorade.jpg"
-          alt="gatorade bottle"
+          image={productImageName}
+          alt="product image"
         />
         <CardContent>
           <Typography gutterBottom variant="body1" component="div">
