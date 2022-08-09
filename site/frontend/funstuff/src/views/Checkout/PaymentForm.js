@@ -50,13 +50,6 @@ export default function PaymentForm() {
               variant="standard"
             />
           </Grid>
-          <Button 
-              type='submit' 
-              color='primary' 
-              variant='contained' 
-              fullWidth>
-              Test
-          </Button>
         </Grid>
     </React.Fragment>
   );
