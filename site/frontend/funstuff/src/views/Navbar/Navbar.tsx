@@ -18,12 +18,13 @@ import Shoppingcart from "../Shoppingcart/Shoppingcart";
 import ShoppingCartManager from "../ShoppingCartManager/ShoppingCartManager";
 import { CartItemModel } from "../../Models/Item";
 
-const pages = ["Products", "About Us", "FAQ"];
+const pages = ["Products", "About Us", "FAQ", "Legal"];
 const settings = ["Profile", "Logout"];
 const pages_dict: { [name: string]: string } = {};
 pages_dict["Products"] = "products";
 pages_dict["About Us"] = "about";
 pages_dict["FAQ"] = "faq";
+pages_dict["Legal"] = "legal";
 
 export interface INavBar {
   items: CartItemModel[],

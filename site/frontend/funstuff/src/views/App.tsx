@@ -5,12 +5,14 @@ import About from "./About/About";
 import Navbar from "./Navbar/Navbar";
 import ProductsController from "./Products/ProductsController";
 import Faq from "./FAQ/Faq";
+import Legal from "./Legal/Legal";
 import Checkout from "./Checkout/Checkout";
 import Login from "./Login/login";
 import SignUp from "./SignUp/signup";
 import Admin from "./Admin/Admin";
 import { useEffect, useState } from "react";
 import axios from "axios";
+
 
 function App() {
 
@@ -33,6 +35,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/products" element={<ProductsController items={items} setItems={setItems} />} />
           <Route path="/faq" element={<Faq />} />
+          <Route path="/legal" element={<Legal />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />

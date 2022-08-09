@@ -16,7 +16,7 @@ import "./Checkout.css";
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 
-const steps = ['Shipping Info', 'Payment Info', 'Review your order'];
+const steps = ['Shipping Info', 'Payment Info', 'Checkout'];
 
 function getStepContent(step: number) {
   switch (step) {
@@ -71,11 +71,6 @@ export default function Checkout() {
               <React.Fragment>
                 <Typography variant="h5" gutterBottom>
                   Thank you for your order.
-                </Typography>
-                <Typography variant="subtitle1">
-                  Your order number is #2001539. We have emailed your order
-                  confirmation, and will send you an update when your order has
-                  shipped.
                 </Typography>
               </React.Fragment>
             ) : (
