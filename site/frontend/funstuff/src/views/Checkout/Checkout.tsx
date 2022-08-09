@@ -15,27 +15,50 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import "./Checkout.css";
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
+import { CartItemModel } from '../../Models/Item';
+import ReviewOrder from './ReviewOrder';
+import { ShoppingCartSessionStorageModel, SHOPPING_CART_KEY } from '../../Models/Keys';
 
 const steps = ['Shipping Info', 'Payment Info', 'Review your order'];
 
-function getStepContent(step: number) {
-  switch (step) {
-    case 0:
-      return <AddressForm />;
-    case 1:
-      return <PaymentForm />;
-    default:
-      throw new Error('Unknown step');
-  }
-}
 
 const theme = createTheme();
 
-export default function Checkout() {
+export interface ICheckout {
+  items: CartItemModel[];
+  setItems: Function;
+}
+
+//Checkout class
+export default function Checkout(props: ICheckout) {
+
+  //step through material stepper and call right class
+  function getStepContent(step: number) {
+    switch (step) {
+      case 0:
+        return <AddressForm />;
+      case 1:
+        return <PaymentForm />;
+      case 2:
+        return <ReviewOrder items={props.items} setItems={props.setItems}></ReviewOrder>
+      default:
+        throw new Error('Unknown step');
+    }
+  }
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
     setActiveStep(activeStep + 1);
+
+    if (activeStep === steps.length - 1){
+      props.setItems([]);
+
+      const emptyShoppingCart: ShoppingCartSessionStorageModel = {
+        items: []
+      }
+
+      localStorage.setItem(SHOPPING_CART_KEY, JSON.stringify(emptyShoppingCart));
+    }
   };
 
   return (
@@ -51,11 +74,6 @@ export default function Checkout() {
           borderBottom: (t) => `1px solid ${t.palette.divider}`,
         }}
       >
-        <Toolbar>
-          <Typography variant="h5" color="inherit" noWrap>
-            Fun Stuff Checkout Page
-          </Typography>
-        </Toolbar>
       </AppBar>
       <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
@@ -73,7 +91,7 @@ export default function Checkout() {
                   Thank you for your order.
                 </Typography>
                 <Typography variant="subtitle1">
-                  Your order number is #2001539. We have emailed your order
+                  Your order number is #{Math.floor(Math.random() * 20000)}. We have emailed your order
                   confirmation, and will send you an update when your order has
                   shipped.
                 </Typography>

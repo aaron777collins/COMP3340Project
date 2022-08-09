@@ -112,7 +112,7 @@ function App() {
               element={<ProductDesc items={items} setItems={setItems} />}
             />
             <Route path="/faq" element={<Faq />} />
-            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/checkout" element={<Checkout items={items} setItems={setItems}/>} />
             <Route
               path="/login"
               element={<Login userAuth={userAuth} setUserAuth={setUserAuth} />}

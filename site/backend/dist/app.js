@@ -111,6 +111,106 @@ app.post("/db/getUserAuth", (req, res) => __awaiter(void 0, void 0, void 0, func
         });
     });
 }));
+app.post("/db/checkUsername", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const mongoConnection = new MongoConnection_1.MongoConnection();
+    const userInfo = req.body;
+    if (!userInfo.username || !req.body.password) {
+        return res.status(400).send({
+            message: "Missing username or password!",
+        });
+    }
+    if (userInfo.password !== "FunStuffPass123!") {
+        return res.status(403).send({
+            message: "Incorrect password!",
+        });
+    }
+    (0, MongoHelper_1.callFunctionWithExpressReturns)(res, (db, errInside) => {
+        const gatheredData = db.collection("Users");
+        gatheredData
+            .find({ username: userInfo.username })
+            .toArray((err, results) => {
+            if (results.length > 0) {
+                return res.json({ taken: true });
+            }
+            else {
+                return res.json({ taken: false });
+            }
+        });
+    });
+}));
+app.post("/db/getUserInfo", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const mongoConnection = new MongoConnection_1.MongoConnection();
+    const userInfo = req.body;
+    if (!userInfo.username || !req.body.password) {
+        return res.status(400).send({
+            message: "Missing username or password!",
+        });
+    }
+    if (userInfo.password !== "FunStuffPass123!") {
+        return res.status(403).send({
+            message: "Incorrect password!",
+        });
+    }
+    (0, MongoHelper_1.callFunctionWithExpressReturns)(res, (db, errInside) => {
+        const gatheredData = db.collection("Users");
+        gatheredData
+            .find({ username: userInfo.username })
+            .toArray((err, results) => {
+            if (results.length > 0) {
+                return res.json({ username: results[0].username, email: results[0].email });
+            }
+            else {
+                return res.status(403).send({
+                    message: "Incorrect username!",
+                });
+            }
+        });
+    });
+}));
+app.post("/db/updateUser", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const mongoConnection = new MongoConnection_1.MongoConnection();
+    const userInfo = req.body;
+    if (!userInfo.username ||
+        !userInfo.password ||
+        !userInfo.email ||
+        !userInfo.newUsername) {
+        return res.status(400).send({
+            message: "Missing username, newUsername, password or email!",
+        });
+    }
+    (0, MongoHelper_1.callFunctionWithExpressReturns)(res, (db, errInside) => {
+        const gatheredData = db.collection("Users");
+        gatheredData
+            .find({ username: userInfo.username, password: userInfo.password })
+            .toArray((err, results) => {
+            if (results.length > 0) {
+                const newUserData = {
+                    username: userInfo.newUsername,
+                    password: userInfo.password,
+                    email: userInfo.email,
+                };
+                gatheredData.deleteOne({
+                    username: userInfo.username,
+                    password: userInfo.password,
+                });
+                gatheredData.insertOne(newUserData, (errReturn, result) => {
+                    if (errReturn) {
+                        return res.status(500).send({
+                            message: "Error inserting user data",
+                            attemptedData: newUserData
+                        });
+                    }
+                    return res.json({ resp: newUserData });
+                });
+            }
+            else {
+                return res.status(403).send({
+                    message: "Incorrect username or password!",
+                });
+            }
+        });
+    });
+}));
 app.post("/db/resetUsers", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const mongoConnection = new MongoConnection_1.MongoConnection();
     (0, MongoHelper_1.callFunctionWithExpressReturns)(res, (db, errInside) => {
@@ -155,7 +255,9 @@ app.post("/db/findUser", (req, res) => __awaiter(void 0, void 0, void 0, functio
     }
     (0, MongoHelper_1.callFunctionWithExpressReturns)(res, (db, errInside) => {
         const userData = db.collection("Users");
-        userData.find({ username: req.body.username }).toArray((err, results) => {
+        userData
+            .find({ username: req.body.username })
+            .toArray((err, results) => {
             return res.json({ resp: results });
         });
     });
