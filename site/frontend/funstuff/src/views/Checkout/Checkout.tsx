@@ -19,7 +19,7 @@ import { CartItemModel } from '../../Models/Item';
 import ReviewOrder from './ReviewOrder';
 import { ShoppingCartSessionStorageModel, SHOPPING_CART_KEY } from '../../Models/Keys';
 
-const steps = ['Shipping Info', 'Payment Info', 'Review your order'];
+const steps = ['Shipping Info', 'Payment Info', 'Checkout'];
 
 
 const theme = createTheme();

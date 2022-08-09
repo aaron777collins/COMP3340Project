@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
-export default function AddressForm() {
+export default function AddressForm() { // java script file to make all input fields for address required
   return (
     <React.Fragment>
       <Typography variant="h4" gutterBottom>

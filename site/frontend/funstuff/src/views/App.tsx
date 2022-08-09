@@ -5,11 +5,11 @@ import About from "./About/About";
 import Navbar from "./Navbar/Navbar";
 import ProductsController from "./Products/ProductsController";
 import Faq from "./FAQ/Faq";
+import Legal from "./Legal/Legal";
 import Checkout from "./Checkout/Checkout";
 import Login from "./Login/login";
 import SignUp from "./SignUp/signup";
 import Admin from "./Admin/Admin";
-import Legal from "./Legal/Legal";
 import Terms from "./Terms/Terms";
 import Privacy from "./Privacy/Privacy";
 import Refund from "./Refund/Refund";
@@ -40,6 +40,7 @@ const fontTheme = createTheme({
     ].join(","),
   },
 });
+
 
 function App() {
   const [items, setItems] = useState([] as CartItemModel[]);

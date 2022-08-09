@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 
-export default function AddressForm() {
+export default function AddressForm() { // here is the address form that requires the address of the customers checkout page
   return (
     <React.Fragment>
       <Typography variant="h4" gutterBottom>

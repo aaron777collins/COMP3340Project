@@ -23,7 +23,7 @@ export default function About(props: IAboutComponentProps) {
   };
 
   const [response, setResponse] = useState({} as responseType);
-
+  // return some information for the About Us page
   return (
     <div className="App">
       <div className="App-header">
@@ -69,7 +69,7 @@ function createData(
 const rows = [
   createData('Aaron Collins', 'Loves working on our backend ;)'),
   createData('Alec Mladenovic', 'Loves watching anime x3'),
-  createData('Aleksa Vinjevic', 'Strep throat baddie'),
+  createData('Aleksa Vignjevic', 'Strep throat baddie'),
   createData('Kevin Liu', 'Playing Valorant'),
   createData('Riley OKeefe', '80% bathroom breaks'),
 ];
