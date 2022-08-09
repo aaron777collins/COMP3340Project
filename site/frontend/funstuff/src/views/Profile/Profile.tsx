@@ -40,8 +40,7 @@ export default function Profile(props: IProfileProps) {
     useState(false);
   const [openIncorrectUsernameDialog, setOpenIncorrectUsernameDialog] =
     useState(false);
-  const [openTakenUsernameDialog, setOpenTakenUsernameDialog] =
-    useState(false);
+  const [openTakenUsernameDialog, setOpenTakenUsernameDialog] = useState(false);
 
   const [saveState, setSaveState] = useState(SaveState.NO_ACTION);
 
@@ -84,14 +83,16 @@ export default function Profile(props: IProfileProps) {
         // const { data } = resp;
         // let userModel = data.resp as UserModel;
         setSaveState(SaveState.SAVED);
-        const authObj = { ...props.userAuth, username: username, rememberMe: props.userAuth.rememberMe } as UserAuth;
+        const authObj = {
+          ...props.userAuth,
+          username: username,
+          rememberMe: props.userAuth.rememberMe,
+        } as UserAuth;
         props.setUserAuth(authObj);
-        if(props.userAuth.rememberMe) {
-          if (props.userAuth.rememberMe) {
-            localStorage.setItem(USER_AUTH_KEY, JSON.stringify(authObj));
-          } else {
-            sessionStorage.setItem(USER_AUTH_KEY, JSON.stringify(authObj));
-          }
+        if (props.userAuth.rememberMe && props.userAuth.rememberMe === true) {
+          localStorage.setItem(USER_AUTH_KEY, JSON.stringify(authObj));
+        } else {
+          sessionStorage.setItem(USER_AUTH_KEY, JSON.stringify(authObj));
         }
       })
       .catch((errResp) => {
