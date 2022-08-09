@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import { getLogger } from "../../LogConfig";
 import logo from "../../logo.svg";
 import "./Legal.css";
