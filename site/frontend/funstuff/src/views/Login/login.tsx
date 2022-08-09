@@ -40,7 +40,7 @@ export function loginToUser(username: String, password: String, rememberMe: Bool
     const {data} = res;
     if (data && data.auth && data.auth !== AUTH_LEVEL.rejected) {
       // not rejected
-      let authObj = {username: username, authLevel: data.auth} as UserAuth;
+      let authObj = {username: username, authLevel: data.auth, rememberMe: rememberMe} as UserAuth;
       setUserAuth(authObj);
       if (rememberMe) {
         localStorage.setItem(USER_AUTH_KEY, JSON.stringify(authObj));

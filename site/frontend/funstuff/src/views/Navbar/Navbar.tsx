@@ -12,14 +12,24 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import CelebrationIcon from "@mui/icons-material/Celebration";
-import { Link } from "@mui/material";
+import { Backdrop, CircularProgress, Link } from "@mui/material";
 import ShoppingCartManager from "../ShoppingCartManager/ShoppingCartManager";
 import { CartItemModel } from "../../Models/Item";
 import { stringAvatar } from "../../Helpers/ProfileHelper";
 import { AUTH_LEVEL, UserAuth } from "../../Models/Auths";
 import { USER_AUTH_KEY } from "../../Models/Keys";
+import { getLogger } from "../../LogConfig";
+import { useEffect, useState } from "react";
 
-const pages = ["Products", "About Us", "FAQ", "Legal", "Terms and Conditions", "Privacy", "Refund"];
+const pages = [
+  "Products",
+  "About Us",
+  "FAQ",
+  "Legal",
+  "Terms and Conditions",
+  "Privacy",
+  "Refund",
+];
 const settings = ["Profile", "Logout"];
 const pages_dict: { [name: string]: string } = {};
 pages_dict["Products"] = "products";
@@ -30,13 +40,18 @@ pages_dict["Legal"] = "legal";
 pages_dict["Terms and Conditions"] = "terms";
 pages_dict["Privacy"] = "privacy";
 pages_dict["Refund"] = "refund";
+pages_dict["Admin"] = "admin";
 
 export interface INavBar {
   items: CartItemModel[];
   setItems: Function;
   userAuth: UserAuth;
   setUserAuth: Function;
+  loading: boolean;
+  setLoading: Function;
 }
+
+const log = getLogger("view.navbar");
 
 const Navbar = (props: INavBar) => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -61,11 +76,24 @@ const Navbar = (props: INavBar) => {
     setAnchorElUser(null);
   };
 
+  function getPages() {
+    return (props.userAuth.authLevel === AUTH_LEVEL.admin) ? [...pages, "Admin"] : pages;
+  }
+
   function logout() {
-    const authObj = {username: "", authLevel: AUTH_LEVEL.rejected} as UserAuth;
+    props.setLoading(true);
+    const authObj = {
+      username: "",
+      authLevel: AUTH_LEVEL.rejected,
+    } as UserAuth;
     props.setUserAuth(authObj);
     sessionStorage.setItem(USER_AUTH_KEY, JSON.stringify(authObj));
     localStorage.setItem(USER_AUTH_KEY, JSON.stringify(authObj));
+    const hrefArr = window.location.href.split("/");
+    if (hrefArr[hrefArr.length - 1] === "profile") {
+      window.location.href = "/";
+    }
+    setTimeout(() => props.setLoading(false), 500);
   }
 
   function getProfileOrLogin() {
@@ -77,8 +105,8 @@ const Navbar = (props: INavBar) => {
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                 {/* <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" /> */}
                 <Avatar
-                  alt="Aaron Collins"
-                  {...stringAvatar("Aaron Collins")}
+                  alt={props.userAuth.username.toUpperCase()}
+                  {...stringAvatar(props.userAuth.username.toUpperCase())}
                 />
               </IconButton>
             </Tooltip>
@@ -150,111 +178,121 @@ const Navbar = (props: INavBar) => {
   }
 
   return (
-    <AppBar position="sticky">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <CelebrationIcon
-            sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
-          />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            Fun Stuff
-          </Typography>
-
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
+    <>
+      <AppBar position="sticky">
+        <Container maxWidth="xl">
+          <Toolbar disableGutters>
+            <CelebrationIcon
+              sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+            />
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              href="/"
               sx={{
-                display: { xs: "block", md: "none" },
+                mr: 2,
+                display: { xs: "none", md: "flex" },
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
               }}
             >
-              {pages.map((page) => (
-                <Link
-                  key={page}
-                  href={pages_dict[page]}
-                  underline="none"
-                  sx={{ color: "text.primary" }}
-                >
-                  <MenuItem onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">{page}</Typography>
-                  </MenuItem>
-                </Link>
-              ))}
-            </Menu>
-          </Box>
-          <CelebrationIcon
-            sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
-          />
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href=""
-            sx={{
-              mr: 2,
-              display: { xs: "flex", md: "none" },
-              flexGrow: 1,
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            Fun Stuff
-          </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
-              <Button
-                key={page}
-                onClick={handleCloseNavMenu}
-                sx={{ my: 2, color: "white", display: "block" }}
-                href={pages_dict[page]}
+              Fun Stuff
+            </Typography>
+
+            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+              <IconButton
+                size="large"
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleOpenNavMenu}
+                color="inherit"
               >
-                {page}
-              </Button>
-            ))}
-          </Box>
-          <ShoppingCartManager items={props.items} setItems={props.setItems} />
-          {getProfileOrLogin()}
-        </Toolbar>
-      </Container>
-    </AppBar>
+                <MenuIcon />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorElNav}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "left",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "left",
+                }}
+                open={Boolean(anchorElNav)}
+                onClose={handleCloseNavMenu}
+                sx={{
+                  display: { xs: "block", md: "none" },
+                }}
+              >
+                {getPages().map((page) => (
+                  <Link
+                    key={page}
+                    href={pages_dict[page]}
+                    underline="none"
+                    sx={{ color: "text.primary" }}
+                  >
+                    <MenuItem onClick={handleCloseNavMenu}>
+                      <Typography textAlign="center">{page}</Typography>
+                    </MenuItem>
+                  </Link>
+                ))}
+              </Menu>
+            </Box>
+            <CelebrationIcon
+              sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
+            />
+            <Typography
+              variant="h5"
+              noWrap
+              component="a"
+              href=""
+              sx={{
+                mr: 2,
+                display: { xs: "flex", md: "none" },
+                flexGrow: 1,
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
+              }}
+            >
+              Fun Stuff
+            </Typography>
+            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+              {getPages().map((page) => (
+                <Button
+                  key={page}
+                  onClick={handleCloseNavMenu}
+                  sx={{
+                    my: 2,
+                    color: "white",
+                    display: "block",
+                    textAlign: "center",
+                  }}
+                  href={pages_dict[page]}
+                >
+                  {page}
+                </Button>
+              ))}
+            </Box>
+            <ShoppingCartManager
+              items={props.items}
+              setItems={props.setItems}
+            />
+            {getProfileOrLogin()}
+          </Toolbar>
+        </Container>
+      </AppBar>
+    </>
   );
 };
 export default Navbar;

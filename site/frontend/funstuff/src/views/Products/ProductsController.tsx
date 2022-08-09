@@ -13,14 +13,14 @@ interface ProductsDataObj {
 interface IProductsController {
   items: CartItemModel[];
   setItems: Function;
+  loading: boolean;
+  setLoading: Function;
 }
 
 export default function ProductsController(props: IProductsController) {
 
-  const [loading, setLoading] = useState(false);
-
   function getItems() {
-    setLoading(true);
+    props.setLoading(true);
     axios
       .get(process.env.REACT_APP_DBAPI_ADDRESS_BEGINNING + "getAllItems")
       .then((resp) => {
@@ -35,7 +35,7 @@ export default function ProductsController(props: IProductsController) {
           } as ProductObj;
         });
         setProductData({ productsArray: products } as ProductsDataObj);
-        setLoading(false);
+        props.setLoading(false);
       });
   }
 
@@ -51,7 +51,7 @@ export default function ProductsController(props: IProductsController) {
     <div>
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
-        open={loading}
+        open={props.loading}
       >
         <CircularProgress color="inherit" />
       </Backdrop>

@@ -3,7 +3,7 @@ import express from "express";
 import { getLogger } from "./LogConfig";
 import { ADMIN_USER, AuthData, AUTH_LEVEL } from "./Models/Auths";
 import { ItemModel } from "./Models/Item";
-import { UserLoginInfo, UserModel } from "./Models/User";
+import { UserLoginInfo, UserModel, UserModelSecure, UserTaken, UserUpdateInfo } from "./Models/User";
 import { MongoConnection } from "./MongoConnection";
 import { callFunctionWithExpressReturns } from "./MongoHelper";
 import * as Data from "./Data/Data.json";
@@ -93,6 +93,123 @@ app.post("/db/getUserAuth", async (req: any, res: any) => {
   });
 });
 
+app.post("/db/checkUsername", async (req: any, res: any) => {
+  const mongoConnection = new MongoConnection();
+
+  const userInfo: UserLoginInfo = req.body;
+
+  if (!userInfo.username || !req.body.password) {
+    return res.status(400).send({
+      message: "Missing username or password!",
+    });
+  }
+
+  if (userInfo.password !== "FunStuffPass123!") {
+    return res.status(403).send({
+      message: "Incorrect password!",
+    });
+  }
+
+  callFunctionWithExpressReturns(res, (db, errInside) => {
+    const gatheredData = db.collection("Users");
+
+    gatheredData
+      .find({ username: userInfo.username})
+      .toArray((err: any, results: any) => {
+        if (results.length > 0) {
+          return res.json({ taken: true} as UserTaken);
+        } else {
+          return res.json({ taken: false} as UserTaken);
+        }
+      });
+  });
+});
+
+
+app.post("/db/getUserInfo", async (req: any, res: any) => {
+  const mongoConnection = new MongoConnection();
+
+  const userInfo: UserLoginInfo = req.body;
+
+  if (!userInfo.username || !req.body.password) {
+    return res.status(400).send({
+      message: "Missing username or password!",
+    });
+  }
+
+  if (userInfo.password !== "FunStuffPass123!") {
+    return res.status(403).send({
+      message: "Incorrect password!",
+    });
+  }
+
+  callFunctionWithExpressReturns(res, (db, errInside) => {
+    const gatheredData = db.collection("Users");
+
+    gatheredData
+      .find({ username: userInfo.username})
+      .toArray((err: any, results: any) => {
+        if (results.length > 0) {
+          return res.json({ username: results[0].username, email: results[0].email} as UserModelSecure);
+        } else {
+          return res.status(403).send({
+            message: "Incorrect username!",
+          });
+        }
+      });
+  });
+});
+
+app.post("/db/updateUser", async (req: any, res: any) => {
+  const mongoConnection = new MongoConnection();
+
+  const userInfo: UserUpdateInfo = req.body;
+
+  if (
+    !userInfo.username ||
+    !userInfo.password ||
+    !userInfo.email ||
+    !userInfo.newUsername
+  ) {
+    return res.status(400).send({
+      message: "Missing username, newUsername, password or email!",
+    });
+  }
+
+  callFunctionWithExpressReturns(res, (db, errInside) => {
+    const gatheredData = db.collection("Users");
+
+    gatheredData
+      .find({ username: userInfo.username, password: userInfo.password })
+      .toArray((err: any, results: any) => {
+        if (results.length > 0) {
+          const newUserData = {
+            username: userInfo.newUsername,
+            password: userInfo.password,
+            email: userInfo.email,
+          } as UserModel;
+          gatheredData.deleteOne({
+            username: userInfo.username,
+            password: userInfo.password,
+          });
+          gatheredData.insertOne(newUserData, (errReturn: any, result: any) => {
+            if (errReturn) {
+              return res.status(500).send({
+                message: "Error inserting user data",
+                attemptedData: newUserData
+              });
+            }
+            return res.json({ resp: newUserData });
+          });
+        } else {
+          return res.status(403).send({
+            message: "Incorrect username or password!",
+          });
+        }
+      });
+  });
+});
+
 app.post("/db/resetUsers", async (req: any, res: any) => {
   const mongoConnection = new MongoConnection();
 
@@ -146,9 +263,11 @@ app.post("/db/findUser", async (req: any, res: any) => {
 
   callFunctionWithExpressReturns(res, (db, errInside) => {
     const userData = db.collection("Users");
-    userData.find({username: req.body.username}).toArray((err: any, results: any) => {
-      return res.json({ resp: results });
-    });
+    userData
+      .find({ username: req.body.username })
+      .toArray((err: any, results: any) => {
+        return res.json({ resp: results });
+      });
   });
 });
 

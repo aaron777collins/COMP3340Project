@@ -4,7 +4,23 @@ export type UserModel = {
     email: string;
 }
 
+export type UserModelSecure = {
+    username: string;
+    email: string;
+}
+
+export type UserTaken = {
+    taken: boolean;
+}
+
 export type UserLoginInfo = {
     username: string;
+    password: string; // base 64 encoded
+}
+
+export type UserUpdateInfo = {
+    username: string;
+    newUsername: string;
+    email: string;
     password: string; // base 64 encoded
 }

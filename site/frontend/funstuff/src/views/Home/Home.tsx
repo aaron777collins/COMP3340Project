@@ -21,9 +21,12 @@ interface WeatherResponseObject {
   location: object;
 }
 
-export default function Home() {
+interface IHome {
+  loading: boolean;
+  setLoading: Function;
+}
 
-  const [loading, setLoading] = useState(false);
+export default function Home(props: IHome) {
 
   // Weather API is through rapid API's
   const options = {
@@ -53,7 +56,7 @@ export default function Home() {
   const [weatherData, setWeatherData] = useState(initialWeathersObject);
 
   function getWeather() {
-    setLoading(true);
+    props.setLoading(true);
 
     console.log(process.env.REACT_APP_RAPID_API_ADDRESS, process.env.REACT_APP_RAPID_API_KEY, process.env.REACT_APP_RAPID_API_HOST)
 
@@ -63,7 +66,7 @@ export default function Home() {
       console.error(error);
     });
 
-    setLoading(false);
+    props.setLoading(false);
   }
 
   //useEffect(getWeather, []);
