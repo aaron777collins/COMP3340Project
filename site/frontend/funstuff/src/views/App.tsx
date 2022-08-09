@@ -31,6 +31,7 @@ import {
   ThemeProvider,
 } from "@mui/material";
 import ProductDesc from "./ProductDesc/ProductDesc";
+import ErrorPage from "./Error/ErrorPage";
 const log = getLogger("view.app");
 
 const fontTheme = createTheme({
@@ -133,6 +134,8 @@ function App() {
             <Route path="/terms" element={<Terms />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/refund" element={<Refund />} />
+            <Route path="" element={<ErrorPage />} />
+            <Route path="*" element={<ErrorPage />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>
