@@ -167,7 +167,7 @@ const Navbar = (props: INavBar) => {
           <Link
             href="login"
             underline="none"
-            sx={{ color: "inherit" }}
+            sx={{ color: "text.primary" }}
             key="login"
           >
             <MenuItem onClick={handleCloseUserMenu}>
@@ -181,11 +181,11 @@ const Navbar = (props: INavBar) => {
 
   return (
     <>
-      <AppBar position="sticky" sx={{borderBottom:0}}>
+      <AppBar position="sticky" sx={{borderBottom:0, color: 'text.primary'}}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <CelebrationIcon
-              sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+              sx={{ display: { xs: "none", lg: "flex", color:'inherit'}, mr: 1 }}
             />
             <Typography
               variant="h6"
@@ -194,18 +194,18 @@ const Navbar = (props: INavBar) => {
               href="/"
               sx={{
                 mr: 2,
-                display: { xs: "none", md: "flex" },
+                display: { xs: "none", lg: "flex" },
                 fontFamily: "monospace",
                 fontWeight: 700,
                 letterSpacing: ".3rem",
-                color: "inherit",
+                color: "text.primary",
                 textDecoration: "none",
               }}
             >
               Fun Stuff
             </Typography>
 
-            <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+            <Box sx={{ flexGrow: 1, display: { xs: "flex", lg: "none" } }}>
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -231,7 +231,7 @@ const Navbar = (props: INavBar) => {
                 open={Boolean(anchorElNav)}
                 onClose={handleCloseNavMenu}
                 sx={{
-                  display: { xs: "block", md: "none" },
+                  display: { xs: "block", lg: "none" },
                 }}
               >
                 {getPages().map((page) => (
@@ -249,27 +249,27 @@ const Navbar = (props: INavBar) => {
               </Menu>
             </Box>
             <CelebrationIcon
-              sx={{ display: { xs: "flex", md: "none" }, mr: 1 }}
+              sx={{ display: { xs: "flex", lg: "none" }, mr: 1, color:'text.primary'}}
             />
             <Typography
               variant="h5"
               noWrap
               component="a"
-              href=""
+              href="/"
               sx={{
                 mr: 2,
-                display: { xs: "flex", md: "none" },
+                display: { xs: "flex", lg: "none" },
                 flexGrow: 1,
                 fontFamily: "monospace",
                 fontWeight: 700,
                 letterSpacing: ".3rem",
-                color: "inherit",
+                color: "text.primary",
                 textDecoration: "none",
               }}
             >
               Fun Stuff
             </Typography>
-            <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
+            <Box sx={{ flexGrow: 1, display: { xs: "none", lg: "flex" } }}>
               {getPages().map((page) => (
                 <Button
                   key={page}
