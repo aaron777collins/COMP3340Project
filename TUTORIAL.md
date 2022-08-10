@@ -19,7 +19,7 @@ As the application becomes more flushed out come checkout this tutorial to help 
 ## Important links⚠️
 
 Live Site:​ [Here](http://20.163.2.183:3000/)​
-Documentation:​ [(deadlink) Here]()
+Documentation:​ [(deadlink) Here](https://github.com/aaron777collins/COMP3340Project/blob/main/README.md)
 Communication was done on a Trello board, screenshots provided [(deadlink) here](https://trello.com/b/8OxHPfei/project)
 GitHub: [Here](https://github.com/aaron777collins/COMP3340Project)
 README for getting application running locally​: [Here](https://github.com/aaron777collins/COMP3340Project/blob/main/README.md)
@@ -99,19 +99,24 @@ When will I receive my refund?
 >http://20.163.2.183:3000/
 
 9. public/private functionality
->Public: public users can sign up for an account or log in, view product catalogue and other basic screens. Private: Only admin users are able to access the Admin page (containing functionality such as: Update Items, Get All Items, Reset Users, Get All Users, etc.)
+>Public: public users can sign up for an account or log in, view product catalogue and other basic screens. 
+>Private: Only admin users are able to access the Admin page (containing functionality such as: Update Items, Get All Items, Reset Users, Get All Users, etc.)
 
 10. Documentation
+>We have multiple web pages that provide the user with information, such as our FAQ page: http://20.163.2.183:3000/faq
+>We also have two files located in our GitHub repository, README.md (contains developer information for setting up the website) and this file (our user guide detailing and guiding through the functionality of our website)
 
 11. Search engine optimization features
+>Each page in our application has 5 keywords. We’ve also included Open Graph meta tags for better SEO with Facebook, LinkedIn, Google
 
 12. Responsiveness on mobile and other platforms
 >We used MaterialUI to handle the mobile view. Everything was tested on mobile, PC, and iMac. Any elements that did not use MaterialUI were custom-made to handle mobile view in our CSS
 
 13. End-user training
->In addition to the general documentation, we created a step-by-step tutorial on how the site works
+>In addition to the general documentation, we created a step-by-step tutorial on how the site works (https://youtu.be/EiYxHso6EhE)
 
 14. Enable switching 3 site templates
+>Using our “Switch Theme” button at the top right of the screen (on every webpage), the user can select from 3 site-wide color themes: White, Blue and Green
 
 15. Database used
 >We used a MongoDB database using NoSQL, so we have no tables. We do however have 2 collections, 1 for storing users, and 1 for storing products. Both collections are complex enough to be equivalent to 5 SQL tables
@@ -138,7 +143,7 @@ When will I receive my refund?
 >Since we are using React.js, PHP is redundant as React.js fills the role for creating dynamic pages
 
 23. additional language/framework
->We created 11 reactJS scripts
+>Whole project was created using React + we have created 3 bash scripts for installation
 
 24. Software repository
 >GitHub here: https://github.com/aaron777collins/COMP3340Project
@@ -147,19 +152,23 @@ When will I receive my refund?
 >Our GitHub repository (located above) contains the README.md file that provides instructions for installation. The direct link to the README.md file can be found here: https://github.com/aaron777collins/COMP3340Project/blob/main/README.md
 
 26. Accessibility
+>Our website is touch-input friendly, and all images have alt text. We ensure compliance with WCAG 2.0 standard as shown in the final report
 
 27. Mark up Validation Service
->We ran our website on https://validator.w3.org/, it returned successful. Screenshot is attached with final report.
+>We ran our website on https://validator.w3.org/, it returned successful. Screenshot is attached with final report
 
 28. Testing
+>We used Jest to test the backend. E.g we created tests for database calls and mock API requests to check the validity of responses
 
 29. Team management
-Trello here: https://trello.com/b/8OxHPfei/project
+>Trello here: https://trello.com/b/8OxHPfei/project
 
 30. Overall completeness and error free
->Our website can be tested here: http://20.163.2.183:3000/. We have completed most, if not all of the functionality.
+>Our website can be tested here: http://20.163.2.183:3000/. We have completed most, if not all of the functionality
 >Our sitemap can be found here: https://drive.google.com/file/d/1tjMU7b3i4bS8SzuM65PtMYrTESGWCDpz/view
 
 # Admin documentation🧑‍🚀
 
 **Here you'll find the documentation for admins to manipulate the website**
+
+Link: (http://localhost:3000/adminDocumentation)
