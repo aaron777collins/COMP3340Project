@@ -151,7 +151,7 @@ export default function Login (props: ILogin) {
                     >
                       Sign in
                     </Button>
-                    <Typography sx={styles.margintyle}><Link href="signup" >Forgot Password?</Link></Typography>
+                    <Typography sx={styles.margintyle}><Link href="forgotPassword" >Forgot Password?</Link></Typography>
                     <Typography sx={styles.margintyle}>Don't have an account? <Link href="signup" >Sign up.</Link></Typography>
                 </Grid>
               </form>

@@ -35,6 +35,8 @@ import {
 import ProductDesc from "./ProductDesc/ProductDesc";
 import ErrorPage from "./Error/ErrorPage";
 import { THEME_KEY } from "../Helpers/ThemeHelper";
+import ForgotPassword from "./ForgotPassword/ForgotPassword";
+import SuccessRecovery from "../SuccessRecovery/SuccessRecovery";
 const log = getLogger("view.app");
 
 const fontTheme = createTheme({
@@ -224,6 +226,8 @@ function App() {
             <Route path="" element={<ErrorPage />} />
             <Route path="*" element={<ErrorPage />} />
             <Route path="/adminDocumentation" element={<AdminDocumentation />} />
+            <Route path="/forgotPassword" element={<ForgotPassword />} />
+            <Route path="/successRecovery" element={<SuccessRecovery />} />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

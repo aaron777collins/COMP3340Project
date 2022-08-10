@@ -1,6 +1,4 @@
-import { Button, Grid, Link, Paper, Typography } from '@mui/material';
-import { display, fontSize } from '@mui/system';
-import * as React from 'react';
+import { Button, Grid, Paper, Typography } from '@mui/material';
 
 export interface IAppProps {
 }
