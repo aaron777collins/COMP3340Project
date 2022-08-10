@@ -32,10 +32,10 @@ export default function Legal(props: ILegalProps) {
                   <Button component={Link} to="/terms" variant="contained" sx={{backgroundColor: '#001646'}} className="buttonsLandingButton">
                     Terms and Conditions
                   </Button>
-                  <Button component={Link} to="/about" variant="contained" sx={{backgroundColor: '#001646'}} className="buttonsLandingButton">
+                  <Button component={Link} to="/privacy" variant="contained" sx={{backgroundColor: '#001646'}} className="buttonsLandingButton">
                     Privacy Policy
                   </Button>
-                  <Button component={Link} to="/faq" variant="contained" sx={{backgroundColor: '#001646'}} className="buttonsLandingButton">
+                  <Button component={Link} to="/refund" variant="contained" sx={{backgroundColor: '#001646'}} className="buttonsLandingButton">
                     Refund Policy
                   </Button>
                 </CardActions>
