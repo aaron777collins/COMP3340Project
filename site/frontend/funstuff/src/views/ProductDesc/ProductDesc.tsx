@@ -54,6 +54,9 @@ export default function ProductDesc (props: IProductDesc) {
     <>
       <Paper elevation={10} className='productMainPaper'>
         <div className='productMainCard'>
+            <Typography gutterBottom  component="div" className='productDesc'>
+                        Product Description 📦
+            </Typography>
             <div className='firstRow'>
                 <CardMedia
                     component="img"

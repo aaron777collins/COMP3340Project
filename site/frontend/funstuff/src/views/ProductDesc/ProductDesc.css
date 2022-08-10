@@ -7,6 +7,16 @@
     margin: 20px auto;
 }
 
+.productMainCard{
+    flex-wrap: wrap;
+    text-align: center;
+    
+}
+
+.productDesc{
+    font-size: 5vmin !important;
+}
+
 .productMainPaper{
     display: flex;
     flex-direction: column;
@@ -15,20 +25,22 @@
 
 .firstRow{
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: left;
 }
 
 .descriptionInfo{
+    width: 30vW;
     padding: calc(5vmin), calc(5vmin);
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    margin-left: 10vmin;
-    width: 100%;
+    margin: 5vmin 8vmin;
 }
 
 .productTitle{
-    font-size: 5vmin !important;
+    font-size: 4vmin !important;
     font-weight: 500 !important;
 }
 
@@ -38,7 +50,7 @@
 }
 
 .productCost{
-    font-size: 4vmin !important;
+    font-size: 3vmin !important;
     font-weight: 400 !important;
 }
 
