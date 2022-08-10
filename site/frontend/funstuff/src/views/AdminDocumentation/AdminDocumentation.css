@@ -2,19 +2,19 @@ p {
   font-size: calc(10px + 1vmin);
 }
 
-.About {
+.AdminDocumentation {
   height: 100%;
   width: 100%;
   text-align: left;
   background-color: #282c34;
 }
 
-.About-logo {
+.AdminDocumentation-logo {
   height: 40vmin;
   pointer-events: none;
 }
 
-.About-header {
+.AdminDocumentation-header {
   text-align: center;
   padding-top: 20px;
   background-color: #282c34;
@@ -25,7 +25,7 @@ p {
   color: white;
 }
 
-.About-body {
+.AdminDocumentation-body {
   text-align: left;
   background-color: #282c34;
   min-height: 100vh;
@@ -35,22 +35,6 @@ p {
   margin-right: 50px;
   padding-bottom: 50px;
   height: 100%;
-}
-
-.GroupMemberTable {
-  background-color: white;
-}
-
-#map {
-  height: 500px;
-  width: 100%;
-  display: flex;
-  flex-wrap: nowrap;
-}
-
-#mapiframe {
-  height: 500px;
-  width: 100%;
 }
 
 @media screen 

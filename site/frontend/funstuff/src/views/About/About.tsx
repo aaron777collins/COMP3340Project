@@ -25,11 +25,11 @@ export default function About(props: IAboutComponentProps) {
   const [response, setResponse] = useState({} as responseType);
   // return some information for the About Us page
   return (
-    <div className="App">
-      <div className="App-header">
+    <div className="About">
+      <div className="About-header">
         <h1>About Us</h1>
       </div>
-      <div className="App-body">
+      <div className="About-body">
         <h2>What We Do</h2>
         <p>Fun Stuff is an e-commerce website specializing in the funky stuff you <i>wish</i> you could find at a gift shop. Whether 
           it's an Aleksa bobble head or a Bosnian Booze Bunker, we have it all!</p>

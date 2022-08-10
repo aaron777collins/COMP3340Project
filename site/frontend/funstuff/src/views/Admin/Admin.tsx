@@ -91,7 +91,7 @@ export default function Admin() {
   function getGridCards() {
     return functionObjArr.map((funcObj) => (
       <Grid item key={funcObj.name}>
-        <Card sx={{ minWidth: 200 }}>
+        <Card sx={{ minWidth: 200, mt: 5, ml: 5 }}>
           <CardContent sx={{ "&:last-child": { mb: 0, pb: 0} }}>
             <Typography sx={{ fontSize: 24, fontWeight: "bold" }}>
               {funcObj.name}
@@ -104,7 +104,7 @@ export default function Admin() {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size="large" onClick={() => runFunction(funcObj)}>
+            <Button variant="contained" size="large" onClick={() => runFunction(funcObj)}>
               Run
             </Button>
           </CardActions>
@@ -118,7 +118,8 @@ export default function Admin() {
       <Grid container spacing={3}>
         {getGridCards()}
       </Grid>
-      <Card sx={{ minWidth: 200, width: '100%' }}>
+      
+      <Card sx={{ minWidth: 200, width: '90%', mt: 5, ml: 5 }}>
         <CardContent>
           <Typography sx={{ fontSize: 24, fontWeight: "bold" }}>
             Output
@@ -126,6 +127,14 @@ export default function Admin() {
           <Typography sx={{ fontSize: 14, width: '100%' }} id="outputMap">
             No Content yet!
           </Typography>
+        </CardContent>
+      </Card>
+      <Card sx={{ minWidth: 200, width: '30%', mt: 5, ml: 5, mb: 5 }}>
+        <CardContent>
+          <Typography sx={{ fontSize: 24, fontWeight: "bold" }}>
+            Admin Documentation
+          </Typography>
+          <Button href="./adminDocumentation" variant="contained">Click here to visit the Admin Documentation page</Button>
         </CardContent>
       </Card>
     </>
