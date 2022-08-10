@@ -59,7 +59,7 @@ export default function Login (props: ILogin) {
     
     const styles = {
         paperStyle: {
-            padding: '30px 40px', 
+            padding: '30px 30px', 
             minHeight: '70vh', 
             height: '80vh', 
             width: '40vh', 
@@ -69,8 +69,8 @@ export default function Login (props: ILogin) {
         avatarStyle: {
             backgroundColor: 'purple'
         },
-        margintyle: {
-            margin: '10px 10px' 
+        marginStyle: {
+            margin: '10px 0' 
         },
     }
 
@@ -118,7 +118,7 @@ export default function Login (props: ILogin) {
                                 label="Username" 
                                 variant="outlined" 
                                 fullWidth 
-                                sx={styles.margintyle}
+                                sx={styles.marginStyle}
                                 value={formik.values.user}
                                 onChange={formik.handleChange}
                                 error={formik.touched.user && Boolean(formik.errors.user)}
@@ -130,7 +130,7 @@ export default function Login (props: ILogin) {
                                 type="password" 
                                 label="Password" 
                                 variant="outlined" 
-                                fullWidth sx={styles.margintyle}
+                                fullWidth sx={styles.marginStyle}
                                 value={formik.values.password}
                                 onChange={formik.handleChange}
                                 error={formik.touched.password && Boolean(formik.errors.password)}
