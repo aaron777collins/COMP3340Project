@@ -1,4 +1,4 @@
-import { Container, Grid, TextField } from "@mui/material";
+import { Container, Grid, TextField, Typography } from "@mui/material";
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
 import { getLogger } from "../../LogConfig";
@@ -41,7 +41,9 @@ export default function Products(props: IProductsProps) {
   return (
     <>
       <div className="productsTitleContainer">
-        <h1>Products🛍️</h1>
+        <Typography sx={{fontSize: '7vmin'}} gutterBottom component="div">
+            Products 🛍️     
+        </Typography>
         <TextField
           id="productSearchBar"
           label="Search for a product🛒"

@@ -92,7 +92,7 @@ export default function SignUp (props: ISignUp) {
 
     return (
         <div>
-            <Grid>
+            <Grid >
                 <Paper elevation={10} sx={styles.paperStyle}>
                     <form onSubmit={formik.handleSubmit}>
                         <Grid container

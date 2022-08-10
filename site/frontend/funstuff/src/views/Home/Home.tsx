@@ -78,12 +78,8 @@ export default function Home(props: IHome) {
                       🎉<b>FunStuff.</b>
           </Typography>
 
-          <Typography sx={{marginTop: '20px', fontSize:'calc(20px + 2vmin)' }} gutterBottom className="content">
-                      {}
-          </Typography>
           
-          <Card sx={{
-            backgroundColor: '#58acff;',
+          <Card color="primary" sx={{
             padding: '20px 20px'
           }} elevation={12} className="welcomeCard">
             <CardActionArea> 
@@ -93,7 +89,7 @@ export default function Home(props: IHome) {
                           skip the wait and get all these goodies to <b>your door.</b>
                         </Typography>
                         <Typography sx={{fontSize: 'calc(10px + 2vmin)'}} gutterBottom component="div">
-                          Wondering how the weather is at our offices🌞? <div style={{color: 'rgb(251, 255, 0)'}}>Its currently: {weatherData.current.condition.text.toLocaleLowerCase()} and {weatherData.current.feelslike_c}°C in Windsor!</div>
+                          Wondering how the weather is at our offices🌞? <div>☁️Its currently: {weatherData.current.condition.text.toLocaleLowerCase()}📈 and {weatherData.current.feelslike_c}°C🌡️ in Windsor!</div>
                         </Typography>
                         <Typography sx={{fontSize: 'calc(10px + 2vmin)'}} >
                           <i>Some pages to checkout ➡️</i>
@@ -102,13 +98,13 @@ export default function Home(props: IHome) {
               </CardActionArea> 
               <div className="buttonsLanding"> 
                 <CardActions> 
-                  <Button component={Link} to="/products" variant="contained" sx={{backgroundColor: '#001646'}} className="buttonsLandingButton">
+                  <Button color="secondary" component={Link} to="/products" variant="contained" className="buttonsLandingButton">
                     Products
                   </Button>
-                  <Button component={Link} to="/about" variant="contained" sx={{backgroundColor: '#001646'}} className="buttonsLandingButton">
+                  <Button color="secondary" component={Link} to="/about" variant="contained" className="buttonsLandingButton">
                     About Us
                   </Button>
-                  <Button component={Link} to="/faq" variant="contained" sx={{backgroundColor: '#001646'}} className="buttonsLandingButton">
+                  <Button color="secondary" component={Link} to="/faq" variant="contained" className="buttonsLandingButton">
                     FAQ
                   </Button>
                 </CardActions>

@@ -62,7 +62,7 @@ export default function Shoppingcart(props: IShoppingcartProps) {
           {`Total: CAD$${(getSubTotal() * 1.13).toFixed(2)}`}
         </Typography>
         <Box sx={{display: 'flex', justifyContent: 'right', WebkitJustifyContent: 'right', pr: -1}}>
-          <Button variant="contained" sx={{width: 180}} href="checkout">Checkout</Button>
+          <Button color="success" variant="contained" sx={{width: 180}} href="checkout">Checkout</Button>
         </Box>
         </Card>
       );

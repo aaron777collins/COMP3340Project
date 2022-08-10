@@ -14,6 +14,7 @@ import Terms from "./Terms/Terms";
 import Privacy from "./Privacy/Privacy";
 import Refund from "./Refund/Refund";
 import { useEffect, useState } from "react";
+import AdminDocumentation from "./AdminDocumentation/AdminDocumentation";
 import {
   ShoppingCartSessionStorageModel,
   SHOPPING_CART_KEY,
@@ -28,11 +29,12 @@ import {
   Backdrop,
   CircularProgress,
   createTheme,
+  CssBaseline,
   ThemeProvider,
 } from "@mui/material";
 import ProductDesc from "./ProductDesc/ProductDesc";
 import ErrorPage from "./Error/ErrorPage";
-import AdminDocumentation from "./AdminDocumentation/AdminDocumentation";
+import { THEME_KEY } from "../Helpers/ThemeHelper";
 const log = getLogger("view.app");
 
 const fontTheme = createTheme({
@@ -43,6 +45,67 @@ const fontTheme = createTheme({
   },
 });
 
+const blueTheme = createTheme({
+  palette: {
+    background: {
+      paper: '#93b3db',
+    },
+    primary: {
+      main: '#2d7fe3',
+    },
+    secondary: {
+      main: '#0e2745'
+    }
+  },
+  typography: {
+    fontFamily: [
+      '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
+    ].join(","),
+  },
+});
+
+const greenTheme = createTheme({
+  palette: {
+    background: {
+      default: "#ffffff",
+      paper: '#bcebc5',
+    },
+    primary: {
+      main: '#3ae05a',
+    },
+    secondary: {
+      main: '#0f3b18'
+    }
+  },
+  typography: {
+    fontFamily: [
+      '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
+    ].join(","),
+  },
+
+});
+
+const whiteTheme = createTheme({
+  palette: {
+    background: {
+      default: '#ffffff',
+      paper: '#ffffff',
+    },
+    primary: {
+      main: '#ffffff',
+    },
+    secondary: {
+      main: '#0c223b'
+    }
+  },
+  typography: {
+    fontFamily: [
+      '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif',
+    ].join(","),
+  },
+
+});
+
 
 function App() {
   const [items, setItems] = useState([] as CartItemModel[]);
@@ -50,6 +113,8 @@ function App() {
     username: "",
     authLevel: AUTH_LEVEL.rejected,
   } as UserAuth);
+
+  const [currentTheme, setCurrentTheme] = useState(blueTheme)
 
   const [loading, setLoading] = useState(false);
 
@@ -61,6 +126,25 @@ function App() {
       let shoppingCart = JSON.parse(data) as ShoppingCartSessionStorageModel;
       // if so, it sets the items to the local storage's items
       setItems(shoppingCart.items);
+    }
+
+    //checks if the theme has been set
+    let themeData = localStorage.getItem(THEME_KEY);
+    console.log("Current theme: "+themeData);
+    if (themeData) {
+      if (themeData === 'green'){
+        setCurrentTheme(greenTheme);
+      }
+      else if (themeData === 'blue'){
+        setCurrentTheme(blueTheme);
+      }
+      else if (themeData === 'white'){
+        setCurrentTheme(whiteTheme);
+      }
+    }
+    else{
+      localStorage.setItem(THEME_KEY, 'blue');
+      setCurrentTheme(blueTheme);
     }
 
     // checks if there is auth in the local storage
@@ -84,7 +168,8 @@ function App() {
 
   return (
     <>
-      <ThemeProvider theme={fontTheme}>
+      <ThemeProvider theme={currentTheme}>
+        <CssBaseline />
         <Backdrop
           sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
           open={loading}
@@ -98,6 +183,7 @@ function App() {
           setUserAuth={setUserAuth}
           loading={loading}
           setLoading={setLoading}
+          setCurrentTheme={setCurrentTheme}
         />
         <BrowserRouter>
           <Routes>

@@ -67,7 +67,7 @@ export default function Product (props: IProductProps) {
     const lowerCaseName = noSpaces.toLocaleLowerCase();
     const productImageName = "productImages/"+lowerCaseName+".jpg";
 
-    console.log(productImageName)
+    //console.log(productImageName)
   
 
   return (
