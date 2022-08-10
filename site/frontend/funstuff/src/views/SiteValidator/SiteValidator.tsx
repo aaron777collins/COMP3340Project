@@ -60,7 +60,7 @@ export default function Validator(props: ISiteValidatorProps) {
             Aaron's God Tier Site Validator
           </Typography>
           <Typography sx={{ fontSize: 18, color: "text.secondary" }}>
-            https://html5.validator.nu/
+            https://html5.validator.nu/, {process.env.REACT_APP_DBAPI_ADDRESS_BEGINNING}
           </Typography>
           <Box sx={{ mt: 2 }}>
             {extendedPages.map((page: string, index: number) => {
