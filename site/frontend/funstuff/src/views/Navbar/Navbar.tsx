@@ -12,7 +12,7 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import CelebrationIcon from "@mui/icons-material/Celebration";
-import { Backdrop, CircularProgress, Link } from "@mui/material";
+import { Link } from "@mui/material";
 import ShoppingCartManager from "../ShoppingCartManager/ShoppingCartManager";
 import { CartItemModel } from "../../Models/Item";
 import { stringAvatar } from "../../Helpers/ProfileHelper";
@@ -286,9 +286,16 @@ const Navbar = (props: INavBar) => {
                 </Button>
               ))}
             </Box>
+            <Box sx={{flexGrow: 0, display: {xs: "none", lg: "flex"}}}>
             <Button color='secondary' sx={{marginLeft:'10px'}}variant='contained' onClick={()=> {
               setNewTheme(props.setCurrentTheme)
             }}>Switch theme</Button>
+            </Box>
+            <Box sx={{flexGrow: 0, display: {xs: "flex", lg: "none"}}}>
+            <IconButton color='secondary' sx={{marginLeft:'10px', width: 40}} onClick={()=> {
+              setNewTheme(props.setCurrentTheme)
+            }}>T</IconButton>
+            </Box>
             <ShoppingCartManager
               items={props.items}
               setItems={props.setItems}
