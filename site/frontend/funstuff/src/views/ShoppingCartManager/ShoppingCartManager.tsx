@@ -6,7 +6,10 @@ import Shoppingcart from "../Shoppingcart/Shoppingcart";
 import axios from "axios";
 import { getLogger } from "../../LogConfig";
 import { CartItemModel } from "../../Models/Item";
-import { ShoppingCartSessionStorageModel, SHOPPING_CART_KEY } from "../../Models/Keys";
+import {
+  ShoppingCartSessionStorageModel,
+  SHOPPING_CART_KEY,
+} from "../../Models/Keys";
 
 export interface IShoppingCartManagerProps {
   items: CartItemModel[];
@@ -21,7 +24,7 @@ export default function ShoppingCartManager(props: IShoppingCartManagerProps) {
   function getCartQuantity() {
     let sum = 0;
     for (let item of props.items) {
-        sum += item.quantity;
+      sum += item.quantity;
     }
     return sum;
   }
@@ -41,27 +44,50 @@ export default function ShoppingCartManager(props: IShoppingCartManagerProps) {
       );
     } else {
       return (
-        <Badge badgeContent={getCartQuantity()} color="error" sx={{mr: 1.5, mt: -0.5}}>
+        <Badge
+          badgeContent={getCartQuantity()}
+          color="error"
+          sx={{ mr: 1.5, mt: -0.5 }}
+        >
           <ShoppingCartIcon />
         </Badge>
       );
     }
   }
 
-  return (
-    <>
-      <Box
-        sx={{ flexGrow: 0, mr: 1 }}
-        onClick={() => setShoppingCartOpen(true)}
-      >
-        {getIcon()}
-      </Box>
-      <Shoppingcart
-        open={shoppingCartOpen}
-        setOpen={setShoppingCartOpen}
-        items={props.items}
-        setItems={props.setItems}
-      />
-    </>
-  );
+  if (props.items.length === 0) {
+    return (
+      <>
+        <Box
+          sx={{ flexGrow: 0, mr: 1, ml: 1.5}}
+          onClick={() => setShoppingCartOpen(true)}
+        >
+          {getIcon()}
+        </Box>
+        <Shoppingcart
+          open={shoppingCartOpen}
+          setOpen={setShoppingCartOpen}
+          items={props.items}
+          setItems={props.setItems}
+        />
+      </>
+    );
+  } else {
+    return (
+      <>
+        <Box
+          sx={{ flexGrow: 0, mr: 1 }}
+          onClick={() => setShoppingCartOpen(true)}
+        >
+          {getIcon()}
+        </Box>
+        <Shoppingcart
+          open={shoppingCartOpen}
+          setOpen={setShoppingCartOpen}
+          items={props.items}
+          setItems={props.setItems}
+        />
+      </>
+    );
+  }
 }
