@@ -179,7 +179,7 @@ const Navbar = (props: INavBar) => {
 
   return (
     <>
-      <AppBar position="sticky">
+      <AppBar position="sticky" sx={{borderBottom:0}}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <CelebrationIcon

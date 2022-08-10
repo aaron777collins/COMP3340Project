@@ -89,7 +89,7 @@ export default function Login (props: ILogin) {
         .minSymbols(1, 'password must contain at least 1 special character'),
     });
 
-  const formik: any = useFormik({
+  const formik = useFormik({
       initialValues: {
         user:'',
         password: '',

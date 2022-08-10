@@ -4,7 +4,22 @@
 
 .card {
     width: 300px;
-    min-height: 80px;
+    min-height: fit-content;
+}
+
+.sidebarContainer {
+    height: 100%
+}
+
+.elementContainer {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    height: calc(100% - 72px);
+}
+
+.cardContainer {
+    overflow-y: scroll;
 }
 
 .cardContent {
@@ -12,8 +27,7 @@
 }
 
 .bottomCheckoutContent {
-    width: 302px;
-    position: fixed;
+    width: 100%;
     bottom: 0;
     right: 0;
 }

@@ -48,22 +48,31 @@ export default function Shoppingcart(props: IShoppingcartProps) {
       return <></>;
     } else {
       return (
-        <Card variant='outlined' sx={{pb: 1, pr: 1}}>
-        <Typography
-          sx={{ fontSize: 18, textAlign: "right", pt: 1}}
-          id="outputMap"
-        >
-          {`Sub Total (${getTotalItems()}): CAD$${getSubTotal().toFixed(2)}`}
-        </Typography>
-        <Typography
-          sx={{ fontSize: 18, textAlign: "right", fontWeight: 'bold'}}
-          id="outputMap"
-        >
-          {`Total: CAD$${(getSubTotal() * 1.13).toFixed(2)}`}
-        </Typography>
-        <Box sx={{display: 'flex', justifyContent: 'right', WebkitJustifyContent: 'right', pr: -1}}>
-          <Button variant="contained" sx={{width: 180}} href="checkout">Checkout</Button>
-        </Box>
+        <Card variant="outlined" sx={{ pb: 1, pr: 1 }}>
+          <Typography
+            sx={{ fontSize: 18, textAlign: "right", pt: 1 }}
+            id="outputMap"
+          >
+            {`Sub Total (${getTotalItems()}): CAD$${getSubTotal().toFixed(2)}`}
+          </Typography>
+          <Typography
+            sx={{ fontSize: 18, textAlign: "right", fontWeight: "bold" }}
+            id="outputMap"
+          >
+            {`Total: CAD$${(getSubTotal() * 1.13).toFixed(2)}`}
+          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "right",
+              WebkitJustifyContent: "right",
+              pr: -1,
+            }}
+          >
+            <Button variant="contained" sx={{ width: 180 }} href="checkout">
+              Checkout
+            </Button>
+          </Box>
         </Card>
       );
     }
@@ -159,34 +168,37 @@ export default function Shoppingcart(props: IShoppingcartProps) {
         anchor="right"
         open={props.open}
         onClose={() => props.setOpen(!props.open)}
-        sx={{ overflow: "auto" }}
       >
-        <Typography
-          sx={{
-            fontSize: 24,
-            fontWeight: "bold",
-            textAlign: "center",
-            lineHeight: 3,
-          }}
-          id="outputMap"
-        >
-          Shopping Cart
-        </Typography>
-        <Tooltip title="Close">
-          <IconButton
-            size="medium"
-            color="inherit"
-            onClick={() => props.setOpen(false)}
-            sx={{ position: "absolute", width: 40, right: 5, top: 16 }}
-          >
-            <Badge>
-              <CloseIcon />
-            </Badge>
-          </IconButton>
-        </Tooltip>
-        {getCards()}
-        <div className="bottomCheckoutContent">
-        {getBottomContent()}
+        <div className="sidebarContainer">
+          <div className="topBanner">
+            <Typography
+              sx={{
+                fontSize: 24,
+                fontWeight: "bold",
+                textAlign: "center",
+                lineHeight: 3,
+              }}
+              id="outputMap"
+            >
+              Shopping Cart
+            </Typography>
+            <Tooltip title="Close">
+              <IconButton
+                size="medium"
+                color="inherit"
+                onClick={() => props.setOpen(false)}
+                sx={{ position: "absolute", width: 40, right: 5, top: 16 }}
+              >
+                <Badge>
+                  <CloseIcon />
+                </Badge>
+              </IconButton>
+            </Tooltip>
+          </div>
+          <div className="elementContainer">
+            <div className="cardContainer">{getCards()}</div>
+            <div className="bottomCheckoutContent">{getBottomContent()}</div>
+          </div>
         </div>
       </Drawer>
     </div>
