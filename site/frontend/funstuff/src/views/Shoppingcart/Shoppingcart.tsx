@@ -69,7 +69,7 @@ export default function Shoppingcart(props: IShoppingcartProps) {
               pr: -1,
             }}
           >
-            <Button variant="contained" sx={{ width: 180 }} href="checkout">
+            <Button color="success" variant="contained" sx={{ width: 180 }} href="checkout">
               Checkout
             </Button>
           </Box>
