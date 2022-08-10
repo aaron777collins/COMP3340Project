@@ -40,22 +40,37 @@ export interface ICheckout {
 //Checkout class
 export default function Checkout(props: ICheckout) {
   const [activeStep, setActiveStep] = useState(0);
-  const [formikAddrObj, setFormikAddrObj] = useState({handleSubmit: ()=>log.debug("Object not set")});
-  const [formikPayObj, setFormikPayObj] = useState({handleSubmit: ()=>log.debug("Object not set")});
+  const [formikAddrObj, setFormikAddrObj] = useState({
+    handleSubmit: () => log.debug("Object not set"),
+  });
+  const [formikPayObj, setFormikPayObj] = useState({
+    handleSubmit: () => log.debug("Object not set"),
+  });
 
+  const [totalItems, setTotalItems] = useState(0);
+  const [totalCost, setTotalCost] = useState(0);
 
   //step through material stepper and call right class
   function getStepContent(step: number) {
     switch (step) {
       case 0:
-        return <AddressForm handleNext={handleNext} setFormikObj={setFormikAddrObj}/>;
+        return (
+          <AddressForm
+            handleNext={handleNext}
+            setFormikObj={setFormikAddrObj}
+          />
+        );
       case 1:
-        return <PaymentForm handleNext={handleNext} setFormikObj={setFormikPayObj} />;
+        return (
+          <PaymentForm handleNext={handleNext} setFormikObj={setFormikPayObj} />
+        );
       case 2:
         return (
           <ReviewOrder
             items={props.items}
             setItems={props.setItems}
+            setTotalItems={setTotalItems}
+            setTotalCost={setTotalCost}
           ></ReviewOrder>
         );
       default:
@@ -92,6 +107,27 @@ export default function Checkout(props: ICheckout) {
     }
   };
 
+  function getTotalsText() {
+    if(activeStep === steps.length-1) {
+      return (
+        <div className="totalsContainer">
+              <Typography
+                sx={{ fontSize: 18, textAlign: "right", pt: 1 }}
+                id="outputMap"
+              >
+                {`Sub Total (${totalItems}): CAD$${totalCost.toFixed(2)}`}
+              </Typography>
+              <Typography
+                sx={{ fontSize: 18, textAlign: "right", fontWeight: "bold" }}
+                id="outputMap"
+              >
+                {`Total: CAD$${(totalCost * 1.13).toFixed(2)}`}
+              </Typography>
+        </div>
+      );
+    } else return <></>;
+  }
+
   return (
     <div className="main">
       <ThemeProvider theme={theme}>
@@ -111,27 +147,27 @@ export default function Checkout(props: ICheckout) {
           >
             <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
               {steps.map((label) => (
-                <Step 
-                key={label}
-                sx={{
-                  '& .MuiStepLabel-root .Mui-completed': {
-                    color: 'grey.900', 
-                  },
-                  '& .MuiStepLabel-label.Mui-completed.MuiStepLabel-alternativeLabel':
-                    {
-                      color: 'grey.500', 
+                <Step
+                  key={label}
+                  sx={{
+                    "& .MuiStepLabel-root .Mui-completed": {
+                      color: "grey.900",
                     },
-                  '& .MuiStepLabel-root .Mui-active': {
-                    color: 'grey.900', 
-                  },
-                  '& .MuiStepLabel-label.Mui-active.MuiStepLabel-alternativeLabel':
-                    {
-                      color: 'common.white', 
+                    "& .MuiStepLabel-label.Mui-completed.MuiStepLabel-alternativeLabel":
+                      {
+                        color: "grey.500",
+                      },
+                    "& .MuiStepLabel-root .Mui-active": {
+                      color: "grey.900",
                     },
-                  '& .MuiStepLabel-root .Mui-active .MuiStepIcon-text': {
-                    fill: 'white', 
-                  },
-                }}
+                    "& .MuiStepLabel-label.Mui-active.MuiStepLabel-alternativeLabel":
+                      {
+                        color: "common.white",
+                      },
+                    "& .MuiStepLabel-root .Mui-active .MuiStepIcon-text": {
+                      fill: "white",
+                    },
+                  }}
                 >
                   <StepLabel>{label}</StepLabel>
                 </Step>
@@ -150,9 +186,19 @@ export default function Checkout(props: ICheckout) {
                   </Typography>
                 </React.Fragment>
               ) : (
-                <form onSubmit={(activeStep === 0 ? formikAddrObj : formikPayObj).handleSubmit}>
+                <form
+                  onSubmit={
+                    (activeStep === 0 ? formikAddrObj : formikPayObj)
+                      .handleSubmit
+                  }
+                >
                   <React.Fragment>
-                    {getStepContent(activeStep)}
+                    <div className="contentContainer">
+                      {getStepContent(activeStep)}
+                    </div>
+                    <Box sx={{ display: "flex", justifyContent: "flex-end", height: '40px'}}>
+                    {getTotalsText()}
+                    </Box>
                     <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
                       <Button
                         variant="outlined"
@@ -167,7 +213,7 @@ export default function Checkout(props: ICheckout) {
                         sx={{ mt: 3, ml: 1 }}
                         type="submit"
                         onClick={() => {
-                          if (activeStep === steps.length-1) {
+                          if (activeStep === steps.length - 1) {
                             handleNext();
                           }
                         }}
