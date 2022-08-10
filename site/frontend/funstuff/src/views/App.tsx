@@ -174,11 +174,11 @@ function App() {
         <title>FunStuff</title>
         <meta
           name="description"
-          content="A mock eccomerce website"
+          content="A mock e-commerce website"
         />
         <meta
           name="keywords"
-          content="Gatorade, Shopping, Fun, Stuff"
+          content="Gatorade, Shopping, Fun, Stuff, Products, Shopping"
         />
         <meta name="robots" content="index, nofollow"/>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -186,6 +186,9 @@ function App() {
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <meta name="language" content="English"/>
         <meta name="robots" content="noindex" />
+        <meta property="og:site_name" content="FunStuff" />
+        <meta property="og:description" content="An E-commerce website" />
+
       </Helmet>
       <ThemeProvider theme={currentTheme}>
         <CssBaseline />
