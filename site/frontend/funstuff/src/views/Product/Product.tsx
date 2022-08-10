@@ -72,7 +72,7 @@ export default function Product (props: IProductProps) {
 
   return (
     <div>
-      <Card sx={styles.productCard} variant='outlined'>
+      <Card sx={styles.productCard} >
       <CardActionArea onClick={() => {
         console.log("card clicked");
         setCurrentlySelectedItemInStorage(getCartItem(product))
