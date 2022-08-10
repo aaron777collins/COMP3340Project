@@ -86,7 +86,7 @@ export default function SignUp (props: ISignUp) {
             backgroundColor: 'green'
         },
         margintyle: {
-            margin: '10px 10px' 
+            margin: '10px 0px' 
         },
     }
 
