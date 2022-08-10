@@ -79,7 +79,27 @@ export default function Checkout(props: ICheckout) {
         <Paper variant="outlined" sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
           <Stepper activeStep={activeStep} sx={{ pt: 3, pb: 5 }}>
             {steps.map((label) => (
-              <Step key={label}>
+              <Step
+              key={label}
+              sx={{
+                '& .MuiStepLabel-root .Mui-completed': {
+                  color: 'grey.900', 
+                },
+                '& .MuiStepLabel-label.Mui-completed.MuiStepLabel-alternativeLabel':
+                  {
+                    color: 'grey.500', 
+                  },
+                '& .MuiStepLabel-root .Mui-active': {
+                  color: 'grey.900', 
+                },
+                '& .MuiStepLabel-label.Mui-active.MuiStepLabel-alternativeLabel':
+                  {
+                    color: 'common.white', 
+                  },
+                '& .MuiStepLabel-root .Mui-active .MuiStepIcon-text': {
+                  fill: 'white', 
+                },
+              }}>
                 <StepLabel>{label}</StepLabel>
               </Step>
             ))}
@@ -99,8 +119,9 @@ export default function Checkout(props: ICheckout) {
             ) : (
               <React.Fragment>
                 {getStepContent(activeStep)}
-                <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <Box  sx={{ display: 'flex', justifyContent: 'flex-end' }}>
                   <Button
+                    color="success"
                     variant="contained"
                     onClick={handleNext}
                     sx={{ mt: 3, ml: 1 }}

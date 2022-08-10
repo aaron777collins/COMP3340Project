@@ -20,6 +20,7 @@ import { AUTH_LEVEL, UserAuth } from "../../Models/Auths";
 import { USER_AUTH_KEY } from "../../Models/Keys";
 import { getLogger } from "../../LogConfig";
 import { useEffect, useState } from "react";
+import { setNewTheme } from "../../Helpers/ThemeHelper";
 
 const pages = [
   "Products",
@@ -49,6 +50,7 @@ export interface INavBar {
   setUserAuth: Function;
   loading: boolean;
   setLoading: Function;
+  setCurrentTheme: Function;
 }
 
 const log = getLogger("view.navbar");
@@ -274,7 +276,7 @@ const Navbar = (props: INavBar) => {
                   onClick={handleCloseNavMenu}
                   sx={{
                     my: 2,
-                    color: "white",
+                    color: "black",
                     display: "block",
                     textAlign: "center",
                   }}
@@ -284,6 +286,9 @@ const Navbar = (props: INavBar) => {
                 </Button>
               ))}
             </Box>
+            <Button color='secondary' sx={{marginLeft:'10px'}}variant='contained' onClick={()=> {
+              setNewTheme(props.setCurrentTheme)
+            }}>Switch theme</Button>
             <ShoppingCartManager
               items={props.items}
               setItems={props.setItems}
