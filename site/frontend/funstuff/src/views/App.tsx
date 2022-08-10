@@ -23,7 +23,7 @@ import {
 import { CartItemModel } from "../Models/Item";
 import Profile from "./Profile/Profile";
 import { UserAuth, AUTH_LEVEL } from "../Models/Auths";
-
+import {Helmet} from "react-helmet";
 import { getLogger } from "../LogConfig";
 import {
   Backdrop,
@@ -170,6 +170,23 @@ function App() {
 
   return (
     <>
+      <Helmet>
+        <title>FunStuff</title>
+        <meta
+          name="description"
+          content="A mock eccomerce website"
+        />
+        <meta
+          name="keywords"
+          content="Gatorade, Shopping, Fun, Stuff"
+        />
+        <meta name="robots" content="index, nofollow"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="language" content="English"/>
+        <meta name="robots" content="noindex" />
+      </Helmet>
       <ThemeProvider theme={currentTheme}>
         <CssBaseline />
         <Backdrop
