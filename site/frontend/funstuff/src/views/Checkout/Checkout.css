@@ -2,3 +2,8 @@
   height: 100vh;
   background-color: #282c34;
 }
+
+.contentContainer {
+  overflow: auto;
+  max-height: 50vh;
+}
