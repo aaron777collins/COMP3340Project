@@ -22,7 +22,7 @@ import { getLogger } from "../../LogConfig";
 import { useEffect, useState } from "react";
 import { setNewTheme } from "../../Helpers/ThemeHelper";
 
-const pages = [
+export const pages = [
   "Products",
   "About Us",
   "FAQ",
@@ -32,16 +32,18 @@ const pages = [
   "Refund",
 ];
 const settings = ["Profile", "Logout"];
-const pages_dict: { [name: string]: string } = {};
-pages_dict["Products"] = "products";
-pages_dict["About Us"] = "about";
-pages_dict["FAQ"] = "faq";
-pages_dict["Profile"] = "profile";
-pages_dict["Legal"] = "legal";
-pages_dict["Terms and Conditions"] = "terms";
-pages_dict["Privacy"] = "privacy";
-pages_dict["Refund"] = "refund";
-pages_dict["Admin"] = "admin";
+export const pages_dict: { [name: string]: string } = {
+  "Products": "products",
+  "About Us": "about",
+  "FAQ": "faq",
+  "Profile": "profile",
+  "Legal": "legal",
+  "Terms and Conditions": "terms",
+  "Privacy": "privacy",
+  "Refund": "refund",
+  "Admin": "admin",
+  "Home": " ",
+};
 
 export interface INavBar {
   items: CartItemModel[];
