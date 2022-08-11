@@ -169,7 +169,7 @@ export default function SignUp (props: ISignUp) {
                             <Typography 
                                 sx={styles.margintyle}>
                                     Have an account? 
-                                <Link href="login" >
+                                <Link href="login" sx={{color: 'purple'}}>
                                     Log in.
                                 </Link>
                             </Typography> 
