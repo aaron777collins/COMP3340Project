@@ -9,18 +9,24 @@ const url = "mongodb://localhost:27017";
 export class MongoConnection {
   client: any;
 
+  // Creates a mongo client for the connection
   constructor() {
     // Create mongo client
     this.client = new MongoClient(url);
   }
 
-  async callFunction(database: string, callbackFunc: (db: any, err?: string) => void) {
+  // Wraps the boilerplate code for connecting to the database and dealing with errors
+  // Calls the callback function with the database context
+  async callFunction(
+    database: string,
+    callbackFunc: (db: any, err?: string) => void
+  ) {
     await MongoClient.connect(
       url,
       (err: any, client: { db: (str: string) => any }) => {
         if (err) {
           log.debug("" + String(err));
-          callbackFunc(undefined, ("" + String(err)));
+          callbackFunc(undefined, "" + String(err));
         }
 
         // Specify database you want to access

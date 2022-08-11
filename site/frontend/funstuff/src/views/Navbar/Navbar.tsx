@@ -22,6 +22,7 @@ import { getLogger } from "../../LogConfig";
 import { useEffect, useState } from "react";
 import { setNewTheme } from "../../Helpers/ThemeHelper";
 
+// Public page link names array
 export const pages = [
   "Products",
   "About Us",
@@ -31,7 +32,9 @@ export const pages = [
   "Privacy",
   "Refund",
 ];
+// settings link names
 const settings = ["Profile", "Logout"];
+// Maps the page link names to the url page name
 export const pages_dict: { [name: string]: string } = {
   "Products": "products",
   "About Us": "about",
@@ -45,6 +48,7 @@ export const pages_dict: { [name: string]: string } = {
   "Home": " ",
 };
 
+// Inputs for the navbar component
 export interface INavBar {
   items: CartItemModel[];
   setItems: Function;
@@ -55,9 +59,13 @@ export interface INavBar {
   setCurrentTheme: Function;
 }
 
+// Gets the navbar logger (used for debugging)
 const log = getLogger("view.navbar");
 
+// Creates navbar functional component
 const Navbar = (props: INavBar) => {
+  // declares react hooks for storing variables that react can monitor (and refresh components with)
+  // Has getters and setters (a setter refreshes on the next render frame)
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -66,42 +74,56 @@ const Navbar = (props: INavBar) => {
   );
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
+    // Opens the nav menu and maintains state
     setAnchorElNav(event.currentTarget);
   };
   const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
+    // Opens the user menu and maintains state
     setAnchorElUser(event.currentTarget);
   };
 
+  // Closes the nav menu (has state)
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
 
+  // Closes the user menu (has state)
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
 
+  //  return the links to display (depends on whether you're admin or not)
   function getPages() {
     return (props.userAuth.authLevel === AUTH_LEVEL.admin) ? [...pages, "Admin"] : pages;
   }
 
+  // Logs the user out of the account
   function logout() {
+    // Starts loading screen
     props.setLoading(true);
     const authObj = {
       username: "",
       authLevel: AUTH_LEVEL.rejected,
     } as UserAuth;
+    // Sets the current user auth to rejected (logged out)
     props.setUserAuth(authObj);
+    // Does the same for local and session storage (for refresh, etc)
     sessionStorage.setItem(USER_AUTH_KEY, JSON.stringify(authObj));
     localStorage.setItem(USER_AUTH_KEY, JSON.stringify(authObj));
+    // If on profile, force the user to the home page
     const hrefArr = window.location.href.split("/");
     if (hrefArr[hrefArr.length - 1] === "profile") {
       window.location.href = "/";
     }
+    // Stop loading after 500ms (makes the transition cleaner)
     setTimeout(() => props.setLoading(false), 500);
   }
 
+  // Returns the profile icon or a login button (depends on whether they are logged in)
   function getProfileOrLogin() {
+    // Checks if the user is logged in
     if (props.userAuth && props.userAuth.authLevel !== AUTH_LEVEL.rejected) {
+      // If so, return the avatar icon (and all the settings)
       return (
         <>
           <Box sx={{ flexGrow: 0 }}>
@@ -163,6 +185,7 @@ const Navbar = (props: INavBar) => {
           </Box>
         </>
       );
+      // Otherwise, just return a login button
     } else {
       return (
         <>
@@ -181,11 +204,14 @@ const Navbar = (props: INavBar) => {
     }
   }
 
+  // Returns the main navbar
   return (
     <>
       <AppBar position="sticky" sx={{borderBottom:0, color: 'text.primary'}}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
+            {/* When xs is 'none', this element won't show on mobile/small view. lg: flex means it shows when the screen is large.
+            The opposite applies when xs is flex and lg is none */}
             <CelebrationIcon
               sx={{ display: { xs: "none", lg: "flex", color:'inherit'}, mr: 1 }}
             />
