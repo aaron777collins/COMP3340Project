@@ -69,7 +69,7 @@ export default function Home(props: IHome) {
     props.setLoading(false);
   }
 
-  //useEffect(getWeather, []);
+  useEffect(getWeather, []);
   
   return (
       <div className="homePage">  
