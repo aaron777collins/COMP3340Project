@@ -26,6 +26,7 @@ enum State {
 export default function BackendIcon(props: IBackendIconProps) {
   const [error, setError] = useState(State.LOADING);
 
+  //get data type
   async function getDataSingle() {
     let operation = axios.get;
     if (props.type === "get") {
@@ -36,7 +37,7 @@ export default function BackendIcon(props: IBackendIconProps) {
       log.debug("No function found!");
       return;
     }
-
+    //await reponse from validator 
     await operation(
       process.env.REACT_APP_DBAPI_ADDRESS_BEGINNING + props.endPoint,
       props.params
@@ -59,6 +60,7 @@ export default function BackendIcon(props: IBackendIconProps) {
     );
   }
 
+  //on load validate site
   useEffect(() => {
     setError(State.LOADING);
     // getDataSingle();

@@ -21,6 +21,8 @@ const log = getLogger("view.shoppingcartmanager");
 export default function ShoppingCartManager(props: IShoppingCartManagerProps) {
   const [shoppingCartOpen, setShoppingCartOpen] = useState(false);
 
+
+  //manage the shopping cart, get the quantities
   function getCartQuantity() {
     let sum = 0;
     for (let item of props.items) {
@@ -28,7 +30,7 @@ export default function ShoppingCartManager(props: IShoppingCartManagerProps) {
     }
     return sum;
   }
-
+  //get the itcons for the shopping cart
   function getIcon() {
     if (props.items.length) {
       return (

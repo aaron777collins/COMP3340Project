@@ -10,6 +10,7 @@ export interface IPrivacyComponentProps {
 
 }
 
+//Response type used for debugging may not be used forever
 export default function Privacy(props: IPrivacyComponentProps) {
   type responseType = {
     resp: string;
@@ -17,6 +18,7 @@ export default function Privacy(props: IPrivacyComponentProps) {
 
   const [response, setResponse] = useState({} as responseType);
 
+  //Privacy component, nothing complex here
   return (
     <div className="Privacy">
       <header className="Privacy-header"></header>

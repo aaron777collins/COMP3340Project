@@ -13,12 +13,14 @@ export interface ProductObj{
   Description: string
 }
 
+//get product items array and setItem hook
 export interface IProductProps {
   product: ProductObj,
   items: CartItemModel[],
   setItems: Function
 }
 
+//get logger
 const log = getLogger("view.product");
 
 export default function Product (props: IProductProps) {
@@ -34,6 +36,7 @@ export default function Product (props: IProductProps) {
     },
   }
 
+  //use navigate for navigation
   const navigate = useNavigate();
 
   const product = props.product; 
@@ -62,7 +65,8 @@ export default function Product (props: IProductProps) {
     localStorage.setItem(CURRENT_ITEM_KEY, JSON.stringify({currentItemForStorage})); 
   }
 
-  
+
+  //Calculate the filename of the image
     const noSpaces = product.Name.replace(/\s/g,'')
     const lowerCaseName = noSpaces.toLocaleLowerCase();
     const productImageName = "productImages/"+lowerCaseName+".jpg";

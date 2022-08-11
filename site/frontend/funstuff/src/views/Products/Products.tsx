@@ -10,6 +10,7 @@ import "./Products.css";
 // Used for adding parameters to the products tag
 export interface IProductsProps {}
 
+//logger
 const log = getLogger("view.products");
 
 export interface IProductsProps {
@@ -21,6 +22,8 @@ export interface IProductsProps {
 export default function Products(props: IProductsProps) {
   const [filteredProducts, setFilteredProducts] = useState(props.productsData);
 
+
+  // Filter out products in the product data array based on the filter textbox
   function filterItems(event: any) {
     if (event?.target?.value != null || event?.target?.value !== undefined) {
       setFilteredProducts(

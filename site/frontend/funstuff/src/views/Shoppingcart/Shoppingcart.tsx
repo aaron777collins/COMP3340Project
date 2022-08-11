@@ -27,7 +27,9 @@ export interface IShoppingcartProps {
   setItems: Function;
 }
 
+
 export default function Shoppingcart(props: IShoppingcartProps) {
+ //calculate total of items from prices
   function getSubTotal() {
     let sum = 0;
     props.items.forEach((item) => {
@@ -35,6 +37,9 @@ export default function Shoppingcart(props: IShoppingcartProps) {
     });
     return sum;
   }
+
+  
+  //get taxed subtotal
   function getTotalItems() {
     let sum = 0;
     props.items.forEach((item) => {
@@ -43,6 +48,7 @@ export default function Shoppingcart(props: IShoppingcartProps) {
     return sum;
   }
 
+  //Factory function to create the card containing $totals 
   function getBottomContent() {
     if (props.items.length === 0) {
       return <></>;
@@ -76,8 +82,8 @@ export default function Shoppingcart(props: IShoppingcartProps) {
         </Card>
       );
     }
-  }
-
+  } 
+  //Factory function to display the individual item order cards
   function getCards() {
     if (props.items.length === 0) {
       return (
@@ -96,6 +102,7 @@ export default function Shoppingcart(props: IShoppingcartProps) {
         </div>
       );
     }
+    //for each item in the items prop (all cart items) create a unique card
     return props.items.map((item) => (
       <Card className="card" variant="outlined" key={item.name}>
         <CardContent className="cardContent">

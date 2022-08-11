@@ -10,6 +10,7 @@ export interface ITermsComponentProps {
 
 }
 
+//response originally used for testing. may be deprecated
 export default function Terms(props: ITermsComponentProps) {
   type responseType = {
     resp: string;
@@ -17,6 +18,7 @@ export default function Terms(props: ITermsComponentProps) {
 
   const [response, setResponse] = useState({} as responseType);
 
+  // Associated text and legal jargon of our terms
   return (
     <div className="Terms">
       <header className="Terms-header"></header>

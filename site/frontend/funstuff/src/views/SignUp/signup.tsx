@@ -17,7 +17,7 @@ export interface ISignUp {
 
 export default function SignUp (props: ISignUp) {
 
-
+    //Yup validation schema. Look at yup docs if confused
     const validationSchema = Yup.object({
         user: Yup.string()
          .min(2, 'Too Short!')
@@ -39,6 +39,7 @@ export default function SignUp (props: ISignUp) {
          .oneOf([Yup.ref('password'), null], 'Passwords must match')
       });
 
+      //formik object for site validation. Look at formik docs if confused
     const formik: any = useFormik({
         initialValues: {
           user:'',
@@ -48,6 +49,7 @@ export default function SignUp (props: ISignUp) {
           rememberMe: false
         },
         validationSchema: validationSchema,
+        //on submit function to handle form submission. Hit backend on form submission and update db
         onSubmit: (values) => {
         //   alert(JSON.stringify(values, null, 2));
             axios.post(process.env.REACT_APP_DBAPI_ADDRESS_BEGINNING+"findUser", {username: values.user, password: "FunStuffPass123!"})

@@ -21,6 +21,7 @@ interface IAddressForm {
 
 export default function AddressForm(props: IAddressForm) { // here is the address form that requires the address of the customers checkout page
   
+  //Yup validation. Look at Yup docs if confused
   const validationSchema = Yup.object({
     firstName: Yup.string()
       .min(2, "Too Short!")
@@ -73,7 +74,7 @@ export default function AddressForm(props: IAddressForm) { // here is the addres
     return initialValues;
   }
 
-  
+  //formik object. Onsubmit increments the MUI stepper and handles changes to dom  
   const formik = useFormik({
     initialValues: getInitialValues(),
     validationSchema: validationSchema,

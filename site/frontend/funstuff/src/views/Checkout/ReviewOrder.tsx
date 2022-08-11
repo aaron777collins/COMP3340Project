@@ -12,6 +12,7 @@ export interface IReviewOrder {
 }
 
 export default function ReviewOrder(props: IReviewOrder) {
+  //get subtotal of all items as name implies
   function getSubTotal() {
     let sum = 0;
     props.items.forEach((item) => {
@@ -19,7 +20,7 @@ export default function ReviewOrder(props: IReviewOrder) {
     });
     return sum;
   }
-
+  //get total of all items from cart
   function getTotalItems() {
     let sum = 0;
     props.items.forEach((item) => {
@@ -28,6 +29,7 @@ export default function ReviewOrder(props: IReviewOrder) {
     return sum;
   }
 
+  //set state of totals
   useEffect(() => {
     props.setTotalCost(getSubTotal());
     props.setTotalItems(getTotalItems());

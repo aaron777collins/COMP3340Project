@@ -19,6 +19,7 @@ interface IPaymentForm {
 export default function PaymentForm(props: IPaymentForm) {
   // Payment form that is required for the customer to checkout products from the website
 
+  //yup validation. Lool at yup docs
   const validationSchema = Yup.object({
     cardName: Yup.string()
       .min(2, "Too Short!")
@@ -50,6 +51,7 @@ export default function PaymentForm(props: IPaymentForm) {
     cvv: "",
   } as UserPaymentInfo;
 
+
   function getInitialValues(): UserPaymentInfo {
     // checks if there is some items in the local storage
     let data = localStorage.getItem(USER_PAYMENT_INFO);
@@ -61,7 +63,7 @@ export default function PaymentForm(props: IPaymentForm) {
     return initialValues;
   }
 
-
+  //formik object. Handle stepper changes on change
   const formik = useFormik({
     initialValues: getInitialValues(),
     validationSchema: validationSchema,

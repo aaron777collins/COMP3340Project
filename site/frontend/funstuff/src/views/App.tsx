@@ -39,6 +39,7 @@ import ForgotPassword from "./ForgotPassword/ForgotPassword";
 import SuccessRecovery from "../SuccessRecovery/SuccessRecovery";
 const log = getLogger("view.app");
 
+//THEMES
 const fontTheme = createTheme({
   typography: {
     fontFamily: [
@@ -108,8 +109,9 @@ const whiteTheme = createTheme({
 
 });
 
-
+//main functional component<root>
 function App() {
+  //states
   const [items, setItems] = useState([] as CartItemModel[]);
   const [userAuth, setUserAuth] = useState({
     username: "",
@@ -120,6 +122,7 @@ function App() {
 
   const [loading, setLoading] = useState(false);
 
+  //on load read session storage and local storage into the states
   useEffect(() => {
     setLoading(true);
     // checks if there is some items in the local storage
@@ -168,6 +171,9 @@ function App() {
     setLoading(false);
   }, []);
 
+  /*HELMET is the framework used to create meta tags on all components descendent of App.tsx
+  routing included in the tsx of this component
+  */
   return (
     <>
       <Helmet>

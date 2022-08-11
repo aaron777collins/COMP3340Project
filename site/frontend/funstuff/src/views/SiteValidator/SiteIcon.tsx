@@ -22,6 +22,7 @@ export default function SiteIcon(props: ISiteIconProps) {
 
     const [error, setError] = useState(State.LOADING);
 
+    //hit backend and await validator response
   async function getDataSingle() {
     await axios
       .get("http://html5.validator.nu/", {
@@ -52,6 +53,7 @@ export default function SiteIcon(props: ISiteIconProps) {
       );
   }
 
+  //on component load validate site
   useEffect(() => {
     setError(State.LOADING);
     // getDataSingle();

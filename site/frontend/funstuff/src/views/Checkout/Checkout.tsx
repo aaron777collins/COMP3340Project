@@ -78,6 +78,7 @@ export default function Checkout(props: ICheckout) {
     }
   }
 
+  //handle cancelling changes on window, update stepper
   function handleCancel() {
     if (activeStep === 0) {
       window.location.href = "products";
@@ -86,6 +87,7 @@ export default function Checkout(props: ICheckout) {
     }
   }
 
+   //handle continuing changes on window, update stepper
   const handleNext = () => {
     setActiveStep(activeStep + 1);
 
@@ -107,6 +109,7 @@ export default function Checkout(props: ICheckout) {
     }
   };
 
+  //get the $totals and update associated card
   function getTotalsText() {
     if(activeStep === steps.length-1) {
       return (

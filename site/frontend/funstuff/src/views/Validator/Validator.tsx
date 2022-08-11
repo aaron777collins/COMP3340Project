@@ -24,6 +24,8 @@ export interface IValidatorProps {}
 export default function Validator(props: IValidatorProps) {
   const [pageName, setPageName] = useState("");
 
+
+  //hit validator and get raw data back
   function getData() {
     axios
       .get("http://html5.validator.nu/", {
@@ -43,6 +45,7 @@ export default function Validator(props: IValidatorProps) {
       });
   }
 
+  // update document with input
   function updateOutput(str: string) {
     let outputMap = document.getElementById("outputMap");
     if (outputMap) {

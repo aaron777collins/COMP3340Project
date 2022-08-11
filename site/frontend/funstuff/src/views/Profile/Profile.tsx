@@ -28,6 +28,8 @@ export interface IProfileProps {
 }
 
 export default function Profile(props: IProfileProps) {
+  
+  // use state declarations
   const [username, setUsername] = useState(props.userAuth.username);
   const [email, setEmail] = useState("");
 
@@ -44,11 +46,13 @@ export default function Profile(props: IProfileProps) {
 
   const [saveState, setSaveState] = useState(SaveState.NO_ACTION);
 
+  //get user info on component load with axios 
   useEffect(() => {
     if (
       props.userAuth.username !== "" &&
       props.userAuth.username !== undefined
     ) {
+      //endpoint in backend
       axios
         .post(process.env.REACT_APP_DBAPI_ADDRESS_BEGINNING + "getUserInfo", {
           username: props.userAuth.username,
@@ -65,11 +69,13 @@ export default function Profile(props: IProfileProps) {
     }
   }, [props.userAuth.username]);
 
+  //function to allow user to confirm changes
   function validateForm(e: any) {
     e.preventDefault();
     setOpenConfirmDialog(true);
   }
 
+  //attempt save function, post new changes to backend and set changes in local storage
   function trySave(password: string) {
     setSaveState(SaveState.SAVING);
     axios
@@ -102,6 +108,10 @@ export default function Profile(props: IProfileProps) {
       });
   }
 
+  /*
+  validate password input. Check input for conflicts with backend and post if none.
+  Function alerts user if issue
+  */
   function validateInputPassword(password: string) {
     if (username === "admin") {
       setOpenIncorrectUsernameDialog(true);
@@ -149,6 +159,7 @@ export default function Profile(props: IProfileProps) {
     }, 3000);
   }
 
+  // factory function to get save button
   function getSaveButton() {
     if (saveState === SaveState.SAVING) {
       return (

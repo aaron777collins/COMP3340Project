@@ -34,6 +34,7 @@ export default function Validator(props: ISiteValidatorProps) {
     setRefreshToggler(!refreshToggler);
   }
 
+  //function to update the validator card
   function updateOutput(str: string) {
     let outputMap = document.getElementById("outputMap");
     if (outputMap) {
@@ -43,6 +44,7 @@ export default function Validator(props: ISiteValidatorProps) {
     }
   }
 
+  //function to add content to the validator card
   function addOutput(str: string) {
     let outputMap = document.getElementById("outputMap");
     if (outputMap) {
@@ -52,6 +54,7 @@ export default function Validator(props: ISiteValidatorProps) {
     }
   }
 
+  //validator card
   return (
     <Grid item key="Validator">
       <Card variant="outlined" sx={{ minWidth: 200 }}>

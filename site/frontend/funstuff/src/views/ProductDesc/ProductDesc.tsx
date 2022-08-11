@@ -15,6 +15,7 @@ export default function ProductDesc (props: IProductDesc) {
 
    const data = localStorage.getItem(CURRENT_ITEM_KEY); 
 
+   //default item if the products fail to load
    const defaultCurrentItemSelected = {
         currentItemForStorage: {
             currentItem: {
@@ -44,6 +45,7 @@ export default function ProductDesc (props: IProductDesc) {
         console.log('refreshed products')
    }, [])
 
+   //Convert product name into the associated file image name
     const noSpaces = currentlySelectedItem.currentItemForStorage.currentItem.name.replace(/\s/g,'')
     const lowerCaseName = noSpaces.toLocaleLowerCase();
     const productImageName = "productImages/"+lowerCaseName+".jpg";

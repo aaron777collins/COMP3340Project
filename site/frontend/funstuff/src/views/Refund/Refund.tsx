@@ -10,6 +10,7 @@ export interface IRefundComponentProps {
 
 }
 
+//response props may not be used forever, originally used for devbugging
 export default function Refund(props: IRefundComponentProps) {
   type responseType = {
     resp: string;
@@ -17,6 +18,7 @@ export default function Refund(props: IRefundComponentProps) {
 
   const [response, setResponse] = useState({} as responseType);
 
+  //Refund page with associated info
   return (
     <div className="Refund">
       <header className="Refund-header"></header>
