@@ -41,10 +41,11 @@ export default function Products(props: IProductsProps) {
   return (
     <>
       <div className="productsTitleContainer">
-        <Typography sx={{fontSize: '7vmin'}} gutterBottom component="div">
+        <Typography  sx={{fontSize: '7vmin'}} gutterBottom component="div">
             Products 🛍️     
         </Typography>
         <TextField
+          color="secondary"
           id="productSearchBar"
           label="Search for a product🛒"
           variant="outlined"
