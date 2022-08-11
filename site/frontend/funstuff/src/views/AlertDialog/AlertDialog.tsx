@@ -7,21 +7,21 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
-interface IAlertDialog {
+interface IAlertDialog { // define the IAlertDialog interface
   title?: string;
   message: string;
   buttonTitle?: string;
   openArr: [boolean, React.Dispatch<React.SetStateAction<boolean>>];
 }
 
-export default function AlertDialog(props: IAlertDialog) {
+export default function AlertDialog(props: IAlertDialog) { /** Export the function by default*/
   const [open, setOpen] = props.openArr;
 
-  const handleClose = () => {
+  const handleClose = () => { // handle the closing of the dialog
     setOpen(false);
   };
 
-  return (
+  return (  // html code
     <div>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>{props.title?props.title:"Alert"}</DialogTitle>

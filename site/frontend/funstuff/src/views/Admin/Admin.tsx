@@ -13,22 +13,24 @@ import { ItemModel } from "../../Models/Item";
 import { ResponseModel } from "../../Models/Response";
 import SiteValidator from "../SiteValidator/SiteValidator";
 import Validator from "../Validator/Validator";
-const log = getLogger("view.admin");
 
-type FunctionObj = {
+const log = getLogger("view.admin"); /** Retrieves the logger*/
+
+type FunctionObj = {  // define the FunctionObj
   name: string;
   apiPath: string;
   parameters: object;
   type: FuncType;
 };
 
-enum FuncType {
+enum FuncType {   // define the FuncType enum
   get = "get",
   post = "post",
 }
 
-export default function Admin() {
-  function updateOutput(str: string) {
+export default function Admin() {   /** Export the function by default*/
+
+  function updateOutput(str: string) {  // update the output
     let outputMap = document.getElementById("outputMap");
     if (outputMap) {
       outputMap.innerText = str;
@@ -37,7 +39,7 @@ export default function Admin() {
     }
   }
 
-  const functionObjArr = [
+  const functionObjArr = [  // create and initialize our admin functions
     {
       name: "Update Items",
       apiPath: process.env.REACT_APP_DBAPI_ADDRESS_BEGINNING + "updateItems",
@@ -72,7 +74,7 @@ export default function Admin() {
     },
   ] as FunctionObj[];
 
-  function runFunction(funcObj: FunctionObj) {
+  function runFunction(funcObj: FunctionObj) {  // function that runs a particular function
     if (funcObj.type === FuncType.get) {
       axios.get(funcObj.apiPath).then((response) => {
         const { data } = response;
@@ -90,7 +92,7 @@ export default function Admin() {
     }
   }
 
-  function getGridCards() {
+  function getGridCards() { // MaterialUI function that sets up the cards for the admin functions
     return functionObjArr.map((funcObj) => (
       <Grid item key={funcObj.name}>
         <Card variant="outlined" sx={{ minWidth: 200 }}>
@@ -120,7 +122,7 @@ export default function Admin() {
     ));
   }
 
-  return (
+  return (  // html code
     <>
       <Grid container spacing={3} sx={{ ml: 2, mt: 5 }}>
         {getGridCards()}

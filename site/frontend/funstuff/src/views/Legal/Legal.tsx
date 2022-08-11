@@ -9,16 +9,16 @@ import { Link } from "react-router-dom";
 // Used for adding parameters to the Legal tag
 export interface ILegalProps {}
 
-const log = getLogger("view.legal");
+const log = getLogger("view.legal");  // retrieves the logger
 
-export default function Legal(props: ILegalProps) {
+export default function Legal(props: ILegalProps) { // exports the  function by default
   type responseType = {
     resp: string;
   };
 
-  const [response, setResponse] = useState({} as responseType);
+  const [response, setResponse] = useState({} as responseType); // useState react hook
 
-  return (
+  return (  // html code
     <div className="Legal">
       <header className="Legal-header"></header>
       <body className="Legal-body">

@@ -7,7 +7,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
-interface IDialogInput {
+interface IDialogInput {// define the IDialogInput interface
   title?: string;
   message: string;
   type?: string;
@@ -18,23 +18,23 @@ interface IDialogInput {
   callbackFunc?: (input: string) => any;
 }
 
-export default function DialogInput(props: IDialogInput) {
+export default function DialogInput(props: IDialogInput) { /** Export the function by default*/
   const [open, setOpen] = props.openArr;
   const [input, setInput] = props.inputArr;
 
 
-  const handleClose = () => {
+  const handleClose = () => { // handle the closing of the dialog
     setOpen(false);
   };
 
-  const handleCloseWithInput = () => {
+  const handleCloseWithInput = () => { // handle the closing of the dialog with an input
     setOpen(false);
     if (props.callbackFunc) {
         props.callbackFunc(input)
     }
   };
 
-  return (
+  return ( // html code
     <div>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle>{props.title?props.title:"Confirmation"}</DialogTitle>

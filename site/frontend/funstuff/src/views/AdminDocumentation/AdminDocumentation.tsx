@@ -13,27 +13,27 @@ import Paper from '@mui/material/Paper';
 import Button from '@mui/material/Button';
 
 
-const log = getLogger("view.adminDocumentation");
+const log = getLogger("view.adminDocumentation"); /** Retrieves the logger*/
 
 export interface IAdminDocumentationComponentProps {
 
 }
 
-export default function AdminDocumentation(props: IAdminDocumentationComponentProps) {
+export default function AdminDocumentation(props: IAdminDocumentationComponentProps) {/** Export the function by default*/
   type responseType = {
     resp: string;
   };
 
-  const [response, setResponse] = useState({} as responseType);
+  const [response, setResponse] = useState({} as responseType); {/** useState react hook*/}
 
-  return (
+  return ( // return html
     <div className="AdminDocumentation">
       <div className="AdminDocumentation-header">
         <h1>Admin Documentation</h1>
       </div>
       <div className="AdminDocumentation-body">
         <h2>Functions / Commands</h2>
-        {BasicTable()}
+        {BasicTable()} {/** Table created with MaterialUI*/}
         <br></br>
         <Button href="./admin" variant="contained">Click here to return to the Admin page</Button>
       </div>
@@ -41,14 +41,14 @@ export default function AdminDocumentation(props: IAdminDocumentationComponentPr
   );
 }
 
-function createData(
+function createData( /** format for the row data*/
   name: string,
   description: string,
 ) {
   return { name, description };
 }
 
-const rows = [
+const rows = [ /** Row data*/
   createData('Update Items', 'Click the "RUN" button to update the products with the product data stored in the "Data.json" file in our backend/src/Data/ folder.'),
   createData('Get All Items', 'Click the "RUN" button to return to the user the a list of the products we have posted. Mainly used for debugging.'),
   createData('Reset Users', 'Click the "RUN" button to delete all users, and re-adds the admin account.'),
@@ -56,7 +56,7 @@ const rows = [
   createData('Add All Items', 'DISCLAIMER: Not for practical use, mainly used to insantiate the database, and to trigger crashes in case something goes wrong.'),
 ];
 
-export function BasicTable() {
+export function BasicTable() { /** format the table */
   return (
     <TableContainer component={Paper} className="GroupMemberTable">
       <Table sx={{ minWidth: 650 }} aria-label="simple table">

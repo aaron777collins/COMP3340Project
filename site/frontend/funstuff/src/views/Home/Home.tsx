@@ -11,7 +11,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 
 
-interface WeatherResponseObject {
+interface WeatherResponseObject { // define the weather response object interface
   current: {
     condition: {
       text: string
@@ -21,12 +21,12 @@ interface WeatherResponseObject {
   location: object;
 }
 
-interface IHome {
+interface IHome { // define the home interface
   loading: boolean;
   setLoading: Function;
 }
 
-export default function Home(props: IHome) {
+export default function Home(props: IHome) {  // export the default function
 
   // Weather API is through rapid API's
   const options = {
@@ -53,9 +53,9 @@ export default function Home(props: IHome) {
     }
   };
 
-  const [weatherData, setWeatherData] = useState(initialWeathersObject);
+  const [weatherData, setWeatherData] = useState(initialWeathersObject);  // useState react hook
 
-  function getWeather() {
+  function getWeather() { // function that acquires weather data
     props.setLoading(true);
 
     console.log(process.env.REACT_APP_RAPID_API_ADDRESS, process.env.REACT_APP_RAPID_API_KEY, process.env.REACT_APP_RAPID_API_HOST)
@@ -71,7 +71,7 @@ export default function Home(props: IHome) {
 
   //useEffect(getWeather, []);
   
-  return (
+  return (  //html code
       <div className="homePage">  
           
           <Typography sx={{marginTop: '20px', fontSize:'calc(60px + 2vmin)' }} gutterBottom className="content">

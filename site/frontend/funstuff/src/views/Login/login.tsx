@@ -8,11 +8,12 @@ import axios from 'axios';
 import { AUTH_LEVEL, UserAuth } from '../../Models/Auths';
 import { getLogger } from '../../LogConfig';
 import { USER_AUTH_KEY } from '../../Models/Keys';
-YupPassword(Yup);
 
-const log = getLogger("view.login");
+YupPassword(Yup); // yup validation
 
-const validationSchema = Yup.object({
+const log = getLogger("view.login");  // retrieves the logger
+
+const validationSchema = Yup.object({ //  define the validation schema
     email: Yup
       .string()
       .email()
@@ -28,11 +29,12 @@ const validationSchema = Yup.object({
   });
 
 
-export interface ILogin {
+export interface ILogin { // define the ILogin interface
   userAuth: UserAuth;
   setUserAuth: Function;
 }
 
+// export the login function
 export function loginToUser(username: String, password: String, rememberMe: Boolean, setUserAuth: Function) {
   // alert(JSON.stringify(values, null, 2));
   axios.post(process.env.REACT_APP_DBAPI_ADDRESS_BEGINNING+"getUserAuth", {username: username, password: password})
@@ -55,9 +57,9 @@ export function loginToUser(username: String, password: String, rememberMe: Bool
   });
 }
 
-export default function Login (props: ILogin) {
+export default function Login (props: ILogin) { // export the default function
     
-    const styles = {
+    const styles = {  // define the styles
         paperStyle: {
             padding: '30px 30px', 
             minHeight: '70vh', 
@@ -74,7 +76,7 @@ export default function Login (props: ILogin) {
         },
     }
 
-    const validationSchema = Yup.object({
+    const validationSchema = Yup.object({ // define the validation schema
       user: Yup.string()
        .min(2, 'Too Short!')
        .max(30, 'Too Long!')
@@ -89,7 +91,7 @@ export default function Login (props: ILogin) {
         .minSymbols(1, 'password must contain at least 1 special character'),
     });
 
-  const formik = useFormik({
+  const formik = useFormik({  // define the formik
       initialValues: {
         user:'',
         password: '',
@@ -101,7 +103,7 @@ export default function Login (props: ILogin) {
       },
   });
 
-    return (
+    return (  // return html
         <Grid>
             <Paper elevation={10} sx={styles.paperStyle}>
               <form onSubmit={formik.handleSubmit}>

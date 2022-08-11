@@ -3,9 +3,9 @@ import { Button, Grid, Paper, Typography } from '@mui/material';
 export interface IAppProps {
 }
 
-export default function ErrorPage (props: IAppProps) {
+export default function ErrorPage (props: IAppProps) { // export the function by default
 
-  const styles = {
+  const styles = { // define the styling
     paperStyle: {
         padding: '30px 40px', 
         minHeight: '30vh', 
@@ -25,7 +25,7 @@ export default function ErrorPage (props: IAppProps) {
     },
   }
 
-  return (
+  return (  // html code
         <Grid >
             <Paper elevation={10} sx={styles.paperStyle}>
               <Typography gutterBottom sx = {{fontSize:'calc(5vmin)'}}>

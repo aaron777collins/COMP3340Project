@@ -3,9 +3,9 @@ import * as Yup from 'yup';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 
-export default function ErrorPage () {
+export default function ErrorPage () {  // export the function by defualt
 
-  const styles = {
+  const styles = {  // define the styling
     paperStyle: {
         padding: '30px 40px', 
         minHeight: '60vh', 
@@ -25,16 +25,16 @@ export default function ErrorPage () {
     },
   }
 
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // set the usuerNavigate function
 
-  const validationSchema = Yup.object({
+  const validationSchema = Yup.object({ // define the validation schema
     email: Yup
       .string()
       .email('Invalid email')
       .required('Email is required'),
   });
 
-  const formik = useFormik({
+  const formik = useFormik({  // define the formik data
     initialValues: {
       email:'',
     },
@@ -45,7 +45,7 @@ export default function ErrorPage () {
     },
 });
 
-  return (
+  return (  // html code
     <form onSubmit={formik.handleSubmit}>
         <Grid>
             <Paper elevation={10} sx={styles.paperStyle}>
