@@ -55,7 +55,7 @@ export default function DialogInput(props: IDialogInput) {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleCloseWithInput}>{props.buttonTitle?props.buttonTitle:"Confirm"}</Button>
+          <Button onClick={handleCloseWithInput} sx={{color: 'inherit'}}>{props.buttonTitle?props.buttonTitle:"Confirm"}</Button>
         </DialogActions>
       </Dialog>
     </div>
